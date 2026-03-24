@@ -26,6 +26,51 @@ function analysisBackendUrl() {
   return "http://127.0.0.1:8000/analysis/deep";
 }
 
+function analysisOpeningsUrl() {
+  return analysisBackendUrl().replace("/analysis/deep", "/openings/detect");
+}
+
+function analysisRenderOpening(data) {
+  const nameEl = document.getElementById("opening-name");
+  const ecoEl = document.getElementById("opening-eco");
+  const lineEl = document.getElementById("opening-line");
+  if (!nameEl || !ecoEl || !lineEl) return;
+
+  if (!data || !data.found) {
+    nameEl.innerText = "Fuori libro";
+    ecoEl.innerText = "ECO: -";
+    lineEl.innerText = "";
+    return;
+  }
+
+  nameEl.innerText = data.name || "Apertura rilevata";
+  ecoEl.innerText = `ECO: ${data.eco || "-"} | Completamento: ${data.completion_pct || 0}%`;
+  lineEl.innerText = (data.line || []).join(" ");
+}
+
+async function analysisDetectOpening() {
+  if (!game) return;
+  const moves = analysisGetSanMoves();
+  if (!moves.length) {
+    analysisRenderOpening(null);
+    return;
+  }
+
+  try {
+    const response = await fetch(analysisOpeningsUrl(), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ moves }),
+      mode: "cors",
+    });
+    if (!response.ok) return;
+    const data = await response.json();
+    analysisRenderOpening(data);
+  } catch (_err) {
+    // Non blocchiamo il flusso analisi se il servizio aperture non risponde.
+  }
+}
+
 let analysisAbortController = null;
 let analysisRequestToken = 0;
 let analysisUseLocalWorkerScores = false;
@@ -203,6 +248,8 @@ function analysisLocalFallback() {
 async function analysisRunDeep() {
   if (!game) return;
 
+  analysisDetectOpening();
+
   if (
     analysisAbortController &&
     typeof analysisAbortController.abort === "function"
@@ -295,16 +342,29 @@ function analysisOnSnapEnd() {
 // Quando l’utente muove un pezzo
 let analysisMovesList = [];
 
+function analysisGetSanMoves() {
+  if (game && typeof game.history === "function") {
+    try {
+      const history = game.history();
+      if (Array.isArray(history)) return history;
+    } catch (_err) {
+      // fallback su array locale
+    }
+  }
+  return analysisMovesList.slice();
+}
+
 function analysisBuildPgnText() {
-  if (!analysisMovesList.length) return "";
+  const moves = analysisGetSanMoves();
+  if (!moves.length) return "";
 
   let pgn = "";
-  for (let i = 0; i < analysisMovesList.length; i++) {
+  for (let i = 0; i < moves.length; i++) {
     if (i % 2 === 0) {
       const moveNum = Math.floor(i / 2) + 1;
-      pgn += (i > 0 ? " " : "") + moveNum + ". " + analysisMovesList[i];
+      pgn += (i > 0 ? " " : "") + moveNum + ". " + moves[i];
     } else {
-      pgn += " " + analysisMovesList[i];
+      pgn += " " + moves[i];
     }
   }
   return pgn;
@@ -325,6 +385,8 @@ function analysisOnDrop(source, target) {
   if (pgnInput) {
     pgnInput.value = analysisBuildPgnText();
   }
+
+  analysisDetectOpening();
 
   if (typeof registerNewMove === "function") registerNewMove();
   analysisRunDeep();
@@ -425,12 +487,128 @@ async function analysisRunGameAnalysis() {
   }
 }
 
+function analysisEvalToCp(evalObj) {
+  if (!evalObj || typeof evalObj !== "object") return null;
+
+  if (evalObj.type === "cp") {
+    const cp = Number(evalObj.value);
+    return Number.isFinite(cp) ? cp : null;
+  }
+
+  if (evalObj.type === "mate") {
+    const mate = Number(evalObj.value);
+    if (!Number.isFinite(mate) || mate === 0) return null;
+    return mate > 0 ? 1200 : -1200;
+  }
+
+  return null;
+}
+
+function analysisRenderGameChart(moves) {
+  const canvas = document.getElementById("game-analysis-chart");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const values = (moves || []).map(
+    (m) => analysisEvalToCp(m?.eval_after) ?? analysisEvalToCp(m?.eval_before),
+  );
+  const valid = values.filter((v) => Number.isFinite(v));
+
+  const width = Math.max(300, canvas.clientWidth || 300);
+  const height = 180;
+  canvas.width = width;
+  canvas.height = height;
+
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "#161616";
+  ctx.fillRect(0, 0, width, height);
+
+  if (!valid.length) {
+    ctx.fillStyle = "#9a9a9a";
+    ctx.font = "12px Segoe UI";
+    ctx.fillText("Valutazioni non disponibili.", 12, 24);
+    return;
+  }
+
+  const left = 38;
+  const right = 10;
+  const top = 10;
+  const bottom = 24;
+  const plotW = width - left - right;
+  const plotH = height - top - bottom;
+
+  let minV = Math.min(...valid, -100);
+  let maxV = Math.max(...valid, 100);
+  const pad = Math.max(40, (maxV - minV) * 0.12);
+  minV -= pad;
+  maxV += pad;
+
+  const toX = (i) => {
+    if (values.length <= 1) return left;
+    return left + (i / (values.length - 1)) * plotW;
+  };
+  const toY = (v) => top + ((maxV - v) / (maxV - minV)) * plotH;
+
+  const drawRef = (v, color, label) => {
+    if (v < minV || v > maxV) return;
+    const y = toY(v);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(left, y);
+    ctx.lineTo(width - right, y);
+    ctx.stroke();
+    ctx.fillStyle = "#9b9b9b";
+    ctx.font = "11px Segoe UI";
+    ctx.fillText(label, 3, y + 4);
+  };
+
+  drawRef(200, "#2f2f2f", "+2.0");
+  drawRef(0, "#6b6b6b", "0.0");
+  drawRef(-200, "#2f2f2f", "-2.0");
+
+  ctx.strokeStyle = "#4caf50";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  let started = false;
+  values.forEach((v, i) => {
+    if (!Number.isFinite(v)) {
+      started = false;
+      return;
+    }
+    const x = toX(i);
+    const y = toY(v);
+    if (!started) {
+      ctx.moveTo(x, y);
+      started = true;
+    } else {
+      ctx.lineTo(x, y);
+    }
+  });
+  ctx.stroke();
+
+  ctx.fillStyle = "#d6ffd8";
+  values.forEach((v, i) => {
+    if (!Number.isFinite(v)) return;
+    ctx.beginPath();
+    ctx.arc(toX(i), toY(v), 2.2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  ctx.fillStyle = "#9b9b9b";
+  ctx.font = "11px Segoe UI";
+  ctx.fillText("Mosse", width - 44, height - 6);
+}
+
 function analysisRenderGameAnalysis(data) {
   const panel = document.getElementById("game-analysis-panel");
   if (panel) panel.style.display = "";
 
   const statsEl = document.getElementById("game-analysis-stats");
   const movesEl = document.getElementById("game-analysis-moves");
+
+  analysisRenderGameChart(data?.moves || []);
 
   const symSpan = (s) => {
     const cls = ["!!", "!", "!?"].includes(s)

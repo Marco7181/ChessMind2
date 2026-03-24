@@ -144,11 +144,14 @@ function importPgnFromInput() {
   const pgnInput = document.getElementById("pgn-input");
   if (!pgnInput) return;
 
-  const pgn = pgnInput.value.trim();
-  if (!pgn) {
+  const pgnRaw = pgnInput.value.trim();
+  if (!pgnRaw) {
     setPositionToolStatus("Inserisci un PGN da importare.", true);
     return;
   }
+
+  // Supporta anche notazione italiana (C,A,T,D,R) convertendola in SAN inglese.
+  const pgn = normalizeImportedPgn(pgnRaw);
 
   game.reset();
 
@@ -173,6 +176,37 @@ function importPgnFromInput() {
   resetMoveNavigation();
   syncBoardToGame();
   setPositionToolStatus("PGN importato correttamente.");
+}
+
+function normalizeImportedPgn(rawPgn) {
+  const pieceMap = {
+    C: "N", // Cavallo -> Knight
+    A: "B", // Alfiere -> Bishop
+    T: "R", // Torre -> Rook
+    D: "Q", // Donna -> Queen
+    R: "K", // Re -> King
+  };
+
+  const tokens = rawPgn.split(/\s+/).filter(Boolean);
+  const hasItalianMarkers = tokens.some((token) => /^[CATD]/.test(token));
+  if (!hasItalianMarkers) {
+    // PGN gia in notazione inglese SAN: non alterare nulla.
+    return rawPgn.trim();
+  }
+
+  return tokens
+    .map((token) => {
+      if (/^(1-0|0-1|1\/2-1\/2|\*)$/.test(token)) return token;
+      if (/^\d+\.+$/.test(token)) return token;
+
+      const first = token[0];
+      if (pieceMap[first]) {
+        return pieceMap[first] + token.slice(1);
+      }
+      return token;
+    })
+    .join(" ")
+    .trim();
 }
 
 async function copyTextToClipboard(text) {

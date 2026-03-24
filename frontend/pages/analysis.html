@@ -45,6 +45,13 @@
     <h3>Valutazione</h3>
     <div id="eval">In attesa...</div>
 
+    <h3>Apertura Rilevata</h3>
+    <div id="opening-box" class="opening-box">
+      <div id="opening-name">In attesa mosse...</div>
+      <div id="opening-eco" class="opening-meta"></div>
+      <div id="opening-line" class="opening-meta"></div>
+    </div>
+
     <h3>Parametri Analisi</h3>
     <div class="analysis-controls">
       <label for="analysis-depth">Depth</label>
@@ -78,6 +85,13 @@
 
     <div id="game-analysis-panel" style="display: none; margin-top: 16px">
       <h3>Analisi Partita</h3>
+      <div class="ga-chart-wrap">
+        <canvas id="game-analysis-chart"></canvas>
+        <div class="ga-chart-legend">
+          Grafico valutazione Stockfish per mossa (in pedoni dal punto di vista
+          del Bianco).
+        </div>
+      </div>
       <div id="game-analysis-stats"></div>
       <div id="game-analysis-moves"></div>
     </div>
