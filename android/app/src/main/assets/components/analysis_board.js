@@ -504,101 +504,280 @@ function analysisEvalToCp(evalObj) {
   return null;
 }
 
+// --- Evaluation chart state ---
+let _gaChartState = null;
+
 function analysisRenderGameChart(moves) {
   const canvas = document.getElementById("game-analysis-chart");
   if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
 
   const values = (moves || []).map(
     (m) => analysisEvalToCp(m?.eval_after) ?? analysisEvalToCp(m?.eval_before),
   );
+  _gaChartState = { moves, values };
+
+  if (!canvas._gaChartInit) {
+    canvas._gaChartInit = true;
+    canvas.addEventListener("mousemove", _gaChartOnMouseMove);
+    canvas.addEventListener("mouseleave", _gaChartOnMouseLeave);
+  }
+
+  _gaChartDraw(canvas, _gaChartState, -1);
+}
+
+function _gaChartDraw(canvas, state, hoverIdx) {
+  const { values, moves } = state;
   const valid = values.filter((v) => Number.isFinite(v));
 
-  const width = Math.max(300, canvas.clientWidth || 300);
-  const height = 180;
-  canvas.width = width;
-  canvas.height = height;
+  const dpr = window.devicePixelRatio || 1;
+  const wrap = canvas.parentElement;
+  const wrapW = (wrap ? wrap.clientWidth : 0) || 600;
 
-  ctx.clearRect(0, 0, width, height);
+  const PX_PER_MOVE = 28;
+  const cssW = Math.max(wrapW - 2, Math.max(300, values.length * PX_PER_MOVE));
+  const cssH = 200;
+
+  const newW = Math.round(cssW * dpr);
+  const newH = Math.round(cssH * dpr);
+  if (canvas.width !== newW || canvas.height !== newH) {
+    canvas.style.width = cssW + "px";
+    canvas.style.height = cssH + "px";
+    canvas.width = newW;
+    canvas.height = newH;
+  }
+
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, cssW, cssH);
   ctx.fillStyle = "#161616";
-  ctx.fillRect(0, 0, width, height);
+  ctx.fillRect(0, 0, cssW, cssH);
 
   if (!valid.length) {
     ctx.fillStyle = "#9a9a9a";
-    ctx.font = "12px Segoe UI";
+    ctx.font = "12px Segoe UI, Arial";
+    ctx.textAlign = "left";
     ctx.fillText("Valutazioni non disponibili.", 12, 24);
     return;
   }
 
-  const left = 38;
-  const right = 10;
-  const top = 10;
-  const bottom = 24;
-  const plotW = width - left - right;
-  const plotH = height - top - bottom;
-
-  let minV = Math.min(...valid, -100);
-  let maxV = Math.max(...valid, 100);
-  const pad = Math.max(40, (maxV - minV) * 0.12);
-  minV -= pad;
-  maxV += pad;
-
+  const L = 40,
+    R = 10,
+    T = 12,
+    B = 28;
+  const plotW = cssW - L - R;
+  const plotH = cssH - T - B;
+  const MIN_V = -650,
+    MAX_V = 650;
+  const clamp = (v) => Math.max(MIN_V, Math.min(MAX_V, v));
   const toX = (i) => {
-    if (values.length <= 1) return left;
-    return left + (i / (values.length - 1)) * plotW;
+    if (values.length <= 1) return L + plotW / 2;
+    return L + (i / (values.length - 1)) * plotW;
   };
-  const toY = (v) => top + ((maxV - v) / (maxV - minV)) * plotH;
+  const toY = (v) => T + ((MAX_V - clamp(v)) / (MAX_V - MIN_V)) * plotH;
+  const zeroY = toY(0);
 
-  const drawRef = (v, color, label) => {
-    if (v < minV || v > maxV) return;
+  // Grid lines
+  const gridLines = [
+    { v: 500, label: "+5", dim: true },
+    { v: 300, label: "+3", dim: true },
+    { v: 200, label: "+2", dim: false },
+    { v: 100, label: "+1", dim: false },
+    { v: 0, label: "0", zero: true },
+    { v: -100, label: "\u22121", dim: false },
+    { v: -200, label: "\u22122", dim: false },
+    { v: -300, label: "\u22123", dim: true },
+    { v: -500, label: "\u22125", dim: true },
+  ];
+
+  ctx.textAlign = "right";
+  gridLines.forEach(({ v, label, zero, dim }) => {
     const y = toY(v);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = zero ? "#4a4a4a" : dim ? "#1e1e1e" : "#252525";
+    ctx.lineWidth = zero ? 1.5 : 1;
+    ctx.setLineDash(zero ? [] : [3, 5]);
     ctx.beginPath();
-    ctx.moveTo(left, y);
-    ctx.lineTo(width - right, y);
+    ctx.moveTo(L, y);
+    ctx.lineTo(cssW - R, y);
     ctx.stroke();
-    ctx.fillStyle = "#9b9b9b";
-    ctx.font = "11px Segoe UI";
-    ctx.fillText(label, 3, y + 4);
-  };
+    ctx.setLineDash([]);
+    ctx.fillStyle = zero ? "#aaaaaa" : dim ? "#444444" : "#6a6a6a";
+    ctx.font = `${zero ? "11" : "10"}px Segoe UI, Arial`;
+    ctx.fillText(label, L - 4, y + 4);
+  });
 
-  drawRef(200, "#2f2f2f", "+2.0");
-  drawRef(0, "#6b6b6b", "0.0");
-  drawRef(-200, "#2f2f2f", "-2.0");
+  // Gradient fills
+  const gradUp = ctx.createLinearGradient(0, T, 0, zeroY);
+  gradUp.addColorStop(0, "rgba(100,210,110,0.30)");
+  gradUp.addColorStop(1, "rgba(100,210,110,0.04)");
+  const gradDown = ctx.createLinearGradient(0, zeroY, 0, T + plotH);
+  gradDown.addColorStop(0, "rgba(210,70,70,0.04)");
+  gradDown.addColorStop(1, "rgba(210,70,70,0.30)");
 
-  ctx.strokeStyle = "#4caf50";
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  let started = false;
+  const pts = [];
   values.forEach((v, i) => {
-    if (!Number.isFinite(v)) {
-      started = false;
-      return;
+    if (Number.isFinite(v)) pts.push({ i, x: toX(i), y: toY(v), v });
+  });
+
+  if (pts.length > 0) {
+    const x0 = pts[0].x,
+      xN = pts[pts.length - 1].x;
+
+    // Positive area fill
+    ctx.beginPath();
+    ctx.moveTo(x0, zeroY);
+    pts.forEach((p) => ctx.lineTo(p.x, Math.min(p.y, zeroY)));
+    ctx.lineTo(xN, zeroY);
+    ctx.closePath();
+    ctx.fillStyle = gradUp;
+    ctx.fill();
+
+    // Negative area fill
+    ctx.beginPath();
+    ctx.moveTo(x0, zeroY);
+    pts.forEach((p) => ctx.lineTo(p.x, Math.max(p.y, zeroY)));
+    ctx.lineTo(xN, zeroY);
+    ctx.closePath();
+    ctx.fillStyle = gradDown;
+    ctx.fill();
+
+    // Main evaluation line
+    ctx.strokeStyle = "#5ecf6e";
+    ctx.lineWidth = 2;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    pts.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    });
+    ctx.stroke();
+
+    // Hover vertical crosshair
+    if (hoverIdx >= 0 && Number.isFinite(values[hoverIdx])) {
+      const hx = toX(hoverIdx);
+      ctx.strokeStyle = "rgba(255,255,255,0.16)";
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 4]);
+      ctx.beginPath();
+      ctx.moveTo(hx, T);
+      ctx.lineTo(hx, T + plotH);
+      ctx.stroke();
+      ctx.setLineDash([]);
     }
-    const x = toX(i);
-    const y = toY(v);
-    if (!started) {
-      ctx.moveTo(x, y);
-      started = true;
-    } else {
-      ctx.lineTo(x, y);
+
+    // Dots (color-coded, hover dot is larger)
+    pts.forEach((p) => {
+      const isHover = p.i === hoverIdx;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, isHover ? 5 : 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = p.v >= 0 ? "#7de88a" : "#e87d7d";
+      ctx.fill();
+      if (isHover) {
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+    });
+  }
+
+  // X-axis move number labels
+  const labStep =
+    values.length > 60
+      ? 10
+      : values.length > 30
+        ? 5
+        : values.length > 15
+          ? 2
+          : 1;
+  ctx.fillStyle = "#585858";
+  ctx.font = "10px Segoe UI, Arial";
+  ctx.textAlign = "center";
+  values.forEach((v, i) => {
+    if (!Number.isFinite(v) || i % 2 !== 0) return;
+    const moveNum = Math.floor(i / 2) + 1;
+    if (moveNum === 1 || moveNum % labStep === 0) {
+      ctx.fillText(moveNum, toX(i), cssH - 8);
     }
   });
-  ctx.stroke();
 
-  ctx.fillStyle = "#d6ffd8";
+  canvas._gaToX = toX;
+  canvas._gaLayout = { L, R, T, B, plotW, plotH, cssW, cssH };
+}
+
+function _gaChartOnMouseMove(e) {
+  const canvas = e.currentTarget;
+  if (!_gaChartState) return;
+  const { values, moves } = _gaChartState;
+  if (!values || !values.length) return;
+
+  const layout = canvas._gaLayout;
+  const toX = canvas._gaToX;
+  if (!layout || !toX) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = layout.cssW / rect.width;
+  const mx = (e.clientX - rect.left) * scaleX;
+
+  let bestIdx = -1,
+    bestDist = Infinity;
   values.forEach((v, i) => {
     if (!Number.isFinite(v)) return;
-    ctx.beginPath();
-    ctx.arc(toX(i), toY(v), 2.2, 0, Math.PI * 2);
-    ctx.fill();
+    const d = Math.abs(toX(i) - mx);
+    if (d < bestDist) {
+      bestDist = d;
+      bestIdx = i;
+    }
   });
 
-  ctx.fillStyle = "#9b9b9b";
-  ctx.font = "11px Segoe UI";
-  ctx.fillText("Mosse", width - 44, height - 6);
+  if (bestIdx < 0 || bestDist > 24) {
+    _gaChartHideTooltip();
+    _gaChartDraw(canvas, _gaChartState, -1);
+    return;
+  }
+
+  _gaChartDraw(canvas, _gaChartState, bestIdx);
+
+  const v = values[bestIdx];
+  const m = moves[bestIdx];
+  const san = m?.move_san || m?.san || "";
+  const moveNum = Math.floor(bestIdx / 2) + 1;
+  const colorLabel = bestIdx % 2 === 0 ? "Bianco" : "Nero";
+  const evalStr =
+    v >= 1200
+      ? "+Matto"
+      : v <= -1200
+        ? "\u2212Matto"
+        : (v > 0 ? "+" : "") + (v / 100).toFixed(2);
+  const evalColor = v >= 0 ? "#7de88a" : "#e87d7d";
+
+  let tt = document.getElementById("_ga-chart-tip");
+  if (!tt) {
+    tt = document.createElement("div");
+    tt.id = "_ga-chart-tip";
+    tt.style.cssText =
+      "position:fixed;pointer-events:none;display:none;background:#1c1c1c;border:1px solid #3a3a3a;border-radius:7px;padding:7px 12px;font-size:12px;color:#ddd;font-family:Segoe UI,Arial,sans-serif;z-index:9999;box-shadow:0 3px 12px rgba(0,0,0,.7);white-space:nowrap;line-height:1.6";
+    document.body.appendChild(tt);
+  }
+  tt.innerHTML = `<b>Mossa ${moveNum} \u2013 ${colorLabel}</b>${san ? ` (${san})` : ""}<br>Valutazione: <span style="color:${evalColor};font-weight:600">${evalStr}</span>`;
+  tt.style.display = "block";
+  const ttW = 210;
+  const tx =
+    e.clientX + 16 + ttW > window.innerWidth - 8
+      ? e.clientX - ttW - 10
+      : e.clientX + 16;
+  tt.style.left = tx + "px";
+  tt.style.top = e.clientY - 16 + "px";
+}
+
+function _gaChartOnMouseLeave() {
+  _gaChartHideTooltip();
+  const canvas = document.getElementById("game-analysis-chart");
+  if (canvas && _gaChartState) _gaChartDraw(canvas, _gaChartState, -1);
+}
+
+function _gaChartHideTooltip() {
+  const tt = document.getElementById("_ga-chart-tip");
+  if (tt) tt.style.display = "none";
 }
 
 function analysisRenderGameAnalysis(data) {
