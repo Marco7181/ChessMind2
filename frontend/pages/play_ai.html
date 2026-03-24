@@ -1,8 +1,97 @@
 <h2>Gioca contro AI</h2>
 
-<div id="board" style="width: 350px; margin: auto"></div>
+<div id="play-container">
+  <div class="board-area">
+    <div
+      id="board"
+      style="
+        width: 350px;
+        height: 350px;
+        margin: 20px auto;
+        background: #1e1e1e;
+      "
+    ></div>
+    <div class="move-nav-controls">
+      <button data-nav="start" class="btn" onclick="moveToStart()">
+        Inizio
+      </button>
+      <button data-nav="back" class="btn" onclick="moveBack()">Indietro</button>
+      <button data-nav="forward" class="btn" onclick="moveForward()">
+        Avanti
+      </button>
+      <button data-nav="end" class="btn" onclick="moveToEnd()">Fine</button>
+    </div>
+    <div class="position-tools">
+      <label for="fen-input">FEN</label>
+      <div class="position-row">
+        <input
+          id="fen-input"
+          type="text"
+          placeholder="es. rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        />
+        <button class="btn" onclick="applyFenFromInput()">Carica FEN</button>
+      </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+      <label for="pgn-input">PGN</label>
+      <textarea
+        id="pgn-input"
+        rows="4"
+        placeholder="Incolla qui il PGN completo"
+      ></textarea>
+      <button class="btn" onclick="importPgnFromInput()">Importa PGN</button>
+      <div class="position-actions">
+        <button class="btn" onclick="copyCurrentFen()">
+          Copia FEN corrente
+        </button>
+        <button class="btn" onclick="exportCurrentPgn()">Esporta PGN</button>
+      </div>
+      <div id="fen-pgn-status" class="position-status"></div>
+    </div>
+  </div>
 
-<script src="../components/board.js"></script>
+  <div id="ai-panel">
+    <h3>Livello AI</h3>
+    <select id="difficulty" onchange="updateDifficulty()">
+      <option value="8">Facile</option>
+      <option value="12">Medio</option>
+      <option value="18">Difficile</option>
+    </select>
+
+    <h3>Ultima mossa AI</h3>
+    <div id="ai-move">In attesa...</div>
+
+    <button onclick="resetGame()">Nuova partita</button>
+  </div>
+</div>
+
+<script>
+  // Carica il gioco AI con delay per aspettare le librerie
+  function initGame() {
+    const boardElement = document.getElementById("board");
+    console.log("Verifica librerie:", {
+      Chess: typeof Chess,
+      Chessboard: typeof Chessboard,
+      boardElement: !!boardElement,
+      loadStockfish: typeof playAiLoadStockfish,
+      initBoard: typeof playAiInitBoard,
+    });
+
+    if (
+      typeof playAiLoadStockfish === "function" &&
+      typeof playAiInitBoard === "function" &&
+      typeof Chess !== "undefined" &&
+      boardElement
+    ) {
+      console.log("Caricamento gioco AI...");
+      if (!game) game = new Chess();
+      playAiLoadStockfish();
+      playAiInitBoard();
+      console.log("Board object:", board);
+    } else {
+      console.warn("Riprovando tra 500ms...");
+      setTimeout(initGame, 500);
+    }
+  }
+
+  setTimeout(initGame, 1500);
+</script>

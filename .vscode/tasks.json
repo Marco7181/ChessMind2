@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Avvia Backend",
+      "type": "shell",
+      "command": "C:/Users/Gina/AppData/Local/Programs/Python/Python314/python.exe",
+      "args": [
+        "-m",
+        "uvicorn",
+        "backend.main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [
+            { "regexp": ".", "file": 1, "location": 2, "message": 3 }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Waiting for application startup",
+            "endsPattern": "Application startup complete"
+          }
+        }
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

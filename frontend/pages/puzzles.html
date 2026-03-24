@@ -1,0 +1,101 @@
+<h2>Puzzle del giorno</h2>
+
+<div id="puzzle-container">
+  <div class="board-area">
+    <div id="board" style="width: 350px"></div>
+    <div class="move-nav-controls">
+      <button data-nav="start" class="btn" onclick="moveToStart()">
+        Inizio
+      </button>
+      <button data-nav="back" class="btn" onclick="moveBack()">Indietro</button>
+      <button data-nav="forward" class="btn" onclick="moveForward()">
+        Avanti
+      </button>
+      <button data-nav="end" class="btn" onclick="moveToEnd()">Fine</button>
+    </div>
+    <div class="position-tools">
+      <label for="fen-input">FEN</label>
+      <div class="position-row">
+        <input
+          id="fen-input"
+          type="text"
+          placeholder="es. rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        />
+        <button class="btn" onclick="applyFenFromInput()">Carica FEN</button>
+      </div>
+
+      <label for="pgn-input">PGN</label>
+      <textarea
+        id="pgn-input"
+        rows="4"
+        placeholder="Incolla qui il PGN completo"
+      ></textarea>
+      <button class="btn" onclick="importPgnFromInput()">Importa PGN</button>
+      <div class="position-actions">
+        <button class="btn" onclick="copyCurrentFen()">
+          Copia FEN corrente
+        </button>
+        <button class="btn" onclick="exportCurrentPgn()">Esporta PGN</button>
+      </div>
+      <div id="fen-pgn-status" class="position-status"></div>
+    </div>
+  </div>
+
+  <div id="puzzle-panel">
+    <h3>Istruzioni</h3>
+    <p id="puzzle-desc">Caricamento puzzle...</p>
+
+    <h3>Turno</h3>
+    <div id="turn-indicator" class="turn-indicator">Tocca a: Bianco</div>
+
+    <div class="position-actions">
+      <button
+        class="btn"
+        id="retry-puzzle-btn"
+        onclick="retryPuzzle()"
+        disabled
+      >
+        Riprova
+      </button>
+      <button class="btn" onclick="showPuzzleSolution()">Soluzione</button>
+      <button class="btn" onclick="nextPuzzle()">Nuovo Puzzle</button>
+    </div>
+
+    <h3>Risultato</h3>
+    <div id="result"></div>
+  </div>
+</div>
+
+<script>
+  // Se aperta direttamente, reindirizza all'app principale con route hash.
+  if (typeof window.loadPage !== "function" || typeof Chess === "undefined") {
+    window.location.replace("../index.html#puzzles");
+  }
+
+  // Carica i puzzle con delay per aspettare le librerie
+  setTimeout(function () {
+    console.log("Verifica librerie (puzzles):", {
+      Chess: typeof Chess,
+      Chessboard: typeof Chessboard,
+      loadStockfish: typeof puzzleLoadStockfish,
+      initBoard: typeof puzzleInitBoard,
+      nextPuzzle: typeof nextPuzzle,
+    });
+
+    if (
+      typeof puzzleLoadStockfish === "function" &&
+      typeof puzzleInitBoard === "function" &&
+      typeof Chess !== "undefined"
+    ) {
+      board = null;
+      if (!game) game = new Chess();
+      puzzleLoadStockfish();
+      puzzleInitBoard();
+      nextPuzzle();
+      console.log("Puzzle caricati!");
+      console.log("Board object:", board);
+    } else {
+      console.error("Funzioni non disponibili per puzzles!");
+    }
+  }, 1000);
+</script>

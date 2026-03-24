@@ -1,0 +1,104 @@
+<h2>Analisi AI</h2>
+
+<div id="analysis-container">
+  <div class="board-area">
+    <div id="board" style="width: 350px"></div>
+    <div class="move-nav-controls">
+      <button data-nav="start" class="btn" onclick="moveToStart()">
+        Inizio
+      </button>
+      <button data-nav="back" class="btn" onclick="moveBack()">Indietro</button>
+      <button data-nav="forward" class="btn" onclick="moveForward()">
+        Avanti
+      </button>
+      <button data-nav="end" class="btn" onclick="moveToEnd()">Fine</button>
+    </div>
+    <div class="position-tools">
+      <label for="fen-input">FEN</label>
+      <div class="position-row">
+        <input
+          id="fen-input"
+          type="text"
+          placeholder="es. rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        />
+        <button class="btn" onclick="applyFenFromInput()">Carica FEN</button>
+      </div>
+
+      <label for="pgn-input">PGN</label>
+      <textarea
+        id="pgn-input"
+        rows="4"
+        placeholder="Incolla qui il PGN completo"
+      ></textarea>
+      <button class="btn" onclick="importPgnFromInput()">Importa PGN</button>
+      <div class="position-actions">
+        <button class="btn" onclick="copyCurrentFen()">
+          Copia FEN corrente
+        </button>
+        <button class="btn" onclick="exportCurrentPgn()">Esporta PGN</button>
+      </div>
+      <div id="fen-pgn-status" class="position-status"></div>
+    </div>
+  </div>
+
+  <div id="analysis-panel">
+    <h3>Valutazione</h3>
+    <div id="eval">In attesa...</div>
+
+    <h3>Parametri Analisi</h3>
+    <div class="analysis-controls">
+      <label for="analysis-depth">Depth</label>
+      <input id="analysis-depth" type="number" min="8" max="24" value="16" />
+
+      <label for="analysis-multipv">Linee Candidate</label>
+      <input id="analysis-multipv" type="number" min="1" max="5" value="3" />
+
+      <button class="btn" onclick="analysisRunDeep()">Analisi Completa</button>
+      <div id="analysis-status" class="position-status"></div>
+    </div>
+
+    <h3>Linee Migliori</h3>
+    <ul id="best-moves"></ul>
+
+    <h3>Piano di Gioco</h3>
+    <ul id="strategic-plan"></ul>
+
+    <h3>Piano Avversario</h3>
+    <ul id="opponent-plan"></ul>
+
+    <h3>Alert Tattici</h3>
+    <ul id="tactical-alerts"></ul>
+
+    <h3>Sintesi</h3>
+    <div id="analysis-summary">In attesa analisi...</div>
+  </div>
+</div>
+
+<script>
+  // Carica l'analisi AI con delay per aspettare le librerie
+  setTimeout(function () {
+    console.log("Verifica librerie (analysis):", {
+      Chess: typeof Chess,
+      Chessboard: typeof Chessboard,
+      loadStockfish: typeof analysisLoadStockfish,
+      initBoard: typeof analysisInitBoard,
+      analyzePosition: typeof analysisRunDeep,
+    });
+
+    if (
+      typeof analysisLoadStockfish === "function" &&
+      typeof analysisInitBoard === "function" &&
+      typeof Chess !== "undefined"
+    ) {
+      board = null;
+      if (!game) game = new Chess();
+      analysisLoadStockfish();
+      analysisInitBoard();
+      analysisRunDeep();
+      console.log("Analisi caricata!");
+      console.log("Board object:", board);
+    } else {
+      console.error("Funzioni non disponibili per analysis!");
+    }
+  }, 1000);
+</script>

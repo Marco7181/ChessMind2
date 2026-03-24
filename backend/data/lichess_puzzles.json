@@ -1,0 +1,4851 @@
+{
+  "source": "lichess-db",
+  "sample_size": 200,
+  "scan_rows": 25001,
+  "matched_rows": 5074,
+  "filters": {
+    "min_moves": 4,
+    "max_moves": 12,
+    "min_rating": 1200,
+    "max_rating": 2800,
+    "checkmate_winner_matches_start": true
+  },
+  "puzzles": [
+    {
+      "id": "03mLW",
+      "description": "Lichess Puzzle - Rating 1215 - advantage, hangingPiece, long",
+      "fen": "2r3k1/2q2pb1/p5p1/3pp3/1Pb4Q/1P6/2B2P1P/R1R3K1 b - - 0 36",
+      "solution": [
+        "c4b3",
+        "c2b3",
+        "c7c1",
+        "a1c1",
+        "c8c1",
+        "g1g2"
+      ],
+      "themes": [
+        "advantage",
+        "hangingPiece",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1215,
+      "popularity": 84,
+      "plays": 72,
+      "game_url": "https://lichess.org/780eBXNN/black#72",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FIZ8",
+      "description": "Lichess Puzzle - Rating 2335 - advantage, discoveredAttack, middlegame",
+      "fen": "r5rk/ppp2p2/2n2q2/4p2p/1PPpP1b1/P2P2Np/1B1N1P1K/R3Q1R1 w - - 6 27",
+      "solution": [
+        "g3f5",
+        "g4f5",
+        "e4f5",
+        "g8g1"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 2335,
+      "popularity": 80,
+      "plays": 113,
+      "game_url": "https://lichess.org/kzJSJv7g#53",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06iSl",
+      "description": "Lichess Puzzle - Rating 1691 - crushing, hangingPiece, middlegame",
+      "fen": "1k1r3r/pb4b1/1pp2qBp/2n1p3/P7/2P1PN2/1PQN2PP/3R1RK1 w - - 1 20",
+      "solution": [
+        "d2e4",
+        "f6g6",
+        "d1d8",
+        "h8d8"
+      ],
+      "themes": [
+        "crushing",
+        "hangingPiece",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1691,
+      "popularity": 86,
+      "plays": 34,
+      "game_url": "https://lichess.org/0IhkzyP9#39",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0D3Zw",
+      "description": "Lichess Puzzle - Rating 1810 - crushing, endgame, pin",
+      "fen": "6k1/r3K1P1/3R4/8/2p2n2/2B5/8/8 w - - 1 46",
+      "solution": [
+        "d6d7",
+        "f4d5",
+        "e7e6",
+        "a7d7"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "pin",
+        "short"
+      ],
+      "rating": 1810,
+      "popularity": 98,
+      "plays": 1441,
+      "game_url": "https://lichess.org/NdxxzpdO#91",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BwIq",
+      "description": "Lichess Puzzle - Rating 1415 - crushing, middlegame, short",
+      "fen": "r2r2k1/1pbq1pp1/p3p2p/P2pPn1Q/1P3P2/2N1P2R/3B2PP/R5K1 w - - 0 21",
+      "solution": [
+        "g2g4",
+        "g7g6",
+        "h5g6",
+        "f7g6"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1415,
+      "popularity": 93,
+      "plays": 5116,
+      "game_url": "https://lichess.org/InbRqcvs#41",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Ci3p",
+      "description": "Lichess Puzzle - Rating 1278 - advantage, fork, middlegame",
+      "fen": "Q7/4rp1k/1p3pnp/2pN4/8/P6P/2pqr1PK/R5R1 b - - 10 33",
+      "solution": [
+        "e7e8",
+        "d5f6",
+        "h7h8",
+        "f6e8"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1278,
+      "popularity": 67,
+      "plays": 47,
+      "game_url": "https://lichess.org/H18Drhha/black#66",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FvSy",
+      "description": "Lichess Puzzle - Rating 1576 - crushing, middlegame, pin",
+      "fen": "r3k2r/pp1qppbp/4bnp1/4Q1B1/8/P1N5/1PP2PPP/R3KB1R b KQkq - 0 12",
+      "solution": [
+        "a8d8",
+        "f1b5",
+        "e8g8",
+        "b5d7"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1576,
+      "popularity": 89,
+      "plays": 922,
+      "game_url": "https://lichess.org/3CUtAle9/black#24",
+      "source": "lichess-db"
+    },
+    {
+      "id": "053Uv",
+      "description": "Lichess Puzzle - Rating 1420 - crushing, deflection, endgame",
+      "fen": "8/p5pp/1p1R4/1P1P4/1P3k2/2K5/3r4/8 b - - 2 44",
+      "solution": [
+        "f4e3",
+        "d6e6",
+        "e3f4",
+        "c3d2"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "rookEndgame",
+        "short"
+      ],
+      "rating": 1420,
+      "popularity": 95,
+      "plays": 2508,
+      "game_url": "https://lichess.org/QlWav3eu/black#88",
+      "source": "lichess-db"
+    },
+    {
+      "id": "001XA",
+      "description": "Lichess Puzzle - Rating 1687 - crushing, discoveredAttack, long",
+      "fen": "1qr2rk1/pb2bppp/8/8/2p1N3/P1Bn2P1/2Q2PBP/1R3RK1 b - - 3 23",
+      "solution": [
+        "b8c7",
+        "b1b7",
+        "c7b7",
+        "e4f6",
+        "e7f6",
+        "g2b7"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "long",
+        "master",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1687,
+      "popularity": 91,
+      "plays": 1349,
+      "game_url": "https://lichess.org/KZRiN695/black#46",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08BEi",
+      "description": "Lichess Puzzle - Rating 2026 - advantage, attraction, kingsideAttack",
+      "fen": "r2q1rk1/pbp1bp2/1p1ppn1B/8/3P4/2PB4/P1PQ1PPP/R4RK1 b - - 2 14",
+      "solution": [
+        "g8h8",
+        "h6g7",
+        "h8g7",
+        "d2g5"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "kingsideAttack",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 2026,
+      "popularity": 85,
+      "plays": 179,
+      "game_url": "https://lichess.org/XRtKKJfj/black#28",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03mo2",
+      "description": "Lichess Puzzle - Rating 1342 - advantage, fork, middlegame",
+      "fen": "3r1rk1/pbp2pqp/2p3p1/4R3/3P4/P1PB3P/3Q1PP1/4R1K1 w - - 3 22",
+      "solution": [
+        "d2g5",
+        "f7f6",
+        "g5g3",
+        "f6e5"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1342,
+      "popularity": 92,
+      "plays": 4026,
+      "game_url": "https://lichess.org/bkrdHNsL#43",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FK5y",
+      "description": "Lichess Puzzle - Rating 1629 - advantage, hangingPiece, middlegame",
+      "fen": "r3k2r/p1qb1pp1/2pb4/3p3p/N5n1/4P1P1/PPQB1PBP/2R2RK1 w kq - 2 16",
+      "solution": [
+        "g2d5",
+        "c6d5",
+        "c2c7",
+        "d6c7"
+      ],
+      "themes": [
+        "advantage",
+        "hangingPiece",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1629,
+      "popularity": 75,
+      "plays": 248,
+      "game_url": "https://lichess.org/YFFyYvZy#31",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CgFk",
+      "description": "Lichess Puzzle - Rating 2513 - advancedPawn, crushing, deflection",
+      "fen": "rnbq2rk/4p2n/p2pPP1Q/1pp5/4N3/3P3P/PPP3P1/R4RK1 b - - 0 22",
+      "solution": [
+        "d8f8",
+        "e4g5",
+        "g8g5",
+        "h6f8",
+        "h7f8",
+        "f6e7"
+      ],
+      "themes": [
+        "advancedPawn",
+        "crushing",
+        "deflection",
+        "exposedKing",
+        "kingsideAttack",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 2513,
+      "popularity": 87,
+      "plays": 394,
+      "game_url": "https://lichess.org/PzIJS77w/black#44",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08xWa",
+      "description": "Lichess Puzzle - Rating 1583 - crushing, discoveredAttack, endgame",
+      "fen": "6k1/1p5q/p2P1Q2/6p1/1P6/2P5/P4PPK/8 w - - 3 43",
+      "solution": [
+        "h2g3",
+        "h7h4",
+        "g3f3",
+        "g5g4",
+        "f3f4",
+        "h4f6"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "endgame",
+        "exposedKing",
+        "long",
+        "queenEndgame"
+      ],
+      "rating": 1583,
+      "popularity": 78,
+      "plays": 40,
+      "game_url": "https://lichess.org/bz5cmt0X#85",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09YfD",
+      "description": "Lichess Puzzle - Rating 1258 - advantage, middlegame, pin",
+      "fen": "6r1/1b3p2/p1kr1P2/3p4/4pQB1/1Pq4P/P1P3P1/5R1K b - - 0 39",
+      "solution": [
+        "c3c2",
+        "f1c1",
+        "c2c1",
+        "f4c1"
+      ],
+      "themes": [
+        "advantage",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1258,
+      "popularity": 65,
+      "plays": 8,
+      "game_url": "https://lichess.org/NKEe5glb/black#78",
+      "source": "lichess-db"
+    },
+    {
+      "id": "05Shd",
+      "description": "Lichess Puzzle - Rating 1290 - crushing, endgame, fork",
+      "fen": "8/Pk6/3n2p1/1p6/1K3P2/8/5B2/8 w - - 9 55",
+      "solution": [
+        "b4c5",
+        "d6e4",
+        "c5b5",
+        "e4f2",
+        "a7a8q",
+        "b7a8"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "fork",
+        "long"
+      ],
+      "rating": 1290,
+      "popularity": 67,
+      "plays": 37,
+      "game_url": "https://lichess.org/tiHy2Gsu#109",
+      "source": "lichess-db"
+    },
+    {
+      "id": "07kz5",
+      "description": "Lichess Puzzle - Rating 1298 - advantage, fork, long",
+      "fen": "r4rk1/1p2qp1p/pn3p2/2bp1Q2/8/6PB/PP2P2P/2R2R1K b - - 4 21",
+      "solution": [
+        "c5d4",
+        "f5g4",
+        "g8h8",
+        "g4d4",
+        "e7e4",
+        "d4e4"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1298,
+      "popularity": 44,
+      "plays": 74,
+      "game_url": "https://lichess.org/cNL3yvhL/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BA4p",
+      "description": "Lichess Puzzle - Rating 1701 - crushing, exposedKing, kingsideAttack",
+      "fen": "r5k1/pp1br1b1/1n1N4/5pR1/2p2P1P/4B3/PP3P2/2K3R1 b - - 3 27",
+      "solution": [
+        "b6d5",
+        "e3d4",
+        "d5f4",
+        "g5g7",
+        "e7g7",
+        "g1g7"
+      ],
+      "themes": [
+        "crushing",
+        "exposedKing",
+        "kingsideAttack",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 1701,
+      "popularity": 93,
+      "plays": 1355,
+      "game_url": "https://lichess.org/Ke3SIZSK/black#54",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08Q0k",
+      "description": "Lichess Puzzle - Rating 2164 - crushing, endgame, fork",
+      "fen": "6k1/2R4p/3p4/1p2pN2/4r3/1PP4P/1P6/4b2K b - - 0 31",
+      "solution": [
+        "e1f2",
+        "c7c8",
+        "g8f7",
+        "f5d6",
+        "f7e6",
+        "d6e4"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "fork",
+        "long"
+      ],
+      "rating": 2164,
+      "popularity": 95,
+      "plays": 486,
+      "game_url": "https://lichess.org/qpwt3vBs/black#62",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08Eu6",
+      "description": "Lichess Puzzle - Rating 1575 - crushing, discoveredAttack, endgame",
+      "fen": "3r4/1p3kp1/p2p1p2/2q4p/3Q4/P1P2P1P/1P3K2/3R4 b - - 4 34",
+      "solution": [
+        "f7e6",
+        "d4c5",
+        "d6c5",
+        "d1d8"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "endgame",
+        "short"
+      ],
+      "rating": 1575,
+      "popularity": 100,
+      "plays": 161,
+      "game_url": "https://lichess.org/SBVyv1au/black#68",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09fyL",
+      "description": "Lichess Puzzle - Rating 1588 - crushing, deflection, long",
+      "fen": "4r1r1/pp3pk1/1b4b1/2p2P2/2pP2P1/q1P4P/P1PQ4/1K2R1R1 b - - 0 25",
+      "solution": [
+        "g6h7",
+        "d2g5",
+        "g7h8",
+        "g5f6",
+        "g8g7",
+        "e1e8"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1588,
+      "popularity": 93,
+      "plays": 2674,
+      "game_url": "https://lichess.org/aAEpm9Su/black#50",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0APab",
+      "description": "Lichess Puzzle - Rating 1552 - attraction, crushing, endgame",
+      "fen": "8/2pk2pp/p1n5/1pN5/5q2/2P5/PPK1R2P/8 b - - 0 29",
+      "solution": [
+        "d7c8",
+        "e2e8",
+        "c6d8",
+        "e8d8",
+        "c8d8",
+        "c5e6",
+        "d8e7",
+        "e6f4"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "endgame",
+        "fork",
+        "sacrifice",
+        "veryLong"
+      ],
+      "rating": 1552,
+      "popularity": 94,
+      "plays": 21194,
+      "game_url": "https://lichess.org/KgSomakC/black#58",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0G0p9",
+      "description": "Lichess Puzzle - Rating 2037 - crushing, deflection, middlegame",
+      "fen": "r3n2k/1ppq2p1/1p5p/3pPr2/6Q1/P3B3/1P3P1P/3R2RK b - - 3 24",
+      "solution": [
+        "a8a4",
+        "e5e6",
+        "d7e6",
+        "g4a4"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "middlegame",
+        "short"
+      ],
+      "rating": 2037,
+      "popularity": 88,
+      "plays": 126,
+      "game_url": "https://lichess.org/YUg95FWy/black#48",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0GDaQ",
+      "description": "Lichess Puzzle - Rating 2008 - crushing, intermezzo, opening",
+      "fen": "r1b2rk1/pp3ppp/2pp2q1/2b1n3/2P1N3/4P2P/PP2BPP1/R1BQ1RK1 w - - 4 14",
+      "solution": [
+        "e4c5",
+        "c8h3",
+        "e2f3",
+        "d6c5"
+      ],
+      "themes": [
+        "crushing",
+        "intermezzo",
+        "opening",
+        "pin",
+        "short"
+      ],
+      "rating": 2008,
+      "popularity": 75,
+      "plays": 57,
+      "game_url": "https://lichess.org/M3zPognX#27",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08WkO",
+      "description": "Lichess Puzzle - Rating 1394 - advantage, endgame, exposedKing",
+      "fen": "1b5k/1p6/p1p3r1/P3p2p/1PR1P2P/3n1PP1/7K/3R4 b - - 1 46",
+      "solution": [
+        "d3b2",
+        "d1d8",
+        "g6g8",
+        "d8g8",
+        "h8g8",
+        "c4c2"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "exposedKing",
+        "fork",
+        "long"
+      ],
+      "rating": 1394,
+      "popularity": 70,
+      "plays": 89,
+      "game_url": "https://lichess.org/xGR3vGxH/black#92",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FLZY",
+      "description": "Lichess Puzzle - Rating 2432 - advantage, middlegame, pin",
+      "fen": "2kr2nr/2q5/1p2p2p/pPn1N1p1/8/3BQP1P/P4P2/2R1K2R b K - 0 21",
+      "solution": [
+        "d8d3",
+        "e5d3",
+        "c5d3",
+        "e1e2"
+      ],
+      "themes": [
+        "advantage",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 2432,
+      "popularity": 89,
+      "plays": 1127,
+      "game_url": "https://lichess.org/uiLxpce5/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "01Z7Q",
+      "description": "Lichess Puzzle - Rating 1434 - advantage, fork, middlegame",
+      "fen": "r2r2k1/1b2qppp/pp6/2ppn3/P7/2PPN2P/BP1Q1PP1/R4RK1 b - - 1 18",
+      "solution": [
+        "e7g5",
+        "f2f4",
+        "e5f3",
+        "f1f3"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1434,
+      "popularity": 86,
+      "plays": 373,
+      "game_url": "https://lichess.org/t1gLRHeI/black#36",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Dfua",
+      "description": "Lichess Puzzle - Rating 1688 - crushing, kingsideAttack, long",
+      "fen": "5r1k/ppPb2p1/3P3p/1P5q/P1Q1NbnP/6P1/2P2P2/4RRK1 w - - 1 27",
+      "solution": [
+        "g3f4",
+        "h5h4",
+        "g1g2",
+        "h4h2",
+        "g2f3",
+        "g4e5"
+      ],
+      "themes": [
+        "crushing",
+        "kingsideAttack",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 1688,
+      "popularity": 100,
+      "plays": 10,
+      "game_url": "https://lichess.org/0AJnAkr3#53",
+      "source": "lichess-db"
+    },
+    {
+      "id": "05stP",
+      "description": "Lichess Puzzle - Rating 1870 - crushing, fork, long",
+      "fen": "4nrk1/1p3ppp/pq2p3/4P1QN/P7/5P2/1Pr2P1P/R4RK1 b - - 1 21",
+      "solution": [
+        "c2b2",
+        "h5f6",
+        "g8h8",
+        "f6d7",
+        "b6b4",
+        "d7f8"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 1870,
+      "popularity": 73,
+      "plays": 97,
+      "game_url": "https://lichess.org/CuEB2B3w/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "07CGX",
+      "description": "Lichess Puzzle - Rating 1541 - advantage, endgame, hangingPiece",
+      "fen": "2r5/3K3p/k2P2p1/R4p2/1P6/2p3P1/7r/8 b - - 3 36",
+      "solution": [
+        "a6b6",
+        "d7c8",
+        "c3c2",
+        "a5c5",
+        "c2c1b",
+        "c5c1"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "hangingPiece",
+        "long",
+        "rookEndgame"
+      ],
+      "rating": 1541,
+      "popularity": 94,
+      "plays": 5646,
+      "game_url": "https://lichess.org/UfrxP4eN/black#72",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BM1j",
+      "description": "Lichess Puzzle - Rating 1675 - crushing, middlegame, short",
+      "fen": "5rk1/pp3pp1/1pp4p/7q/4Pn1B/5P1P/P1P2P1K/1R1Q1R2 w - - 5 20",
+      "solution": [
+        "h2g3",
+        "g7g5",
+        "g3h2",
+        "h5h4"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1675,
+      "popularity": 85,
+      "plays": 704,
+      "game_url": "https://lichess.org/DMFMjvN0#39",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09BQx",
+      "description": "Lichess Puzzle - Rating 1471 - advancedPawn, crushing, endgame",
+      "fen": "8/4kN2/4B3/1K1P4/8/8/PpP5/8 w - - 0 54",
+      "solution": [
+        "d5d6",
+        "e7e6",
+        "b5c6",
+        "b2b1q"
+      ],
+      "themes": [
+        "advancedPawn",
+        "crushing",
+        "endgame",
+        "hangingPiece",
+        "promotion",
+        "short"
+      ],
+      "rating": 1471,
+      "popularity": 89,
+      "plays": 490,
+      "game_url": "https://lichess.org/vVHoNynQ#107",
+      "source": "lichess-db"
+    },
+    {
+      "id": "04uPq",
+      "description": "Lichess Puzzle - Rating 1356 - crushing, deflection, endgame",
+      "fen": "8/5kp1/7p/8/5PKP/r5P1/5R2/8 w - - 3 40",
+      "solution": [
+        "f2f3",
+        "h6h5",
+        "g4g5",
+        "a3f3"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "rookEndgame",
+        "short"
+      ],
+      "rating": 1356,
+      "popularity": 70,
+      "plays": 264,
+      "game_url": "https://lichess.org/GWtsy369#79",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Cpmu",
+      "description": "Lichess Puzzle - Rating 1354 - advantage, discoveredAttack, long",
+      "fen": "r4rk1/pp1b1pp1/4pn1p/2b1N3/2P2q2/2QB1PP1/PP5P/1K1R3R b - - 0 19",
+      "solution": [
+        "f4d4",
+        "d3h7",
+        "f6h7",
+        "d1d4",
+        "c5d4",
+        "c3d4"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1354,
+      "popularity": 96,
+      "plays": 24027,
+      "game_url": "https://lichess.org/oLElJj4Q/black#38",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03NlW",
+      "description": "Lichess Puzzle - Rating 1206 - crushing, fork, middlegame",
+      "fen": "r2q2k1/p1p1b1pn/2pp3p/5r1P/8/2N5/PPPBQPP1/R3K2R b KQ - 1 14",
+      "solution": [
+        "e7f6",
+        "e2e6",
+        "g8h8",
+        "e6f5"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1206,
+      "popularity": 98,
+      "plays": 7222,
+      "game_url": "https://lichess.org/4oReeLxT/black#28",
+      "source": "lichess-db"
+    },
+    {
+      "id": "07X3h",
+      "description": "Lichess Puzzle - Rating 1355 - crushing, fork, opening",
+      "fen": "rn2kb1r/1b1p1pBp/pp2p3/1N1n4/4q3/1Q6/PP2NPPP/R3KB1R b KQkq - 0 12",
+      "solution": [
+        "f8g7",
+        "b5d6",
+        "e8d8",
+        "d6e4"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "opening",
+        "short"
+      ],
+      "rating": 1355,
+      "popularity": 96,
+      "plays": 35801,
+      "game_url": "https://lichess.org/h5QScRIm/black#24",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08Cyd",
+      "description": "Lichess Puzzle - Rating 2730 - clearance, crushing, kingsideAttack",
+      "fen": "2rq1rk1/4b1pp/2n1p3/3pP1P1/pp3P2/3QB2R/PPP3P1/2K4R b - - 0 21",
+      "solution": [
+        "b4b3",
+        "d3h7",
+        "g8f7",
+        "h3h6",
+        "f7e8",
+        "h7g6",
+        "f8f7",
+        "h6h8",
+        "e8d7",
+        "h8d8"
+      ],
+      "themes": [
+        "clearance",
+        "crushing",
+        "kingsideAttack",
+        "middlegame",
+        "pin",
+        "skewer",
+        "veryLong"
+      ],
+      "rating": 2730,
+      "popularity": 85,
+      "plays": 469,
+      "game_url": "https://lichess.org/MBwme3Ot/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Ecd1",
+      "description": "Lichess Puzzle - Rating 2512 - advantage, endgame, fork",
+      "fen": "1r1q2k1/n4ppp/4p3/pP2N3/QpP5/3P4/5PPP/1R4K1 w - - 0 29",
+      "solution": [
+        "c4c5",
+        "a7b5",
+        "e5c6",
+        "b5c3",
+        "c6d8",
+        "c3a4"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "fork",
+        "long"
+      ],
+      "rating": 2512,
+      "popularity": 85,
+      "plays": 507,
+      "game_url": "https://lichess.org/VWqsxAPs#57",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0DshH",
+      "description": "Lichess Puzzle - Rating 1539 - advancedPawn, advantage, endgame",
+      "fen": "8/3n3p/2K1p1p1/p3PpP1/3P1P2/1k6/7P/3N4 b - - 5 47",
+      "solution": [
+        "d7e5",
+        "f4e5",
+        "a5a4",
+        "d4d5",
+        "e6d5",
+        "e5e6",
+        "a4a3",
+        "e6e7",
+        "a3a2",
+        "e7e8q"
+      ],
+      "themes": [
+        "advancedPawn",
+        "advantage",
+        "endgame",
+        "hangingPiece",
+        "knightEndgame",
+        "promotion",
+        "veryLong"
+      ],
+      "rating": 1539,
+      "popularity": 57,
+      "plays": 51,
+      "game_url": "https://lichess.org/9SqVScpt/black#94",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FXlP",
+      "description": "Lichess Puzzle - Rating 1402 - advantage, attraction, endgame",
+      "fen": "b2r4/2p2ppk/P5p1/8/8/2P1P3/1PBr1RPP/R5K1 w - - 2 23",
+      "solution": [
+        "a1b1",
+        "d2f2",
+        "g1f2",
+        "d8d2",
+        "f2e1",
+        "d2c2"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "endgame",
+        "fork",
+        "long"
+      ],
+      "rating": 1402,
+      "popularity": 96,
+      "plays": 5767,
+      "game_url": "https://lichess.org/XMP15dXE#45",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Cgt8",
+      "description": "Lichess Puzzle - Rating 1723 - crushing, endgame, short",
+      "fen": "8/8/p2k1p2/p4Pp1/3N2Pp/1PP4P/2b2K2/8 b - - 5 41",
+      "solution": [
+        "c2d1",
+        "f2e1",
+        "d1b3",
+        "d4b3"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1723,
+      "popularity": 93,
+      "plays": 653,
+      "game_url": "https://lichess.org/absdUmwS/black#82",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09PWg",
+      "description": "Lichess Puzzle - Rating 1235 - advancedPawn, crushing, discoveredAttack",
+      "fen": "5r1k/3R2p1/pp5p/4q3/5pQ1/2P4P/PP4PK/8 w - - 10 34",
+      "solution": [
+        "d7b7",
+        "f4f3",
+        "g4g3",
+        "e5g3",
+        "h2g3",
+        "f3f2"
+      ],
+      "themes": [
+        "advancedPawn",
+        "crushing",
+        "discoveredAttack",
+        "discoveredCheck",
+        "endgame",
+        "long"
+      ],
+      "rating": 1235,
+      "popularity": 75,
+      "plays": 158,
+      "game_url": "https://lichess.org/ziE5ZkEZ#67",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CDhk",
+      "description": "Lichess Puzzle - Rating 2239 - attraction, crushing, deflection",
+      "fen": "6k1/r6p/p2p4/2p2pp1/P2bq1P1/1P3RP1/3BP1KP/2RQ4 w - - 0 30",
+      "solution": [
+        "d1c2",
+        "e4e2",
+        "g2h3",
+        "f5g4",
+        "h3g4",
+        "h7h5",
+        "g4h5",
+        "e2f3"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "deflection",
+        "middlegame",
+        "veryLong"
+      ],
+      "rating": 2239,
+      "popularity": 74,
+      "plays": 165,
+      "game_url": "https://lichess.org/rE8tVHI8#59",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03ZFL",
+      "description": "Lichess Puzzle - Rating 1917 - crushing, fork, long",
+      "fen": "6k1/1p4pp/1b3p2/pP2pP1n/P1P3R1/2q4r/3NQPK1/3R4 w - - 0 32",
+      "solution": [
+        "f2f3",
+        "h3g3",
+        "g4g3",
+        "h5f4",
+        "g2h2",
+        "f4e2"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1917,
+      "popularity": 93,
+      "plays": 1394,
+      "game_url": "https://lichess.org/bT8P7Mu7#63",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08dp3",
+      "description": "Lichess Puzzle - Rating 1387 - advantage, endgame, pin",
+      "fen": "4rk2/ppp2pp1/1n1p3p/8/1P2P3/1P2KP1P/P7/2R3R1 w - - 1 25",
+      "solution": [
+        "c1c7",
+        "b6d5",
+        "e3f2",
+        "d5c7"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "pin",
+        "short"
+      ],
+      "rating": 1387,
+      "popularity": 84,
+      "plays": 108,
+      "game_url": "https://lichess.org/6UztwvgV#49",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03OFF",
+      "description": "Lichess Puzzle - Rating 1986 - advantage, hangingPiece, long",
+      "fen": "2rr4/p4kp1/1p2pn1p/5n2/2p2P2/2P1b3/PPBN2PP/R1B2R1K w - - 7 21",
+      "solution": [
+        "d2c4",
+        "c8c4",
+        "c2f5",
+        "e3c1",
+        "f5e6",
+        "f7e6"
+      ],
+      "themes": [
+        "advantage",
+        "hangingPiece",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1986,
+      "popularity": 84,
+      "plays": 57,
+      "game_url": "https://lichess.org/eqRuQUYk#41",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03M4g",
+      "description": "Lichess Puzzle - Rating 2117 - advantage, discoveredCheck, doubleCheck",
+      "fen": "r1b2rk1/1p5N/1q2p1p1/n2pPn2/5P2/1PPBb3/1BQN2P1/2KR3R w - - 1 19",
+      "solution": [
+        "d3f5",
+        "a5b3",
+        "c1b1",
+        "a8a1",
+        "b2a1",
+        "b3d2"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredCheck",
+        "doubleCheck",
+        "exposedKing",
+        "long",
+        "middlegame",
+        "queensideAttack"
+      ],
+      "rating": 2117,
+      "popularity": 81,
+      "plays": 46,
+      "game_url": "https://lichess.org/Z27649GR#37",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0F08A",
+      "description": "Lichess Puzzle - Rating 1555 - advantage, master, middlegame",
+      "fen": "3r3r/ppRn1k2/5p2/3pn3/5B1P/6P1/PP2KP2/3R4 b - - 5 28",
+      "solution": [
+        "d8c8",
+        "f4e5",
+        "c8c7",
+        "e5c7"
+      ],
+      "themes": [
+        "advantage",
+        "master",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1555,
+      "popularity": 94,
+      "plays": 10717,
+      "game_url": "https://lichess.org/HY956AFt/black#56",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0DOMh",
+      "description": "Lichess Puzzle - Rating 1263 - crushing, endgame, master",
+      "fen": "1Q6/4Kpk1/4p1p1/4P2p/5P1P/q5P1/8/8 w - - 5 57",
+      "solution": [
+        "e7e8",
+        "a3f8",
+        "e8d7",
+        "f8b8"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "master",
+        "queenEndgame",
+        "short",
+        "skewer"
+      ],
+      "rating": 1263,
+      "popularity": 80,
+      "plays": 312,
+      "game_url": "https://lichess.org/3GVACa55#113",
+      "source": "lichess-db"
+    },
+    {
+      "id": "02iCT",
+      "description": "Lichess Puzzle - Rating 1780 - crushing, discoveredAttack, long",
+      "fen": "r4rk1/2b3p1/2R4p/5p2/1p6/4Q1P1/1q3PBP/2R3K1 b - - 0 29",
+      "solution": [
+        "a8e8",
+        "g2d5",
+        "g8h7",
+        "c6h6",
+        "g7h6",
+        "c1c7"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1780,
+      "popularity": 85,
+      "plays": 214,
+      "game_url": "https://lichess.org/h2sGCOby/black#58",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03L7g",
+      "description": "Lichess Puzzle - Rating 1353 - advantage, attraction, endgame",
+      "fen": "5rk1/1p4p1/p3p2p/6q1/3N1n2/P4Q1P/1PP3P1/4B2K b - - 0 29",
+      "solution": [
+        "f4d5",
+        "f3f8",
+        "g8f8",
+        "d4e6",
+        "f8f7",
+        "e6g5"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "endgame",
+        "fork",
+        "long",
+        "sacrifice"
+      ],
+      "rating": 1353,
+      "popularity": 71,
+      "plays": 76,
+      "game_url": "https://lichess.org/dAL26HhI/black#58",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0AzaJ",
+      "description": "Lichess Puzzle - Rating 1721 - crushing, endgame, pin",
+      "fen": "4R3/p4p1k/5p2/2b2P2/P7/6RP/2Pr2P1/3n2K1 w - - 7 34",
+      "solution": [
+        "g1h1",
+        "d1f2",
+        "h1h2",
+        "c5d6"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "pin",
+        "short"
+      ],
+      "rating": 1721,
+      "popularity": 71,
+      "plays": 7,
+      "game_url": "https://lichess.org/K8qsO8I0#67",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09t0E",
+      "description": "Lichess Puzzle - Rating 1442 - crushing, discoveredAttack, middlegame",
+      "fen": "r1r3k1/nq1nbppp/4p3/p3P3/1p1P1P2/1Pp2NPP/P1Q2BB1/2R1R1K1 b - - 0 21",
+      "solution": [
+        "a8b8",
+        "f3g5",
+        "e7g5",
+        "g2b7"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1442,
+      "popularity": 79,
+      "plays": 58,
+      "game_url": "https://lichess.org/6DhdJUfC/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "080T4",
+      "description": "Lichess Puzzle - Rating 1924 - crushing, master, masterVsMaster",
+      "fen": "r3r1k1/pp3pbp/2pR2p1/2n1q3/2PNpQb1/1P4P1/PB2PPBP/5RK1 b - - 3 18",
+      "solution": [
+        "g6g5",
+        "f4g4",
+        "e5d6",
+        "d4f5"
+      ],
+      "themes": [
+        "crushing",
+        "master",
+        "masterVsMaster",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 1924,
+      "popularity": 95,
+      "plays": 9432,
+      "game_url": "https://lichess.org/uUmAZq17/black#36",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09gv5",
+      "description": "Lichess Puzzle - Rating 1300 - crushing, discoveredAttack, endgame",
+      "fen": "r5k1/pp6/2p5/2R2p1p/1P1P2q1/P4rP1/4QP1P/R4K2 w - - 4 35",
+      "solution": [
+        "f1g2",
+        "f3g3",
+        "h2g3",
+        "g4e2"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "endgame",
+        "short"
+      ],
+      "rating": 1300,
+      "popularity": 94,
+      "plays": 23959,
+      "game_url": "https://lichess.org/OeN3iXfW#69",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03fUR",
+      "description": "Lichess Puzzle - Rating 1715 - advantage, endgame, long",
+      "fen": "2r3k1/p2pqpp1/1p6/2r5/5Q2/P2P3R/1P4PP/5R1K b - - 0 27",
+      "solution": [
+        "c5g5",
+        "f4h4",
+        "f7f6",
+        "h4h8",
+        "g8f7",
+        "h8c8"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "long",
+        "skewer"
+      ],
+      "rating": 1715,
+      "popularity": 98,
+      "plays": 2080,
+      "game_url": "https://lichess.org/1XH2AIGO/black#54",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06onc",
+      "description": "Lichess Puzzle - Rating 1729 - advantage, discoveredAttack, endgame",
+      "fen": "3n2k1/5pb1/2p2B2/2q2B1Q/8/4P2P/5PP1/6K1 b - - 0 35",
+      "solution": [
+        "g7f6",
+        "f5h7",
+        "g8g7",
+        "h5c5"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "endgame",
+        "short"
+      ],
+      "rating": 1729,
+      "popularity": 88,
+      "plays": 485,
+      "game_url": "https://lichess.org/ZuTPgt1T/black#70",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0F4Rh",
+      "description": "Lichess Puzzle - Rating 2300 - advantage, fork, long",
+      "fen": "2kr1b1r/1pq1p1p1/p3p2p/2Nnn3/8/P4N2/1PPP2PP/R1BQ1RK1 w - - 0 15",
+      "solution": [
+        "c5e6",
+        "e5f3",
+        "d1f3",
+        "c7b6",
+        "g1h1",
+        "b6e6"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "opening"
+      ],
+      "rating": 2300,
+      "popularity": 92,
+      "plays": 1117,
+      "game_url": "https://lichess.org/VqqjSFfd#29",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FmpQ",
+      "description": "Lichess Puzzle - Rating 1471 - advancedPawn, crushing, fork",
+      "fen": "rn4nr/pppk2Np/3p1b2/8/4P3/2p5/PP3PPP/RNB1K2R w KQ - 1 12",
+      "solution": [
+        "g7f5",
+        "c3b2",
+        "c1b2",
+        "f6b2"
+      ],
+      "themes": [
+        "advancedPawn",
+        "crushing",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1471,
+      "popularity": 74,
+      "plays": 72,
+      "game_url": "https://lichess.org/6jQnNzTQ#23",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06aow",
+      "description": "Lichess Puzzle - Rating 2323 - attraction, crushing, endgame",
+      "fen": "2kr2r1/pp3p1p/2p5/5q2/P5p1/4Q3/1PP2P1P/3R1R1K w - - 0 23",
+      "solution": [
+        "e3a7",
+        "d8d1",
+        "f1d1",
+        "f5f3",
+        "h1g1",
+        "f3d1"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "endgame",
+        "fork",
+        "long"
+      ],
+      "rating": 2323,
+      "popularity": 93,
+      "plays": 2088,
+      "game_url": "https://lichess.org/Y7Jlu9KR#45",
+      "source": "lichess-db"
+    },
+    {
+      "id": "05m0g",
+      "description": "Lichess Puzzle - Rating 1217 - advantage, endgame, master",
+      "fen": "6k1/3p2p1/p1BNpb1p/2r5/7P/4P3/5P2/4K1R1 w - - 0 32",
+      "solution": [
+        "c6d7",
+        "c5c1",
+        "e1e2",
+        "c1g1"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "master",
+        "short",
+        "skewer"
+      ],
+      "rating": 1217,
+      "popularity": 50,
+      "plays": 38,
+      "game_url": "https://lichess.org/EVN00Joy#63",
+      "source": "lichess-db"
+    },
+    {
+      "id": "097kn",
+      "description": "Lichess Puzzle - Rating 2427 - advantage, intermezzo, long",
+      "fen": "4r1k1/pp2n1p1/q6p/2p1N3/3PQ3/2P3Pb/PP1B1K1P/4R3 w - - 1 23",
+      "solution": [
+        "e5g6",
+        "a6g6",
+        "e4g6",
+        "e8f8",
+        "f2e2",
+        "e7g6"
+      ],
+      "themes": [
+        "advantage",
+        "intermezzo",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 2427,
+      "popularity": 92,
+      "plays": 2089,
+      "game_url": "https://lichess.org/qSnkLCEQ#45",
+      "source": "lichess-db"
+    },
+    {
+      "id": "04IsZ",
+      "description": "Lichess Puzzle - Rating 2493 - advantage, discoveredAttack, discoveredCheck",
+      "fen": "5k2/2rR1pp1/5b1p/1P5P/P1B5/1K2r3/8/3R4 w - - 0 36",
+      "solution": [
+        "b3b4",
+        "f6c3",
+        "b4b3",
+        "c3d4",
+        "b3a2",
+        "c7d7"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "discoveredCheck",
+        "endgame",
+        "interference",
+        "long"
+      ],
+      "rating": 2493,
+      "popularity": 91,
+      "plays": 3212,
+      "game_url": "https://lichess.org/C6DKCvIN#71",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08J9l",
+      "description": "Lichess Puzzle - Rating 2458 - crushing, deflection, endgame",
+      "fen": "8/1R6/8/k7/1R6/3K2P1/4rr2/8 w - - 4 58",
+      "solution": [
+        "d3c4",
+        "e2e4",
+        "c4c5",
+        "f2c2",
+        "c5d5",
+        "e4b4"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "long",
+        "rookEndgame"
+      ],
+      "rating": 2458,
+      "popularity": 97,
+      "plays": 146,
+      "game_url": "https://lichess.org/Xz3yILDi#115",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08oZy",
+      "description": "Lichess Puzzle - Rating 2055 - advantage, long, middlegame",
+      "fen": "r2r2k1/bb3pNp/p5n1/1p1p4/1P2n1qP/P2QPN2/1B3PP1/RB3RK1 w - - 1 20",
+      "solution": [
+        "f3e5",
+        "g6e5",
+        "b2e5",
+        "f7f6",
+        "g7f5",
+        "g4f5"
+      ],
+      "themes": [
+        "advantage",
+        "long",
+        "middlegame",
+        "trappedPiece"
+      ],
+      "rating": 2055,
+      "popularity": 90,
+      "plays": 691,
+      "game_url": "https://lichess.org/0l6bXCIK#39",
+      "source": "lichess-db"
+    },
+    {
+      "id": "079hj",
+      "description": "Lichess Puzzle - Rating 1756 - advantage, attraction, exposedKing",
+      "fen": "8/3r1k2/pb2bp2/1r5p/3p3R/1P1R1B2/P2B1P2/3K4 w - - 0 40",
+      "solution": [
+        "f3h5",
+        "b5h5",
+        "h4h5",
+        "e6g4",
+        "f2f3",
+        "g4h5"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "exposedKing",
+        "fork",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1756,
+      "popularity": 93,
+      "plays": 301,
+      "game_url": "https://lichess.org/yQ73l1lN#79",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03Pon",
+      "description": "Lichess Puzzle - Rating 1518 - attraction, crushing, endgame",
+      "fen": "3b4/5kp1/4q2p/1B6/3BNp2/5P2/PP4PP/1K6 b - - 0 31",
+      "solution": [
+        "e6d5",
+        "b5c4",
+        "d5c4",
+        "e4d6",
+        "f7e6",
+        "d6c4"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "endgame",
+        "fork",
+        "long",
+        "pin",
+        "sacrifice"
+      ],
+      "rating": 1518,
+      "popularity": 41,
+      "plays": 42,
+      "game_url": "https://lichess.org/RP8qs21I/black#62",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Ag9s",
+      "description": "Lichess Puzzle - Rating 1510 - crushing, endgame, hangingPiece",
+      "fen": "rr4k1/2p1q2p/2Qp2p1/1NpPpp2/2P1P3/P4P2/6PP/4R1K1 b - - 0 26",
+      "solution": [
+        "b8b5",
+        "c6a8",
+        "g8g7",
+        "c4b5"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "hangingPiece",
+        "intermezzo",
+        "master",
+        "short"
+      ],
+      "rating": 1510,
+      "popularity": 92,
+      "plays": 1189,
+      "game_url": "https://lichess.org/cxOeDVHL/black#52",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00eix",
+      "description": "Lichess Puzzle - Rating 1437 - crushing, fork, long",
+      "fen": "2r1r1k1/pb2qpbp/1p1p1np1/4P3/3B1P2/1P3BP1/PQ1N3P/1R2R1K1 b - - 0 21",
+      "solution": [
+        "b7f3",
+        "e5f6",
+        "e7e1",
+        "b1e1",
+        "e8e1",
+        "g1f2"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1437,
+      "popularity": 83,
+      "plays": 1477,
+      "game_url": "https://lichess.org/g5Z6vAB2/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FPD8",
+      "description": "Lichess Puzzle - Rating 1488 - crushing, deflection, endgame",
+      "fen": "6r1/1p6/2p2k2/p2p1pp1/P3pP2/1B4K1/1PP4P/6R1 w - - 1 36",
+      "solution": [
+        "f4g5",
+        "g8g5",
+        "g3f2",
+        "e4e3",
+        "f2e3",
+        "g5g1"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "exposedKing",
+        "long"
+      ],
+      "rating": 1488,
+      "popularity": 92,
+      "plays": 3619,
+      "game_url": "https://lichess.org/ysX6tUuL#71",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0EIYp",
+      "description": "Lichess Puzzle - Rating 1681 - advantage, long, middlegame",
+      "fen": "r3k1nr/pp2bppp/4p3/P1ppP1P1/3P4/1qP1BQ1P/5P2/RN2K2R w KQkq - 0 16",
+      "solution": [
+        "d4c5",
+        "b3b2",
+        "f3e2",
+        "b2a1",
+        "e2b5",
+        "e8f8"
+      ],
+      "themes": [
+        "advantage",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 1681,
+      "popularity": 93,
+      "plays": 589,
+      "game_url": "https://lichess.org/JdjVcK1u#31",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03Sst",
+      "description": "Lichess Puzzle - Rating 1892 - advantage, deflection, long",
+      "fen": "r3nrk1/pp1b2p1/4p2p/3p4/8/1NPB4/PP3qPP/R2QR2K b - - 1 17",
+      "solution": [
+        "d7c6",
+        "e1f1",
+        "f2h4",
+        "d3h7",
+        "g8h7",
+        "f1f8"
+      ],
+      "themes": [
+        "advantage",
+        "deflection",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1892,
+      "popularity": 93,
+      "plays": 6509,
+      "game_url": "https://lichess.org/cBmqn7VL/black#34",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0ELid",
+      "description": "Lichess Puzzle - Rating 2722 - advancedPawn, advantage, attraction",
+      "fen": "1r4k1/5r2/3PR2p/4Pnq1/1NpPQ1p1/2P2p2/6PP/5RK1 w - - 1 34",
+      "solution": [
+        "b4d5",
+        "f3f2",
+        "f1f2",
+        "g5c1",
+        "f2f1",
+        "c1f1",
+        "g1f1",
+        "f5g3"
+      ],
+      "themes": [
+        "advancedPawn",
+        "advantage",
+        "attraction",
+        "discoveredCheck",
+        "doubleCheck",
+        "kingsideAttack",
+        "middlegame",
+        "sacrifice",
+        "veryLong"
+      ],
+      "rating": 2722,
+      "popularity": 88,
+      "plays": 587,
+      "game_url": "https://lichess.org/pVJA8Jih#67",
+      "source": "lichess-db"
+    },
+    {
+      "id": "02FQ8",
+      "description": "Lichess Puzzle - Rating 1215 - advantage, fork, master",
+      "fen": "4r3/2p2r1k/3n4/6p1/4pqP1/6N1/2Q2PB1/4R1K1 b - - 6 42",
+      "solution": [
+        "h7g7",
+        "g3h5",
+        "g7f8",
+        "h5f4"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "master",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1215,
+      "popularity": 94,
+      "plays": 619,
+      "game_url": "https://lichess.org/0uU5uc9B/black#84",
+      "source": "lichess-db"
+    },
+    {
+      "id": "07QhY",
+      "description": "Lichess Puzzle - Rating 2101 - clearance, crushing, fork",
+      "fen": "2r1k2r/pp3p2/q1n1ppp1/3p4/1b1NP3/2N2P1P/PPPQ2P1/1K1R3R b k - 0 17",
+      "solution": [
+        "d5e4",
+        "d4e6",
+        "f7e6",
+        "d2d7",
+        "e8f8",
+        "d7c8"
+      ],
+      "themes": [
+        "clearance",
+        "crushing",
+        "fork",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 2101,
+      "popularity": 77,
+      "plays": 59,
+      "game_url": "https://lichess.org/JQ5jjtLC/black#34",
+      "source": "lichess-db"
+    },
+    {
+      "id": "02ovT",
+      "description": "Lichess Puzzle - Rating 1697 - advantage, fork, long",
+      "fen": "r4rk1/pp3ppp/2npb1q1/2pNp3/4P2P/3P1Q2/PPP2PP1/2KR3R b - - 2 13",
+      "solution": [
+        "c6d4",
+        "d5e7",
+        "g8h8",
+        "e7g6",
+        "f7g6",
+        "f3e3"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1697,
+      "popularity": 87,
+      "plays": 165,
+      "game_url": "https://lichess.org/qp95GS6A/black#26",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00GiQ",
+      "description": "Lichess Puzzle - Rating 1827 - attraction, crushing, discoveredCheck",
+      "fen": "5r2/1p3p1k/6pp/p1qp1P2/7Q/5N2/6PP/5N1K b - - 4 31",
+      "solution": [
+        "b7b5",
+        "f3g5",
+        "h7g7",
+        "f5f6",
+        "g7f6",
+        "g5e4"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "discoveredCheck",
+        "doubleCheck",
+        "endgame",
+        "long",
+        "pin"
+      ],
+      "rating": 1827,
+      "popularity": 94,
+      "plays": 882,
+      "game_url": "https://lichess.org/XLwP4TgT/black#62",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0B8lh",
+      "description": "Lichess Puzzle - Rating 1308 - crushing, endgame, fork",
+      "fen": "k1r5/1p6/4p2p/p2pQ2P/Pq1PbPP1/1B6/1PP5/1K4R1 w - - 3 31",
+      "solution": [
+        "g1g3",
+        "b4e1",
+        "b1a2",
+        "e1g3"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "fork",
+        "master",
+        "short"
+      ],
+      "rating": 1308,
+      "popularity": 76,
+      "plays": 66,
+      "game_url": "https://lichess.org/Cn5xh9eH#61",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BYfa",
+      "description": "Lichess Puzzle - Rating 1834 - advantage, attraction, capturingDefender",
+      "fen": "1r1r2k1/p4ppp/2p2b2/2p5/2P3b1/1PN3P1/P2BPP1P/R2R2K1 w - - 3 19",
+      "solution": [
+        "f2f3",
+        "d8d2",
+        "d1d2",
+        "f6c3",
+        "a1d1",
+        "c3d2"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "capturingDefender",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1834,
+      "popularity": 94,
+      "plays": 10767,
+      "game_url": "https://lichess.org/NrmFslCG#37",
+      "source": "lichess-db"
+    },
+    {
+      "id": "02A3t",
+      "description": "Lichess Puzzle - Rating 1833 - advantage, endgame, short",
+      "fen": "2q2bk1/4Q2p/p5p1/1p3pB1/8/5N1P/PP3PP1/6K1 w - - 1 30",
+      "solution": [
+        "e7a7",
+        "f8c5",
+        "a7c5",
+        "c8c5"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1833,
+      "popularity": 95,
+      "plays": 992,
+      "game_url": "https://lichess.org/c57wHyeI#59",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00Hpe",
+      "description": "Lichess Puzzle - Rating 1778 - advantage, fork, long",
+      "fen": "1rr3k1/4Qppp/qp2p3/P2pn3/3N4/4P2P/5PP1/RR4K1 b - - 3 29",
+      "solution": [
+        "b6a5",
+        "b1b8",
+        "c8b8",
+        "e7c7",
+        "b8c8",
+        "c7e5"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1778,
+      "popularity": 90,
+      "plays": 190,
+      "game_url": "https://lichess.org/7DmRgaqW/black#58",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06cN5",
+      "description": "Lichess Puzzle - Rating 1680 - attraction, crushing, fork",
+      "fen": "3rr1k1/p2q1p1p/2p3p1/Q4p2/2PPn3/1N6/P4PPP/4RRK1 b - - 6 22",
+      "solution": [
+        "f5f4",
+        "e1e4",
+        "e8e4",
+        "b3c5",
+        "d7d4",
+        "c5e4"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "fork",
+        "long",
+        "master",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1680,
+      "popularity": 94,
+      "plays": 2288,
+      "game_url": "https://lichess.org/pbPGRXCL/black#44",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Dsvu",
+      "description": "Lichess Puzzle - Rating 1341 - advantage, deflection, fork",
+      "fen": "r5k1/p4ppp/3r4/8/4q2b/1P2B3/P1P3PP/1RQ2RK1 w - - 11 23",
+      "solution": [
+        "f1f4",
+        "d6d1",
+        "c1d1",
+        "e4e3",
+        "g1f1",
+        "e3f4"
+      ],
+      "themes": [
+        "advantage",
+        "deflection",
+        "fork",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1341,
+      "popularity": 92,
+      "plays": 415,
+      "game_url": "https://lichess.org/h86e4c6T#45",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0DMqA",
+      "description": "Lichess Puzzle - Rating 1624 - crushing, endgame, long",
+      "fen": "4r1k1/p4p1p/1p4p1/8/P2Rp3/2P2P1P/1P2Q1PK/2q5 b - - 2 31",
+      "solution": [
+        "e4e3",
+        "d4d1",
+        "c1d1",
+        "e2d1",
+        "e3e2",
+        "d1e1"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "long",
+        "trappedPiece"
+      ],
+      "rating": 1624,
+      "popularity": 26,
+      "plays": 51,
+      "game_url": "https://lichess.org/O1RRK1Vg/black#62",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CRTR",
+      "description": "Lichess Puzzle - Rating 1391 - crushing, endgame, short",
+      "fen": "6k1/pp2pR2/8/r3N3/7P/5PPK/8/8 w - - 5 45",
+      "solution": [
+        "f3f4",
+        "a5e5",
+        "f7f6",
+        "e7f6"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1391,
+      "popularity": 82,
+      "plays": 34,
+      "game_url": "https://lichess.org/zEa3hCvW#89",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09CvB",
+      "description": "Lichess Puzzle - Rating 2095 - crushing, deflection, kingsideAttack",
+      "fen": "r4rk1/1ppR1pp1/1b6/p3p1P1/P6B/1BP4Q/1P2qP1K/8 b - - 0 30",
+      "solution": [
+        "a8d8",
+        "b3f7",
+        "f8f7",
+        "d7d8"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "kingsideAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 2095,
+      "popularity": 93,
+      "plays": 5150,
+      "game_url": "https://lichess.org/3CMiRlWY/black#60",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Ccos",
+      "description": "Lichess Puzzle - Rating 1641 - advantage, middlegame, short",
+      "fen": "rn2kb1r/p3qp1p/2pp1p2/1p1Bp3/4P3/1QPP1P2/PP3P1P/RN2K2R b KQkq - 1 10",
+      "solution": [
+        "c6d5",
+        "b3d5",
+        "e7c7",
+        "d5a8"
+      ],
+      "themes": [
+        "advantage",
+        "middlegame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1641,
+      "popularity": 89,
+      "plays": 1016,
+      "game_url": "https://lichess.org/88jwJ5ha/black#20",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BULo",
+      "description": "Lichess Puzzle - Rating 2650 - crushing, exposedKing, kingsideAttack",
+      "fen": "1Q6/p1p3pk/1p2qnnp/8/2P1pp1P/P5P1/1BP2P2/3RR1K1 w - - 0 25",
+      "solution": [
+        "f2f3",
+        "e6h3",
+        "b2f6",
+        "h3g3",
+        "g1f1",
+        "g3h3"
+      ],
+      "themes": [
+        "crushing",
+        "exposedKing",
+        "kingsideAttack",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 2650,
+      "popularity": 77,
+      "plays": 58,
+      "game_url": "https://lichess.org/wsPH6Z52#49",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03w2z",
+      "description": "Lichess Puzzle - Rating 1501 - advantage, fork, middlegame",
+      "fen": "3n1r1r/pp2n2p/1q1kb1p1/3p4/1P1P2P1/P3QN1P/7K/1B2RR2 b - - 0 27",
+      "solution": [
+        "f8f7",
+        "e3e5",
+        "d6d7",
+        "e5h8"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1501,
+      "popularity": 87,
+      "plays": 195,
+      "game_url": "https://lichess.org/8y18rOBE/black#54",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06ZyU",
+      "description": "Lichess Puzzle - Rating 1997 - advancedPawn, crushing, endgame",
+      "fen": "1rb3k1/5ppp/1Pp2q2/2P5/R3p3/4P3/5PPP/3Q2K1 b - - 1 26",
+      "solution": [
+        "c8f5",
+        "b6b7",
+        "f6e7",
+        "a4a8"
+      ],
+      "themes": [
+        "advancedPawn",
+        "crushing",
+        "endgame",
+        "pin",
+        "short"
+      ],
+      "rating": 1997,
+      "popularity": 88,
+      "plays": 787,
+      "game_url": "https://lichess.org/N6o3e8Ho/black#52",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Dxjj",
+      "description": "Lichess Puzzle - Rating 2272 - advancedPawn, advantage, deflection",
+      "fen": "4r3/P5k1/1K3p2/2p3p1/2Pp4/1P6/7p/1R6 b - - 2 56",
+      "solution": [
+        "e8h8",
+        "b1h1",
+        "g5g4",
+        "h1h2",
+        "h8h2",
+        "a7a8q"
+      ],
+      "themes": [
+        "advancedPawn",
+        "advantage",
+        "deflection",
+        "endgame",
+        "long",
+        "promotion",
+        "rookEndgame"
+      ],
+      "rating": 2272,
+      "popularity": 85,
+      "plays": 98,
+      "game_url": "https://lichess.org/KspntNwq/black#112",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06mr7",
+      "description": "Lichess Puzzle - Rating 1809 - crushing, fork, long",
+      "fen": "r1b1kb1r/5ppp/pqnP4/1p2p3/3Nn3/1Q6/PB2BPPP/RN1R2K1 w kq - 0 14",
+      "solution": [
+        "d4c6",
+        "b6f2",
+        "g1h1",
+        "f2e2",
+        "b1d2",
+        "e4f2"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "long",
+        "opening"
+      ],
+      "rating": 1809,
+      "popularity": 90,
+      "plays": 1889,
+      "game_url": "https://lichess.org/I6ggWsEm#27",
+      "source": "lichess-db"
+    },
+    {
+      "id": "01oXz",
+      "description": "Lichess Puzzle - Rating 2477 - advantage, attackingF2F7, attraction",
+      "fen": "r2qk2r/ppp2pp1/2p1bn2/2b4p/4P3/2NP3P/PPP2PP1/R1BQKB1R w KQkq - 2 8",
+      "solution": [
+        "c3a4",
+        "c5f2",
+        "e1f2",
+        "f6e4",
+        "f2e3",
+        "e4g3"
+      ],
+      "themes": [
+        "advantage",
+        "attackingF2F7",
+        "attraction",
+        "long",
+        "opening"
+      ],
+      "rating": 2477,
+      "popularity": 46,
+      "plays": 42,
+      "game_url": "https://lichess.org/WA1vQT0Z#15",
+      "source": "lichess-db"
+    },
+    {
+      "id": "017Ou",
+      "description": "Lichess Puzzle - Rating 2191 - crushing, master, middlegame",
+      "fen": "r3k1r1/pp3pP1/1qp1p3/6Bb/4P2P/3Q4/PpP2PB1/1K2R3 b q - 0 23",
+      "solution": [
+        "b6f2",
+        "d3d6",
+        "f2e1",
+        "b1b2"
+      ],
+      "themes": [
+        "crushing",
+        "master",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 2191,
+      "popularity": 94,
+      "plays": 572,
+      "game_url": "https://lichess.org/C7v3p5U8/black#46",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00oXF",
+      "description": "Lichess Puzzle - Rating 1716 - crushing, middlegame, pin",
+      "fen": "3r1rk1/1p3p1p/p1q1b1p1/4P2P/2p2P2/P5R1/2Q1B1P1/3R2K1 b - - 1 25",
+      "solution": [
+        "e6f5",
+        "c2f5",
+        "d8d1",
+        "e2d1"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1716,
+      "popularity": 93,
+      "plays": 587,
+      "game_url": "https://lichess.org/UNhxKWVR/black#50",
+      "source": "lichess-db"
+    },
+    {
+      "id": "07JGi",
+      "description": "Lichess Puzzle - Rating 1585 - advancedPawn, advantage, middlegame",
+      "fen": "r2qk1r1/p1p2p1p/8/2Pp3b/4p1p1/5P1P/PPP4N/RN1Q1R1K w q - 0 16",
+      "solution": [
+        "f3e4",
+        "g4g3",
+        "d1h5",
+        "g3g2"
+      ],
+      "themes": [
+        "advancedPawn",
+        "advantage",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 1585,
+      "popularity": 94,
+      "plays": 910,
+      "game_url": "https://lichess.org/lwe6M8LE#31",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09z80",
+      "description": "Lichess Puzzle - Rating 1318 - crushing, endgame, short",
+      "fen": "6k1/1q3pp1/1r5p/2ppP3/1b1P4/1Q3P1P/3B1KP1/1R6 w - - 0 39",
+      "solution": [
+        "d2b4",
+        "b6b4",
+        "b3a3",
+        "b4b1"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "short",
+        "skewer"
+      ],
+      "rating": 1318,
+      "popularity": 81,
+      "plays": 245,
+      "game_url": "https://lichess.org/lDP7EYtD#77",
+      "source": "lichess-db"
+    },
+    {
+      "id": "07WGq",
+      "description": "Lichess Puzzle - Rating 1261 - crushing, discoveredAttack, middlegame",
+      "fen": "r2k3r/ppp3p1/3b1p2/3qnNP1/3pR3/3P4/PP3PQ1/R1B3K1 b - - 9 25",
+      "solution": [
+        "e5d3",
+        "e4e8",
+        "h8e8",
+        "g2d5"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1261,
+      "popularity": 91,
+      "plays": 2172,
+      "game_url": "https://lichess.org/85iIOBks/black#50",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09QVs",
+      "description": "Lichess Puzzle - Rating 2203 - crushing, master, middlegame",
+      "fen": "r1b1q1rk/pp4b1/3p3p/3n4/1P1Pp3/N6P/2QBBPP1/R4R1K w - - 1 25",
+      "solution": [
+        "e2c4",
+        "c8h3",
+        "g2h3",
+        "e8h5"
+      ],
+      "themes": [
+        "crushing",
+        "master",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 2203,
+      "popularity": 89,
+      "plays": 695,
+      "game_url": "https://lichess.org/NaKVjwzq#49",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03uwb",
+      "description": "Lichess Puzzle - Rating 1911 - crushing, deflection, endgame",
+      "fen": "8/1q3k2/8/3p1ppp/Q1pP3P/P5P1/1P6/2K5 w - - 0 41",
+      "solution": [
+        "a4b4",
+        "b7b4",
+        "a3b4",
+        "f5f4",
+        "g3f4",
+        "g5h4"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "long",
+        "queenEndgame"
+      ],
+      "rating": 1911,
+      "popularity": 73,
+      "plays": 65,
+      "game_url": "https://lichess.org/Oo9qD3xK#81",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03RXR",
+      "description": "Lichess Puzzle - Rating 2220 - advantage, fork, middlegame",
+      "fen": "r3k2r/ppB1b1p1/2n2pp1/8/3PQ1Pq/5P1P/PPPKB3/R6R w kq - 1 19",
+      "solution": [
+        "e2b5",
+        "h4g5",
+        "d2d1",
+        "g5b5"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 2220,
+      "popularity": 88,
+      "plays": 21,
+      "game_url": "https://lichess.org/wBwW6NdM#37",
+      "source": "lichess-db"
+    },
+    {
+      "id": "04Ov0",
+      "description": "Lichess Puzzle - Rating 1421 - crushing, endgame, fork",
+      "fen": "6k1/6pp/1p6/1b6/3pQ1N1/7P/5PPK/5q2 b - - 0 36",
+      "solution": [
+        "f1c4",
+        "e4a8",
+        "g8f7",
+        "g4e5",
+        "f7f6",
+        "e5c4"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "fork",
+        "long"
+      ],
+      "rating": 1421,
+      "popularity": 76,
+      "plays": 54,
+      "game_url": "https://lichess.org/jtwmvuUW/black#72",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0AFgI",
+      "description": "Lichess Puzzle - Rating 2400 - advantage, capturingDefender, interference",
+      "fen": "5rk1/pp6/2pb1q2/3p2p1/3P3p/2P1Q1P1/PP1NNnKP/5R2 b - - 1 26",
+      "solution": [
+        "h4g3",
+        "e2g3",
+        "d6f4",
+        "e3f2"
+      ],
+      "themes": [
+        "advantage",
+        "capturingDefender",
+        "interference",
+        "middlegame",
+        "short"
+      ],
+      "rating": 2400,
+      "popularity": 93,
+      "plays": 1600,
+      "game_url": "https://lichess.org/Kmr7DJZ1/black#52",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Eyzc",
+      "description": "Lichess Puzzle - Rating 1474 - crushing, endgame, master",
+      "fen": "8/8/R3bk2/6pp/4B3/1r4P1/4PK2/8 b - - 1 56",
+      "solution": [
+        "b3b4",
+        "e4d5",
+        "f6e5",
+        "d5e6"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "master",
+        "pin",
+        "short"
+      ],
+      "rating": 1474,
+      "popularity": 85,
+      "plays": 556,
+      "game_url": "https://lichess.org/5yblhouB/black#112",
+      "source": "lichess-db"
+    },
+    {
+      "id": "055hQ",
+      "description": "Lichess Puzzle - Rating 1873 - attraction, crushing, endgame",
+      "fen": "5rk1/8/p3P2p/3r3q/7P/PP2n1P1/1BQ2P2/5RK1 w - - 1 32",
+      "solution": [
+        "f2e3",
+        "f8f1",
+        "g1f1",
+        "h5f3"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "endgame",
+        "short"
+      ],
+      "rating": 1873,
+      "popularity": 87,
+      "plays": 1370,
+      "game_url": "https://lichess.org/J8jHDrxQ#63",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BBdM",
+      "description": "Lichess Puzzle - Rating 1629 - advantage, attraction, discoveredAttack",
+      "fen": "5kr1/pp3p2/1b1qbp2/3p4/3Pp2Q/4P3/PP3PBP/2R2RK1 w - - 0 26",
+      "solution": [
+        "h4f6",
+        "g8g2",
+        "g1g2",
+        "e6h3",
+        "g2h3",
+        "d6f6"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "discoveredAttack",
+        "kingsideAttack",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1629,
+      "popularity": 92,
+      "plays": 406,
+      "game_url": "https://lichess.org/riH9QGul#51",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0EwFS",
+      "description": "Lichess Puzzle - Rating 1837 - advantage, attraction, middlegame",
+      "fen": "r4k2/ppN5/8/3Qn2q/4P1n1/6B1/PPP2rPP/R5K1 w - - 3 26",
+      "solution": [
+        "c7a8",
+        "f2g2",
+        "g1g2",
+        "g4e3"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 1837,
+      "popularity": 93,
+      "plays": 62,
+      "game_url": "https://lichess.org/4uMQ6AOL#51",
+      "source": "lichess-db"
+    },
+    {
+      "id": "05pu5",
+      "description": "Lichess Puzzle - Rating 1786 - advantage, kingsideAttack, middlegame",
+      "fen": "3r1rk1/1p3p1n/p2p4/4pP1Q/3pPb1P/P2q1P2/BP6/R4RK1 b - - 0 23",
+      "solution": [
+        "h7f6",
+        "h5g6",
+        "g8h8",
+        "g6f6"
+      ],
+      "themes": [
+        "advantage",
+        "kingsideAttack",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1786,
+      "popularity": 92,
+      "plays": 1160,
+      "game_url": "https://lichess.org/Hv6NZ1gv/black#46",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08aQP",
+      "description": "Lichess Puzzle - Rating 2094 - advancedPawn, advantage, long",
+      "fen": "2kr1b1r/ppp4p/3p4/3b2p1/5Pp1/1P1Nq3/PB4PP/R2Q1R1K w - - 0 19",
+      "solution": [
+        "b2h8",
+        "e3h3",
+        "f1f2",
+        "g4g3",
+        "d1g1",
+        "g3f2"
+      ],
+      "themes": [
+        "advancedPawn",
+        "advantage",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 2094,
+      "popularity": 90,
+      "plays": 137,
+      "game_url": "https://lichess.org/m9WwRQ4g#37",
+      "source": "lichess-db"
+    },
+    {
+      "id": "04E4E",
+      "description": "Lichess Puzzle - Rating 1516 - advantage, hangingPiece, long",
+      "fen": "r1b1k1nr/ppp2ppp/8/2bPp3/3n3q/2N2P2/PPP2BPP/R2QKBNR b KQkq - 2 7",
+      "solution": [
+        "d4f3",
+        "d1f3",
+        "c5f2",
+        "f3f2",
+        "h4f2",
+        "e1f2"
+      ],
+      "themes": [
+        "advantage",
+        "hangingPiece",
+        "long",
+        "opening"
+      ],
+      "rating": 1516,
+      "popularity": 98,
+      "plays": 1136,
+      "game_url": "https://lichess.org/QXEp4wtf/black#14",
+      "source": "lichess-db"
+    },
+    {
+      "id": "073CI",
+      "description": "Lichess Puzzle - Rating 1627 - advantage, fork, middlegame",
+      "fen": "r2q1rk1/1p1b2pp/p1p2n2/4Bp2/1bpP4/2N2PP1/PP2Q1BP/2R1R1K1 b - - 3 17",
+      "solution": [
+        "f8e8",
+        "e2c4",
+        "d7e6",
+        "c4b4"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1627,
+      "popularity": 86,
+      "plays": 229,
+      "game_url": "https://lichess.org/kQERPK5J/black#34",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03gc3",
+      "description": "Lichess Puzzle - Rating 2789 - crushing, discoveredAttack, discoveredCheck",
+      "fen": "8/2P3p1/7k/8/1P2npKP/4q2P/2Q5/8 w - - 3 60",
+      "solution": [
+        "c7c8q",
+        "e3g3",
+        "g4f5",
+        "e4d6",
+        "f5e5",
+        "f4f3",
+        "e5d5",
+        "d6c8",
+        "c2c8",
+        "g3f4"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "discoveredCheck",
+        "endgame",
+        "fork",
+        "master",
+        "masterVsMaster",
+        "veryLong"
+      ],
+      "rating": 2789,
+      "popularity": 80,
+      "plays": 135,
+      "game_url": "https://lichess.org/FBESL7lt#119",
+      "source": "lichess-db"
+    },
+    {
+      "id": "053Cr",
+      "description": "Lichess Puzzle - Rating 1811 - crushing, fork, long",
+      "fen": "2rr2k1/1b2q1bp/4p1p1/p1n5/2B2Pn1/1PN1BN2/P5PP/2RRQ1K1 w - - 2 24",
+      "solution": [
+        "e3c5",
+        "e7c5",
+        "g1h1",
+        "g4f2",
+        "e1f2",
+        "c5f2"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1811,
+      "popularity": 83,
+      "plays": 648,
+      "game_url": "https://lichess.org/IDeBr16p#47",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0G15s",
+      "description": "Lichess Puzzle - Rating 1343 - crushing, fork, middlegame",
+      "fen": "2r3k1/1p3ppp/pq6/3pr3/2P1b1P1/1P2N2P/P2Q1P2/3R1RK1 b - - 0 23",
+      "solution": [
+        "d5c4",
+        "e3c4",
+        "b6f6",
+        "c4e5"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1343,
+      "popularity": 93,
+      "plays": 1335,
+      "game_url": "https://lichess.org/aoKfCCjz/black#46",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08HL8",
+      "description": "Lichess Puzzle - Rating 1434 - advantage, fork, long",
+      "fen": "6k1/pp1q1pbp/2n3p1/6N1/2pPr3/2P5/PP1Q2PP/R5K1 b - - 1 23",
+      "solution": [
+        "g7h6",
+        "g5e4",
+        "h6d2",
+        "e4f6",
+        "g8f8",
+        "f6d7"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1434,
+      "popularity": 93,
+      "plays": 6835,
+      "game_url": "https://lichess.org/DHcK89mB/black#46",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08V2m",
+      "description": "Lichess Puzzle - Rating 1850 - crushing, endgame, long",
+      "fen": "r7/1p4Q1/p2kp3/2p5/1P1nP2p/P6P/5qP1/3R3K b - - 0 36",
+      "solution": [
+        "f2e2",
+        "b4c5",
+        "d6c6",
+        "g7d4",
+        "e2d1",
+        "d4d1"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "long",
+        "pin"
+      ],
+      "rating": 1850,
+      "popularity": 88,
+      "plays": 66,
+      "game_url": "https://lichess.org/9R7T38ra/black#72",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00OLF",
+      "description": "Lichess Puzzle - Rating 2007 - crushing, endgame, sacrifice",
+      "fen": "k1r5/n1p3p1/Q2pN3/P2Pp2p/q3Pp1P/2RK4/5PP1/8 w - - 4 36",
+      "solution": [
+        "e6c7",
+        "c8c7",
+        "c3c7",
+        "a4d1",
+        "d3c3",
+        "d1c1",
+        "c3b3",
+        "c1c7"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "sacrifice",
+        "skewer",
+        "veryLong"
+      ],
+      "rating": 2007,
+      "popularity": 92,
+      "plays": 468,
+      "game_url": "https://lichess.org/REkdb3WG#71",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03uPF",
+      "description": "Lichess Puzzle - Rating 1715 - crushing, discoveredAttack, middlegame",
+      "fen": "r1bqk2r/1p3ppp/p1p1p3/4b2Q/1P6/P1NB4/5PPP/2R2RK1 b kq - 1 17",
+      "solution": [
+        "d8f6",
+        "c3e4",
+        "f6f4",
+        "g2g3",
+        "f4f5",
+        "e4d6",
+        "e5d6",
+        "d3f5"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "middlegame",
+        "veryLong"
+      ],
+      "rating": 1715,
+      "popularity": 95,
+      "plays": 9062,
+      "game_url": "https://lichess.org/ih8Ht641/black#34",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00vUf",
+      "description": "Lichess Puzzle - Rating 2031 - crushing, discoveredAttack, discoveredCheck",
+      "fen": "3R4/p4pkp/2p5/6p1/1P1B4/r3PP2/2r3PP/5K2 b - - 6 31",
+      "solution": [
+        "g7g6",
+        "d8d6",
+        "f7f6",
+        "d6f6",
+        "g6g7",
+        "f6c6"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "discoveredCheck",
+        "endgame",
+        "long"
+      ],
+      "rating": 2031,
+      "popularity": 95,
+      "plays": 2597,
+      "game_url": "https://lichess.org/87kUHyPW/black#62",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Ah3O",
+      "description": "Lichess Puzzle - Rating 2290 - attraction, capturingDefender, crushing",
+      "fen": "1r3rk1/6pp/3p4/p1p1p3/1pP4b/1P1P3q/P3BP1N/1R1QR1K1 w - - 2 26",
+      "solution": [
+        "e1f1",
+        "h4f2",
+        "f1f2",
+        "f8f2",
+        "g1f2",
+        "h3h2"
+      ],
+      "themes": [
+        "attraction",
+        "capturingDefender",
+        "crushing",
+        "kingsideAttack",
+        "long",
+        "middlegame"
+      ],
+      "rating": 2290,
+      "popularity": 90,
+      "plays": 1840,
+      "game_url": "https://lichess.org/pKAJsstI#51",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0DEHt",
+      "description": "Lichess Puzzle - Rating 2145 - advantage, long, master",
+      "fen": "r3k2r/1p4pp/p3bb2/q2p1p2/4n3/1B1Q1P1P/PP1N2P1/R1B1R1K1 b kq - 0 18",
+      "solution": [
+        "e4c5",
+        "d3d5",
+        "e8g8",
+        "e1e6",
+        "c5b3",
+        "d5b3"
+      ],
+      "themes": [
+        "advantage",
+        "long",
+        "master",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 2145,
+      "popularity": 95,
+      "plays": 8793,
+      "game_url": "https://lichess.org/iKqn3dTy/black#36",
+      "source": "lichess-db"
+    },
+    {
+      "id": "01PTR",
+      "description": "Lichess Puzzle - Rating 1256 - crushing, discoveredAttack, middlegame",
+      "fen": "2bq1r2/r5bk/1p1P3p/pPpBppp1/P1P5/5PB1/6PP/R2Q1RK1 b - - 0 21",
+      "solution": [
+        "d8d6",
+        "d5g8",
+        "f8g8",
+        "d1d6"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1256,
+      "popularity": 79,
+      "plays": 165,
+      "game_url": "https://lichess.org/eVOlQeMa/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03ctM",
+      "description": "Lichess Puzzle - Rating 1525 - advantage, attraction, endgame",
+      "fen": "6r1/pp2bk1p/4bp2/2p5/5p2/2P2N2/PPB2P1P/1K2R3 b - - 3 28",
+      "solution": [
+        "h7h6",
+        "e1e6",
+        "f7e6",
+        "c2b3",
+        "c5c4",
+        "b3c4"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "endgame",
+        "long",
+        "sacrifice"
+      ],
+      "rating": 1525,
+      "popularity": 94,
+      "plays": 17216,
+      "game_url": "https://lichess.org/XsaLNrHo/black#56",
+      "source": "lichess-db"
+    },
+    {
+      "id": "04BH8",
+      "description": "Lichess Puzzle - Rating 1395 - crushing, fork, long",
+      "fen": "2r3k1/pp2npp1/3r2qp/8/2BBp3/1PP3Rb/P4P2/R2Q3K b - - 0 28",
+      "solution": [
+        "g6f5",
+        "g3g7",
+        "g8f8",
+        "g7f7",
+        "f5f7",
+        "c4f7"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1395,
+      "popularity": 79,
+      "plays": 172907,
+      "game_url": "https://lichess.org/G4dmqMvs/black#56",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0A3cu",
+      "description": "Lichess Puzzle - Rating 1332 - crushing, endgame, exposedKing",
+      "fen": "7R/p4rp1/p4k1p/2qp4/5Q2/1P5P/6PK/8 b - - 9 37",
+      "solution": [
+        "f6e7",
+        "f4e5",
+        "e7d7",
+        "e5e8",
+        "d7d6",
+        "e8f7"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "exposedKing",
+        "fork",
+        "long"
+      ],
+      "rating": 1332,
+      "popularity": 85,
+      "plays": 1499,
+      "game_url": "https://lichess.org/tj8rmeUq/black#74",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0D594",
+      "description": "Lichess Puzzle - Rating 1267 - advantage, endgame, fork",
+      "fen": "1r4k1/1q3p2/2p2np1/2N4p/p1pP3P/5P2/1PR2QP1/1K6 b - - 1 31",
+      "solution": [
+        "b7b4",
+        "c5a6",
+        "b4b3",
+        "a6b8"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "fork",
+        "short"
+      ],
+      "rating": 1267,
+      "popularity": 81,
+      "plays": 187,
+      "game_url": "https://lichess.org/ubJw5Lyo/black#62",
+      "source": "lichess-db"
+    },
+    {
+      "id": "029M7",
+      "description": "Lichess Puzzle - Rating 1326 - crushing, interference, long",
+      "fen": "1k1r4/ppp2pb1/4b2p/5qp1/1P3p2/3r1N2/1P3QPP/R1B1R1K1 b - - 2 22",
+      "solution": [
+        "d3d1",
+        "f2a7",
+        "b8c8",
+        "a7a8",
+        "c8d7",
+        "e1d1"
+      ],
+      "themes": [
+        "crushing",
+        "interference",
+        "long",
+        "middlegame",
+        "queensideAttack"
+      ],
+      "rating": 1326,
+      "popularity": 95,
+      "plays": 31496,
+      "game_url": "https://lichess.org/L5rcgY2B/black#44",
+      "source": "lichess-db"
+    },
+    {
+      "id": "07H1b",
+      "description": "Lichess Puzzle - Rating 1364 - advantage, discoveredAttack, middlegame",
+      "fen": "1r3r2/1p5n/p2pb1k1/3Np3/8/1B1P2PP/PP2Kb2/5R1R b - - 0 24",
+      "solution": [
+        "f2d4",
+        "d5e7",
+        "g6g7",
+        "b3e6"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1364,
+      "popularity": 69,
+      "plays": 119,
+      "game_url": "https://lichess.org/uXkuoOQo/black#48",
+      "source": "lichess-db"
+    },
+    {
+      "id": "05Ysb",
+      "description": "Lichess Puzzle - Rating 2116 - advantage, fork, long",
+      "fen": "1rb1r1k1/2p1qp1p/p4bpB/1p2p3/1P6/PB3Q1P/N1P2PP1/1R1R2K1 w - - 6 28",
+      "solution": [
+        "d1d3",
+        "e5e4",
+        "b1e1",
+        "e4f3",
+        "e1e7",
+        "f6e7"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 2116,
+      "popularity": 78,
+      "plays": 30,
+      "game_url": "https://lichess.org/DFIa93pt#55",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0B7Ug",
+      "description": "Lichess Puzzle - Rating 2303 - attraction, crushing, endgame",
+      "fen": "5r2/4q1k1/p1rp2p1/1p2pp2/8/1P4P1/P2Q1PK1/3R3R b - - 5 38",
+      "solution": [
+        "f8h8",
+        "h1h8",
+        "g7h8",
+        "d2h6",
+        "h8g8",
+        "h6g6"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "endgame",
+        "long"
+      ],
+      "rating": 2303,
+      "popularity": 86,
+      "plays": 259,
+      "game_url": "https://lichess.org/AYXyfugO/black#76",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CCUd",
+      "description": "Lichess Puzzle - Rating 2461 - attraction, crushing, long",
+      "fen": "7r/2r2p2/pR1b1k1p/2pPpPpQ/6P1/2B1P3/q6P/3R2K1 b - - 2 26",
+      "solution": [
+        "c7d7",
+        "b6d6",
+        "d7d6",
+        "c3e5",
+        "f6e7",
+        "e5d6"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "long",
+        "middlegame"
+      ],
+      "rating": 2461,
+      "popularity": 72,
+      "plays": 36,
+      "game_url": "https://lichess.org/pWNHBQnC/black#52",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0DKNQ",
+      "description": "Lichess Puzzle - Rating 1436 - advantage, endgame, master",
+      "fen": "8/2R5/1B2K1k1/P2p3p/2bP4/P4rP1/7P/8 w - - 1 50",
+      "solution": [
+        "c7c6",
+        "f3f6",
+        "e6d7",
+        "c4b5"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "master",
+        "masterVsMaster",
+        "pin",
+        "short"
+      ],
+      "rating": 1436,
+      "popularity": 78,
+      "plays": 124,
+      "game_url": "https://lichess.org/3mjkB6eK#99",
+      "source": "lichess-db"
+    },
+    {
+      "id": "02adA",
+      "description": "Lichess Puzzle - Rating 2498 - crushing, deflection, endgame",
+      "fen": "7R/8/p2kr3/2p4p/2P2Kp1/6P1/7P/8 b - - 9 48",
+      "solution": [
+        "e6e5",
+        "h8d8",
+        "d6e7",
+        "f4e5",
+        "e7d8",
+        "e5d6",
+        "a6a5",
+        "d6c5"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "rookEndgame",
+        "veryLong"
+      ],
+      "rating": 2498,
+      "popularity": 83,
+      "plays": 229,
+      "game_url": "https://lichess.org/xG4ZaVVb/black#96",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FJCk",
+      "description": "Lichess Puzzle - Rating 1961 - attraction, crushing, endgame",
+      "fen": "5r2/pp1kb1p1/1npp4/7P/3P1B2/3B4/PPP5/2K4R w - - 0 28",
+      "solution": [
+        "h1f1",
+        "f8f4",
+        "f1f4",
+        "e7g5",
+        "c1b1",
+        "g5f4"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "endgame",
+        "long",
+        "pin",
+        "sacrifice"
+      ],
+      "rating": 1961,
+      "popularity": 76,
+      "plays": 60,
+      "game_url": "https://lichess.org/GfdyTYth#55",
+      "source": "lichess-db"
+    },
+    {
+      "id": "01jRL",
+      "description": "Lichess Puzzle - Rating 2218 - advantage, discoveredAttack, fork",
+      "fen": "r5k1/4p1b1/p2qN1p1/1p1P3p/1Pp3b1/Q1N3P1/P4rBP/4R2K b - - 3 30",
+      "solution": [
+        "g7e5",
+        "c3e4",
+        "d6b6",
+        "e4f2",
+        "b6f2",
+        "e1e5",
+        "f2d2",
+        "a3e3"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "fork",
+        "middlegame",
+        "veryLong"
+      ],
+      "rating": 2218,
+      "popularity": 91,
+      "plays": 4499,
+      "game_url": "https://lichess.org/Al6dfD6O/black#60",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0ERd1",
+      "description": "Lichess Puzzle - Rating 1566 - advantage, fork, middlegame",
+      "fen": "2q2rk1/5p2/1p5p/4P1p1/4PN2/2B2nPP/PP3P2/R2R1K2 w - - 1 34",
+      "solution": [
+        "f4h5",
+        "c8h3",
+        "f1e2",
+        "h3h5"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1566,
+      "popularity": 94,
+      "plays": 1304,
+      "game_url": "https://lichess.org/eWIkNiAu#67",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0AzDo",
+      "description": "Lichess Puzzle - Rating 2428 - crushing, middlegame, pin",
+      "fen": "r1bq1r1k/1p4p1/p3p2p/6bQ/3P4/2nB2B1/3N1PP1/4K2R b K - 1 23",
+      "solution": [
+        "d8e8",
+        "h5g5",
+        "f8f5",
+        "d3f5",
+        "e6f5",
+        "g3e5",
+        "e8e5",
+        "d4e5"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "pin",
+        "veryLong"
+      ],
+      "rating": 2428,
+      "popularity": 82,
+      "plays": 133,
+      "game_url": "https://lichess.org/wYDTfHtO/black#46",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0C7LE",
+      "description": "Lichess Puzzle - Rating 1840 - advantage, fork, master",
+      "fen": "2r3k1/3qn1p1/1p2pp1p/pP1n4/P1NP3P/4NQP1/5P2/3R2K1 b - - 2 36",
+      "solution": [
+        "d5e3",
+        "c4b6",
+        "d7c7",
+        "b6c8"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "master",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1840,
+      "popularity": 87,
+      "plays": 116,
+      "game_url": "https://lichess.org/2wLI7LLf/black#72",
+      "source": "lichess-db"
+    },
+    {
+      "id": "01WLY",
+      "description": "Lichess Puzzle - Rating 1363 - crushing, fork, master",
+      "fen": "r2qk2r/ppp1npbp/3p2p1/4n3/2P1P3/2N2BB1/PP3PPP/R2QK2R b KQkq - 0 10",
+      "solution": [
+        "e5c4",
+        "d1a4",
+        "e7c6",
+        "a4c4"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "master",
+        "opening",
+        "short"
+      ],
+      "rating": 1363,
+      "popularity": 79,
+      "plays": 169,
+      "game_url": "https://lichess.org/CCJq2aBi/black#20",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0Dt0i",
+      "description": "Lichess Puzzle - Rating 2171 - advantage, fork, hangingPiece",
+      "fen": "r2qkb1r/pp2pppp/5n2/8/2Bn2b1/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 4 7",
+      "solution": [
+        "c4f7",
+        "e8f7",
+        "f3e5",
+        "f7e8",
+        "e5g4",
+        "f6g4",
+        "d1g4",
+        "d4c2",
+        "e1d1",
+        "c2a1"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "hangingPiece",
+        "opening",
+        "veryLong"
+      ],
+      "rating": 2171,
+      "popularity": 93,
+      "plays": 6023,
+      "game_url": "https://lichess.org/YufN7gIJ#13",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0EjCb",
+      "description": "Lichess Puzzle - Rating 1493 - crushing, middlegame, pin",
+      "fen": "5rk1/p1R2pp1/3r4/1p4p1/8/1P3Q1P/q3NK2/4R3 w - - 0 38",
+      "solution": [
+        "e1g1",
+        "d6f6",
+        "f3f6",
+        "g7f6"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1493,
+      "popularity": 80,
+      "plays": 24,
+      "game_url": "https://lichess.org/AWoT8NvE#75",
+      "source": "lichess-db"
+    },
+    {
+      "id": "094e7",
+      "description": "Lichess Puzzle - Rating 1762 - advantage, fork, long",
+      "fen": "rnbq1knr/ppp3p1/3p3p/2b1P2Q/3p4/5N2/PPP2PPP/RNB2RK1 b - - 0 8",
+      "solution": [
+        "d6e5",
+        "f3e5",
+        "g7g6",
+        "e5g6",
+        "f8g7",
+        "g6h8"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "opening"
+      ],
+      "rating": 1762,
+      "popularity": 83,
+      "plays": 110,
+      "game_url": "https://lichess.org/eCTMAG2M/black#16",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09HI0",
+      "description": "Lichess Puzzle - Rating 1388 - advantage, deflection, middlegame",
+      "fen": "3R1b2/ppq2pk1/2p1b3/4PrpQ/3R1P1p/1P5P/P5PK/8 b - - 3 36",
+      "solution": [
+        "g5f4",
+        "h5g4",
+        "g7h7",
+        "d8f8"
+      ],
+      "themes": [
+        "advantage",
+        "deflection",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1388,
+      "popularity": 94,
+      "plays": 2669,
+      "game_url": "https://lichess.org/FQfBvAKW/black#72",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0ETU4",
+      "description": "Lichess Puzzle - Rating 1303 - crushing, middlegame, short",
+      "fen": "2r2rk1/Qpqbbpp1/4p2p/3pP3/8/P1N2N2/1PP2PPP/R4RK1 w - - 1 15",
+      "solution": [
+        "a1c1",
+        "e7c5",
+        "a7c5",
+        "c7c5"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1303,
+      "popularity": 87,
+      "plays": 847,
+      "game_url": "https://lichess.org/qcGCPxd9#29",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0C6d3",
+      "description": "Lichess Puzzle - Rating 2588 - crushing, deflection, exposedKing",
+      "fen": "8/8/pkb1Q2p/1p1pP3/5rP1/1NK5/q3B2P/3RR3 w - - 4 35",
+      "solution": [
+        "d1d5",
+        "b5b4",
+        "c3d3",
+        "a2b3",
+        "d3d2",
+        "b3c3"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "exposedKing",
+        "long",
+        "middlegame"
+      ],
+      "rating": 2588,
+      "popularity": 86,
+      "plays": 153,
+      "game_url": "https://lichess.org/3MTrj1wH#69",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0AhUh",
+      "description": "Lichess Puzzle - Rating 2683 - crushing, discoveredAttack, discoveredCheck",
+      "fen": "5rk1/ppN3np/3p4/3P4/2P5/4Qp1P/Pqb2P2/3RKR2 w - - 2 25",
+      "solution": [
+        "d1c1",
+        "f8f5",
+        "e1d2",
+        "c2b1"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "discoveredCheck",
+        "master",
+        "masterVsMaster",
+        "middlegame",
+        "short"
+      ],
+      "rating": 2683,
+      "popularity": 82,
+      "plays": 185,
+      "game_url": "https://lichess.org/HX356vwJ#49",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0AGUY",
+      "description": "Lichess Puzzle - Rating 1888 - crushing, middlegame, sacrifice",
+      "fen": "r1k1r3/3R2pp/p1p1Bb2/1p2N3/n7/2P5/1P3PPP/4R1K1 w - - 6 22",
+      "solution": [
+        "d7a7",
+        "e8e6",
+        "a7a8",
+        "c8b7"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 1888,
+      "popularity": 94,
+      "plays": 5872,
+      "game_url": "https://lichess.org/ZZzuIehV#43",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06Twx",
+      "description": "Lichess Puzzle - Rating 1819 - crushing, discoveredAttack, fork",
+      "fen": "r1b1k2r/6b1/1np1p2p/pN3pq1/3P4/PQ1BP1P1/1P3PPR/2K4R b kq - 0 20",
+      "solution": [
+        "a5a4",
+        "b5c7",
+        "e8f7",
+        "b3b6"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1819,
+      "popularity": 88,
+      "plays": 73,
+      "game_url": "https://lichess.org/noLQjTOA/black#40",
+      "source": "lichess-db"
+    },
+    {
+      "id": "02O8w",
+      "description": "Lichess Puzzle - Rating 1309 - advantage, fork, hangingPiece",
+      "fen": "2r2rk1/5pp1/p5np/b2p4/3P4/Pq1BPN2/1PR2QPP/3R2K1 w - - 6 26",
+      "solution": [
+        "c2c8",
+        "b3d1",
+        "f2f1",
+        "d1f1",
+        "g1f1",
+        "f8c8"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "hangingPiece",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1309,
+      "popularity": 96,
+      "plays": 29451,
+      "game_url": "https://lichess.org/9x0LEN6h#51",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0EEc0",
+      "description": "Lichess Puzzle - Rating 1940 - crushing, endgame, fork",
+      "fen": "5n2/8/7p/pp1KB3/6kP/P5P1/8/8 w - - 2 62",
+      "solution": [
+        "d5c5",
+        "f8d7",
+        "c5b5",
+        "d7e5",
+        "b5a5",
+        "e5c4",
+        "a5b4",
+        "c4a3"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "fork",
+        "master",
+        "veryLong"
+      ],
+      "rating": 1940,
+      "popularity": 92,
+      "plays": 1119,
+      "game_url": "https://lichess.org/gIsSFMzU#123",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FTIj",
+      "description": "Lichess Puzzle - Rating 1449 - crushing, endgame, long",
+      "fen": "3r2kr/ppn2p1p/4p2B/3p4/3P3R/P2B2P1/1P3PP1/4K3 b - - 2 27",
+      "solution": [
+        "f7f6",
+        "h4g4",
+        "g8f7",
+        "g4g7",
+        "f7e8",
+        "g7c7"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "long",
+        "skewer"
+      ],
+      "rating": 1449,
+      "popularity": 93,
+      "plays": 171,
+      "game_url": "https://lichess.org/WGGN7Ttn/black#54",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0AR8b",
+      "description": "Lichess Puzzle - Rating 1814 - crushing, discoveredAttack, long",
+      "fen": "r2qk1nr/ppp2ppp/3p4/4n3/1b2P1b1/5N2/PPP1BPPP/RNBQ1RK1 b kq - 1 7",
+      "solution": [
+        "g8f6",
+        "f3e5",
+        "d6e5",
+        "e2g4",
+        "d8d1",
+        "g4d1"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "long",
+        "opening"
+      ],
+      "rating": 1814,
+      "popularity": 93,
+      "plays": 1651,
+      "game_url": "https://lichess.org/gD05Ny9N/black#14",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03PqC",
+      "description": "Lichess Puzzle - Rating 1322 - crushing, endgame, master",
+      "fen": "8/3bP3/1p4k1/2p1B2p/2P1q3/6R1/8/5BK1 b - - 1 47",
+      "solution": [
+        "g6f5",
+        "f1d3",
+        "e4d3",
+        "g3d3"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "master",
+        "pin",
+        "short"
+      ],
+      "rating": 1322,
+      "popularity": 92,
+      "plays": 613,
+      "game_url": "https://lichess.org/M9mY8NXQ/black#94",
+      "source": "lichess-db"
+    },
+    {
+      "id": "083xB",
+      "description": "Lichess Puzzle - Rating 1779 - advantage, attraction, endgame",
+      "fen": "7k/6p1/5q2/4p2p/2P1R2P/1P4r1/P7/5RKQ w - - 0 38",
+      "solution": [
+        "h1g2",
+        "g3g2",
+        "g1g2",
+        "f6g6",
+        "g2f3",
+        "g6f5",
+        "f3e3",
+        "f5f1"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "endgame",
+        "exposedKing",
+        "fork",
+        "skewer",
+        "veryLong"
+      ],
+      "rating": 1779,
+      "popularity": 98,
+      "plays": 1532,
+      "game_url": "https://lichess.org/GSDSkDZA#75",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0G88Y",
+      "description": "Lichess Puzzle - Rating 1768 - advantage, attraction, long",
+      "fen": "3r4/p2Rpkbp/1q3np1/2pNp3/8/1P3Q2/P1P2PPP/6K1 b - - 4 22",
+      "solution": [
+        "b6b8",
+        "d7e7",
+        "f7f8",
+        "e7g7",
+        "f8g7",
+        "f3f6"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 1768,
+      "popularity": 77,
+      "plays": 63,
+      "game_url": "https://lichess.org/FcytHHnk/black#44",
+      "source": "lichess-db"
+    },
+    {
+      "id": "064iW",
+      "description": "Lichess Puzzle - Rating 1625 - advantage, middlegame, pin",
+      "fen": "r7/6k1/p3pp2/1p1b2qr/3Q3N/5P1R/P4KP1/3R4 b - - 6 32",
+      "solution": [
+        "d5c6",
+        "h3g3",
+        "g5g3",
+        "f2g3"
+      ],
+      "themes": [
+        "advantage",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1625,
+      "popularity": 95,
+      "plays": 1964,
+      "game_url": "https://lichess.org/RZbAu3pG/black#64",
+      "source": "lichess-db"
+    },
+    {
+      "id": "026Br",
+      "description": "Lichess Puzzle - Rating 1733 - crushing, master, middlegame",
+      "fen": "3r2k1/p3pp1p/2Q3pb/q2rP3/N4P2/P5P1/7P/2R2R1K b - - 0 24",
+      "solution": [
+        "d5d2",
+        "c1c5",
+        "d2d1",
+        "c5a5"
+      ],
+      "themes": [
+        "crushing",
+        "master",
+        "middlegame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1733,
+      "popularity": 91,
+      "plays": 1404,
+      "game_url": "https://lichess.org/5nmXyKwm/black#48",
+      "source": "lichess-db"
+    },
+    {
+      "id": "05seH",
+      "description": "Lichess Puzzle - Rating 2320 - crushing, hangingPiece, middlegame",
+      "fen": "2r2k1r/1b2bPpQ/p2p2P1/4n3/qP1RP3/2p5/P1P2B1P/2K2BR1 b - - 0 22",
+      "solution": [
+        "e5g6",
+        "h7g6",
+        "e7f6",
+        "f2g3",
+        "c8c6",
+        "g3d6",
+        "c6d6",
+        "d4d6"
+      ],
+      "themes": [
+        "crushing",
+        "hangingPiece",
+        "middlegame",
+        "veryLong"
+      ],
+      "rating": 2320,
+      "popularity": 87,
+      "plays": 48,
+      "game_url": "https://lichess.org/jk2zESp8/black#44",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09TNk",
+      "description": "Lichess Puzzle - Rating 2757 - advantage, middlegame, sacrifice",
+      "fen": "r5k1/pp2rp1p/1q2p1p1/3p4/4n3/1PP2Q1P/P4PP1/R1B1R1K1 b - - 2 22",
+      "solution": [
+        "a8c8",
+        "e1e4",
+        "d5e4",
+        "f3f6",
+        "b6c5",
+        "c1e3",
+        "c5c3",
+        "e3d4",
+        "c3a1",
+        "d4a1"
+      ],
+      "themes": [
+        "advantage",
+        "middlegame",
+        "sacrifice",
+        "veryLong"
+      ],
+      "rating": 2757,
+      "popularity": 90,
+      "plays": 1365,
+      "game_url": "https://lichess.org/4McnhO7M/black#44",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0AmzO",
+      "description": "Lichess Puzzle - Rating 2296 - crushing, discoveredAttack, discoveredCheck",
+      "fen": "7r/4k1p1/4P1P1/p1qp1pP1/8/P1r1R3/5QP1/4R1K1 w - - 1 33",
+      "solution": [
+        "f2f5",
+        "c3e3",
+        "f5f7",
+        "e7d6",
+        "f7f4",
+        "e3e5"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "discoveredCheck",
+        "endgame",
+        "long"
+      ],
+      "rating": 2296,
+      "popularity": 77,
+      "plays": 40,
+      "game_url": "https://lichess.org/zbvUqzbW#65",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0B7LJ",
+      "description": "Lichess Puzzle - Rating 1903 - advantage, deflection, endgame",
+      "fen": "1Q6/1b6/k5Rp/8/8/5pPP/5P1K/1rq5 b - - 4 46",
+      "solution": [
+        "b7c6",
+        "g6c6",
+        "c1c6",
+        "b8b1"
+      ],
+      "themes": [
+        "advantage",
+        "deflection",
+        "endgame",
+        "short"
+      ],
+      "rating": 1903,
+      "popularity": 94,
+      "plays": 1930,
+      "game_url": "https://lichess.org/GiUzLOmt/black#92",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00viH",
+      "description": "Lichess Puzzle - Rating 2203 - crushing, fork, middlegame",
+      "fen": "r2q1rk1/2p2p1p/p1n2Q2/1pbNP1N1/3n2P1/1B5P/PPbB4/R3K2R w KQ - 0 20",
+      "solution": [
+        "b3c2",
+        "d4c2",
+        "e1d1",
+        "d8d5"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 2203,
+      "popularity": 83,
+      "plays": 36,
+      "game_url": "https://lichess.org/IhpDF8ls#39",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00XAG",
+      "description": "Lichess Puzzle - Rating 1901 - advantage, hangingPiece, intermezzo",
+      "fen": "1r1r2k1/p3ppb1/b3q1pp/2p5/2N5/1Q1RB3/P4PPP/2R1N1K1 b - - 0 21",
+      "solution": [
+        "b8b3",
+        "d3d8",
+        "g8h7",
+        "a2b3"
+      ],
+      "themes": [
+        "advantage",
+        "hangingPiece",
+        "intermezzo",
+        "master",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1901,
+      "popularity": 29,
+      "plays": 29,
+      "game_url": "https://lichess.org/cfhyIaNG/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0F8cf",
+      "description": "Lichess Puzzle - Rating 1282 - advantage, middlegame, short",
+      "fen": "r1bq1rk1/p4ppp/5b2/1pp1n3/3pPB2/P2P4/BPPN2PP/R2Q1R1K w - - 3 16",
+      "solution": [
+        "d1h5",
+        "c8g4",
+        "h5e5",
+        "f6e5"
+      ],
+      "themes": [
+        "advantage",
+        "middlegame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 1282,
+      "popularity": 83,
+      "plays": 309,
+      "game_url": "https://lichess.org/QORH05ET#31",
+      "source": "lichess-db"
+    },
+    {
+      "id": "039Zj",
+      "description": "Lichess Puzzle - Rating 1238 - crushing, deflection, endgame",
+      "fen": "8/8/8/2pPp1bR/2P1P3/5rkp/4K3/8 b - - 3 62",
+      "solution": [
+        "g3g4",
+        "h5g5",
+        "g4g5",
+        "e2f3",
+        "h3h2",
+        "f3g2",
+        "h2h1r",
+        "g2h1"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "veryLong"
+      ],
+      "rating": 1238,
+      "popularity": 80,
+      "plays": 125,
+      "game_url": "https://lichess.org/Zw8U7rDf/black#124",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00ysx",
+      "description": "Lichess Puzzle - Rating 1949 - crushing, long, middlegame",
+      "fen": "1k5r/ppq2p2/2pN4/4PBb1/2P2pp1/1P5r/P1Q3KP/3RR3 w - - 5 28",
+      "solution": [
+        "e1h1",
+        "f4f3",
+        "g2f1",
+        "g4g3",
+        "f5h3",
+        "h8h3"
+      ],
+      "themes": [
+        "crushing",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 1949,
+      "popularity": 76,
+      "plays": 37,
+      "game_url": "https://lichess.org/r1xzDowk#55",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08dR7",
+      "description": "Lichess Puzzle - Rating 1427 - advantage, endgame, fork",
+      "fen": "8/p1N2kpR/8/3pPp1P/1bq3B1/4B1P1/6P1/7K w - - 0 32",
+      "solution": [
+        "g4f5",
+        "c4f1",
+        "h1h2",
+        "f1f5"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "fork",
+        "master",
+        "masterVsMaster",
+        "short"
+      ],
+      "rating": 1427,
+      "popularity": 33,
+      "plays": 15,
+      "game_url": "https://lichess.org/lsn0dg5k#63",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06HNX",
+      "description": "Lichess Puzzle - Rating 2501 - crushing, long, middlegame",
+      "fen": "r3r3/pppb2k1/1q2pnpp/4Np2/5P1Q/3B4/P1P1R1PP/4R2K b - - 3 20",
+      "solution": [
+        "e8e7",
+        "h4g3",
+        "d7e8",
+        "e5g6",
+        "e8g6",
+        "d3f5"
+      ],
+      "themes": [
+        "crushing",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 2501,
+      "popularity": 87,
+      "plays": 33,
+      "game_url": "https://lichess.org/Zxeyzc8V/black#40",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09m2m",
+      "description": "Lichess Puzzle - Rating 1957 - advantage, deflection, middlegame",
+      "fen": "k6r/1p3p2/2q1p2P/3p1p2/1Pr2P2/pKPQ4/P3N3/5R1R w - - 2 39",
+      "solution": [
+        "b3a3",
+        "c6a6",
+        "a3b2",
+        "c4b4",
+        "b2c2",
+        "b4b2",
+        "c2b2",
+        "a6d3"
+      ],
+      "themes": [
+        "advantage",
+        "deflection",
+        "middlegame",
+        "veryLong"
+      ],
+      "rating": 1957,
+      "popularity": 95,
+      "plays": 1615,
+      "game_url": "https://lichess.org/mUZtedtm#77",
+      "source": "lichess-db"
+    },
+    {
+      "id": "032cs",
+      "description": "Lichess Puzzle - Rating 1432 - advantage, discoveredAttack, middlegame",
+      "fen": "r4rk1/p3qppp/6n1/2p1n3/5p2/BP3B1P/P1P3P1/R2Q1RK1 b - - 0 18",
+      "solution": [
+        "g6h4",
+        "f3a8",
+        "f8a8",
+        "f1f4"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1432,
+      "popularity": 0,
+      "plays": 13,
+      "game_url": "https://lichess.org/xiW0GUEY/black#36",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0F4uY",
+      "description": "Lichess Puzzle - Rating 1502 - advantage, fork, middlegame",
+      "fen": "1rb2rk1/p3qppp/2p5/3pn3/4PQ2/1PN5/P1P1B1PP/R4RK1 w - - 0 16",
+      "solution": [
+        "e4d5",
+        "e7c5",
+        "f4f2",
+        "c5c3"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1502,
+      "popularity": 96,
+      "plays": 3941,
+      "game_url": "https://lichess.org/F07qbYQf#31",
+      "source": "lichess-db"
+    },
+    {
+      "id": "067XK",
+      "description": "Lichess Puzzle - Rating 1317 - advantage, endgame, interference",
+      "fen": "2b5/p1p2kqp/1p1p2p1/3P4/1PP5/4QPn1/P2K2P1/R2R4 w - - 11 37",
+      "solution": [
+        "d1e1",
+        "g7b2",
+        "d2d1",
+        "b2a1"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "interference",
+        "short"
+      ],
+      "rating": 1317,
+      "popularity": 94,
+      "plays": 2841,
+      "game_url": "https://lichess.org/QUCwuzSD#73",
+      "source": "lichess-db"
+    },
+    {
+      "id": "03GHU",
+      "description": "Lichess Puzzle - Rating 1772 - advantage, discoveredAttack, endgame",
+      "fen": "3r1r1k/1p4pp/p1pp4/8/8/P2Q1Bq1/1PP3P1/1K5R b - - 0 24",
+      "solution": [
+        "h8g8",
+        "f3d5",
+        "c6d5",
+        "d3g3"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "endgame",
+        "short"
+      ],
+      "rating": 1772,
+      "popularity": 88,
+      "plays": 120,
+      "game_url": "https://lichess.org/r8zBlepj/black#48",
+      "source": "lichess-db"
+    },
+    {
+      "id": "08OVj",
+      "description": "Lichess Puzzle - Rating 2068 - advantage, long, middlegame",
+      "fen": "r6r/p1q1ppk1/1p4p1/2p1P1Q1/3n1PP1/6N1/1PP5/1K1R1R2 b - - 4 27",
+      "solution": [
+        "d4e6",
+        "g3f5",
+        "g7f8",
+        "f1h1",
+        "h8h1",
+        "d1h1"
+      ],
+      "themes": [
+        "advantage",
+        "long",
+        "middlegame",
+        "pin"
+      ],
+      "rating": 2068,
+      "popularity": 90,
+      "plays": 196,
+      "game_url": "https://lichess.org/YFOXsDcA/black#54",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0C0vp",
+      "description": "Lichess Puzzle - Rating 1806 - crushing, deflection, endgame",
+      "fen": "8/8/8/1K6/1P4r1/2k5/6p1/6R1 w - - 2 55",
+      "solution": [
+        "b5c5",
+        "g4g5",
+        "c5d6",
+        "c3b4"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "master",
+        "rookEndgame",
+        "short"
+      ],
+      "rating": 1806,
+      "popularity": 94,
+      "plays": 14107,
+      "game_url": "https://lichess.org/6LUcQNKK#109",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06Bop",
+      "description": "Lichess Puzzle - Rating 1726 - advantage, attraction, discoveredAttack",
+      "fen": "r2q1rk1/1b2npbp/2p3pB/ppp3N1/4p2Q/P1NP4/1PP3PP/R4RK1 b - - 1 14",
+      "solution": [
+        "e7f5",
+        "f1f5",
+        "g6f5",
+        "h6g7",
+        "g8g7",
+        "h4h7"
+      ],
+      "themes": [
+        "advantage",
+        "attraction",
+        "discoveredAttack",
+        "kingsideAttack",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1726,
+      "popularity": 92,
+      "plays": 644,
+      "game_url": "https://lichess.org/NVGQwUXo/black#28",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0A1UD",
+      "description": "Lichess Puzzle - Rating 2359 - advantage, endgame, short",
+      "fen": "6r1/p2pkp2/1pr4p/2pQP1p1/2P3P1/1R5P/q4P2/1R4K1 b - - 0 29",
+      "solution": [
+        "a2e2",
+        "b3b2",
+        "e2b2",
+        "b1b2"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "short",
+        "trappedPiece"
+      ],
+      "rating": 2359,
+      "popularity": 43,
+      "plays": 41,
+      "game_url": "https://lichess.org/u5mdFeT5/black#58",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00eWz",
+      "description": "Lichess Puzzle - Rating 1673 - advantage, clearance, master",
+      "fen": "4r1k1/p5bp/1q4p1/2pPrp2/1pP2N2/6PP/P4QB1/1R3RK1 w - - 2 25",
+      "solution": [
+        "f4e6",
+        "e5e6",
+        "d5e6",
+        "g7d4"
+      ],
+      "themes": [
+        "advantage",
+        "clearance",
+        "master",
+        "middlegame",
+        "pin",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 1673,
+      "popularity": 92,
+      "plays": 5272,
+      "game_url": "https://lichess.org/T1YYoy2O#49",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BtUp",
+      "description": "Lichess Puzzle - Rating 1428 - advantage, endgame, exposedKing",
+      "fen": "7k/r7/1R3N2/7p/7P/p3PP2/3r2P1/K7 b - - 4 39",
+      "solution": [
+        "a7c7",
+        "b6b8",
+        "h8g7",
+        "f6e8",
+        "g7f7",
+        "e8c7"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "exposedKing",
+        "fork",
+        "long"
+      ],
+      "rating": 1428,
+      "popularity": 94,
+      "plays": 5107,
+      "game_url": "https://lichess.org/uby22OQA/black#78",
+      "source": "lichess-db"
+    },
+    {
+      "id": "071TI",
+      "description": "Lichess Puzzle - Rating 2448 - attraction, crushing, deflection",
+      "fen": "r1b2R1N/ppk1Q1p1/4p2p/3pPn2/5b2/5B1K/PR4P1/6q1 b - - 17 32",
+      "solution": [
+        "c8d7",
+        "b2b7",
+        "c7b7",
+        "e7d7",
+        "b7b6",
+        "d7e6"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "deflection",
+        "long",
+        "middlegame"
+      ],
+      "rating": 2448,
+      "popularity": 85,
+      "plays": 68,
+      "game_url": "https://lichess.org/nO4XyEyb/black#64",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0D3mZ",
+      "description": "Lichess Puzzle - Rating 1452 - advantage, endgame, fork",
+      "fen": "5rk1/5ppp/p1N1p3/3nR3/8/6P1/r4P1P/1R4K1 b - - 1 26",
+      "solution": [
+        "f8c8",
+        "e5d5",
+        "e6d5",
+        "c6e7",
+        "g8f8",
+        "e7c8"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "fork",
+        "long",
+        "sacrifice"
+      ],
+      "rating": 1452,
+      "popularity": 95,
+      "plays": 13049,
+      "game_url": "https://lichess.org/SQvawE56/black#52",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CKIz",
+      "description": "Lichess Puzzle - Rating 1254 - crushing, fork, middlegame",
+      "fen": "q3k1r1/r1p2b2/3p3Q/2b5/1pP2PP1/1p1B3P/P4P2/2KRR3 b - - 1 25",
+      "solution": [
+        "e8d8",
+        "h6f6",
+        "d8c8",
+        "f6f7"
+      ],
+      "themes": [
+        "crushing",
+        "fork",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1254,
+      "popularity": 93,
+      "plays": 1103,
+      "game_url": "https://lichess.org/cMW9TvpG/black#50",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0GB3B",
+      "description": "Lichess Puzzle - Rating 1201 - crushing, deflection, endgame",
+      "fen": "4Q3/2q3k1/1p3pp1/2p1b2p/3p3P/1PnP1BP1/3BPPK1/8 b - - 6 45",
+      "solution": [
+        "c7f7",
+        "d2h6",
+        "g7h6",
+        "e8f7"
+      ],
+      "themes": [
+        "crushing",
+        "deflection",
+        "endgame",
+        "short"
+      ],
+      "rating": 1201,
+      "popularity": 93,
+      "plays": 1883,
+      "game_url": "https://lichess.org/T7ohsTxS/black#90",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0EMdg",
+      "description": "Lichess Puzzle - Rating 1328 - advantage, fork, long",
+      "fen": "2r3k1/p4pp1/2p3b1/1p2P3/4n1qP/1P1BR3/P4P1Q/R5K1 w - - 3 27",
+      "solution": [
+        "g1f1",
+        "e4d2",
+        "f1e1",
+        "d2f3",
+        "e3f3",
+        "g4f3"
+      ],
+      "themes": [
+        "advantage",
+        "fork",
+        "long",
+        "middlegame"
+      ],
+      "rating": 1328,
+      "popularity": 92,
+      "plays": 459,
+      "game_url": "https://lichess.org/VHsaAJs0#53",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FDZl",
+      "description": "Lichess Puzzle - Rating 2726 - advantage, deflection, middlegame",
+      "fen": "3r1r2/p3p2p/1p3b1R/2nP1k2/2B1p3/4B3/P3K1P1/1R6 b - - 3 28",
+      "solution": [
+        "f8g8",
+        "b1f1",
+        "f5e5",
+        "h6h5",
+        "e5d6",
+        "f1f6",
+        "e7f6",
+        "e3f4"
+      ],
+      "themes": [
+        "advantage",
+        "deflection",
+        "middlegame",
+        "sacrifice",
+        "veryLong"
+      ],
+      "rating": 2726,
+      "popularity": 91,
+      "plays": 1277,
+      "game_url": "https://lichess.org/JZmXhjFK/black#56",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0G0c9",
+      "description": "Lichess Puzzle - Rating 1348 - crushing, discoveredAttack, middlegame",
+      "fen": "4r1k1/p4pp1/2p1bn1p/q2p4/8/P1NB1QB1/2P2PPP/1R4K1 b - - 0 20",
+      "solution": [
+        "a5c3",
+        "d3h7",
+        "g8h7",
+        "f3c3"
+      ],
+      "themes": [
+        "crushing",
+        "discoveredAttack",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1348,
+      "popularity": 85,
+      "plays": 735,
+      "game_url": "https://lichess.org/EW15uc8m/black#40",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0FpeO",
+      "description": "Lichess Puzzle - Rating 1401 - crushing, endgame, fork",
+      "fen": "1kr5/1pr4p/8/1p2P3/3P2P1/Q7/P6P/6K1 w - - 5 47",
+      "solution": [
+        "e5e6",
+        "c7c1",
+        "g1f2",
+        "c8c2",
+        "f2e3",
+        "c2c3",
+        "a3c3",
+        "c1c3"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "fork",
+        "queenRookEndgame",
+        "veryLong"
+      ],
+      "rating": 1401,
+      "popularity": 94,
+      "plays": 2458,
+      "game_url": "https://lichess.org/gJb8ZwWf#93",
+      "source": "lichess-db"
+    },
+    {
+      "id": "01zU8",
+      "description": "Lichess Puzzle - Rating 1275 - advantage, endgame, long",
+      "fen": "6k1/3bnppp/p4n2/1pp5/8/1BNP1N2/PPP2PPP/6K1 w - - 0 19",
+      "solution": [
+        "c3e4",
+        "f6e4",
+        "d3e4",
+        "c5c4",
+        "b3c4",
+        "b5c4"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "long",
+        "trappedPiece"
+      ],
+      "rating": 1275,
+      "popularity": 91,
+      "plays": 2229,
+      "game_url": "https://lichess.org/O9lWuwI8#37",
+      "source": "lichess-db"
+    },
+    {
+      "id": "077SA",
+      "description": "Lichess Puzzle - Rating 2082 - attraction, crushing, kingsideAttack",
+      "fen": "2kr2r1/pppb1pQ1/7p/8/2B1n2q/2P1B3/P4PPP/RN2R1K1 w - - 5 17",
+      "solution": [
+        "g7h6",
+        "g8g2",
+        "g1g2",
+        "d7h3"
+      ],
+      "themes": [
+        "attraction",
+        "crushing",
+        "kingsideAttack",
+        "middlegame",
+        "sacrifice",
+        "short"
+      ],
+      "rating": 2082,
+      "popularity": 92,
+      "plays": 7178,
+      "game_url": "https://lichess.org/Z5R8ESNE#33",
+      "source": "lichess-db"
+    },
+    {
+      "id": "06LGK",
+      "description": "Lichess Puzzle - Rating 1322 - advantage, endgame, fork",
+      "fen": "2r3k1/6p1/R4p1p/1p3P2/3p1bP1/P2P1N1P/1P6/6K1 w - - 1 30",
+      "solution": [
+        "f3d4",
+        "f4e3",
+        "g1g2",
+        "e3d4"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "fork",
+        "short"
+      ],
+      "rating": 1322,
+      "popularity": 93,
+      "plays": 10530,
+      "game_url": "https://lichess.org/LYkO52wU#59",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0D753",
+      "description": "Lichess Puzzle - Rating 1295 - crushing, kingsideAttack, middlegame",
+      "fen": "r6r/4bkp1/8/N2p3n/4Pp2/2PB3q/1PQ4P/R4RBK w - - 3 35",
+      "solution": [
+        "c2g2",
+        "h5g3",
+        "g2g3",
+        "h3g3"
+      ],
+      "themes": [
+        "crushing",
+        "kingsideAttack",
+        "middlegame",
+        "pin",
+        "short"
+      ],
+      "rating": 1295,
+      "popularity": 93,
+      "plays": 4098,
+      "game_url": "https://lichess.org/kREOVEei#69",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0BNSS",
+      "description": "Lichess Puzzle - Rating 2528 - advancedPawn, collinearMove, crushing",
+      "fen": "r4qr1/1pp1k3/p3P3/Pb2pP1p/2N3n1/1PP4p/2B1Q3/4RR1K b - - 1 34",
+      "solution": [
+        "a8c8",
+        "f5f6",
+        "g4f6",
+        "e2e5",
+        "b5c6",
+        "c2e4",
+        "f6e4",
+        "f1f7",
+        "f8f7",
+        "e6f7"
+      ],
+      "themes": [
+        "advancedPawn",
+        "collinearMove",
+        "crushing",
+        "deflection",
+        "discoveredAttack",
+        "discoveredCheck",
+        "exposedKing",
+        "fork",
+        "middlegame",
+        "sacrifice",
+        "veryLong"
+      ],
+      "rating": 2528,
+      "popularity": 91,
+      "plays": 1183,
+      "game_url": "https://lichess.org/PCSNwFaH/black#68",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CWD7",
+      "description": "Lichess Puzzle - Rating 2412 - advantage, long, middlegame",
+      "fen": "r4rk1/7p/4bPp1/p2p4/1p2p3/8/PPPqB2Q/1K3R1R b - - 1 30",
+      "solution": [
+        "a8a7",
+        "e2g4",
+        "d2h2",
+        "g4e6",
+        "g8h8",
+        "h1h2"
+      ],
+      "themes": [
+        "advantage",
+        "long",
+        "middlegame",
+        "sacrifice"
+      ],
+      "rating": 2412,
+      "popularity": 90,
+      "plays": 1143,
+      "game_url": "https://lichess.org/BLjiDUUs/black#60",
+      "source": "lichess-db"
+    },
+    {
+      "id": "09P7R",
+      "description": "Lichess Puzzle - Rating 2479 - crushing, middlegame, veryLong",
+      "fen": "3q2k1/b4pp1/p3bn1p/1p2Q3/1P2N3/P5P1/4PPBP/2B3K1 w - - 0 26",
+      "solution": [
+        "e4f6",
+        "g7f6",
+        "e5a1",
+        "d8d1",
+        "g2f1",
+        "a7d4",
+        "c1b2",
+        "d1a1",
+        "b2a1",
+        "d4a1"
+      ],
+      "themes": [
+        "crushing",
+        "middlegame",
+        "veryLong",
+        "xRayAttack"
+      ],
+      "rating": 2479,
+      "popularity": 92,
+      "plays": 1748,
+      "game_url": "https://lichess.org/m8pMwYd2#51",
+      "source": "lichess-db"
+    },
+    {
+      "id": "05dJR",
+      "description": "Lichess Puzzle - Rating 1718 - advantage, endgame, pin",
+      "fen": "2r3k1/2P2bpp/1R3p2/rB3P2/8/8/p5PP/R6K b - - 0 32",
+      "solution": [
+        "h7h6",
+        "b6b8",
+        "a5a8",
+        "b8a8"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "pin",
+        "short"
+      ],
+      "rating": 1718,
+      "popularity": 83,
+      "plays": 58,
+      "game_url": "https://lichess.org/vAunc4iV/black#64",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CPdX",
+      "description": "Lichess Puzzle - Rating 2182 - crushing, endgame, pin",
+      "fen": "4rrk1/5pp1/p1Q4p/PpP4q/1P6/6K1/BB3PP1/3R4 b - - 2 28",
+      "solution": [
+        "h5d1",
+        "c6g6",
+        "d1d3",
+        "g6d3"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "pin",
+        "short"
+      ],
+      "rating": 2182,
+      "popularity": 90,
+      "plays": 387,
+      "game_url": "https://lichess.org/CsDaDrjP/black#56",
+      "source": "lichess-db"
+    },
+    {
+      "id": "00dqP",
+      "description": "Lichess Puzzle - Rating 1833 - advantage, discoveredAttack, discoveredCheck",
+      "fen": "r1b2rk1/5p1p/p3pP2/1p1p4/5q1n/1P5P/P1P1QPB1/1K1R2R1 b - - 2 21",
+      "solution": [
+        "f4f6",
+        "g2d5",
+        "h4g6",
+        "d5a8"
+      ],
+      "themes": [
+        "advantage",
+        "discoveredAttack",
+        "discoveredCheck",
+        "middlegame",
+        "short"
+      ],
+      "rating": 1833,
+      "popularity": 94,
+      "plays": 5958,
+      "game_url": "https://lichess.org/6NRhzen2/black#42",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0207Y",
+      "description": "Lichess Puzzle - Rating 1715 - crushing, endgame, fork",
+      "fen": "8/6p1/p1p1n2p/1p2Pk2/7K/P3R3/1PP5/8 w - - 0 40",
+      "solution": [
+        "h4h5",
+        "e6f4",
+        "h5h4",
+        "f4g2",
+        "h4g3",
+        "g2e3"
+      ],
+      "themes": [
+        "crushing",
+        "endgame",
+        "fork",
+        "long"
+      ],
+      "rating": 1715,
+      "popularity": 85,
+      "plays": 42,
+      "game_url": "https://lichess.org/WBYPtZtr#79",
+      "source": "lichess-db"
+    },
+    {
+      "id": "094bH",
+      "description": "Lichess Puzzle - Rating 1933 - advantage, endgame, sacrifice",
+      "fen": "2r4k/5p1p/p3qp2/1p2n3/1P5Q/P6P/1B3PP1/5BK1 b - - 15 35",
+      "solution": [
+        "c8c2",
+        "f1d3",
+        "e5d3",
+        "b2f6",
+        "h8g8",
+        "h4h6",
+        "e6f6",
+        "h6f6"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "sacrifice",
+        "veryLong"
+      ],
+      "rating": 1933,
+      "popularity": 76,
+      "plays": 21,
+      "game_url": "https://lichess.org/WoDDzm5u/black#70",
+      "source": "lichess-db"
+    },
+    {
+      "id": "0CPHS",
+      "description": "Lichess Puzzle - Rating 1315 - advantage, endgame, fork",
+      "fen": "1k6/1q6/1pp2np1/p2p1p2/P4PP1/1PN5/1KP5/4Q3 b - - 0 34",
+      "solution": [
+        "b7d7",
+        "e1e5",
+        "b8b7",
+        "e5f6"
+      ],
+      "themes": [
+        "advantage",
+        "endgame",
+        "fork",
+        "short"
+      ],
+      "rating": 1315,
+      "popularity": 93,
+      "plays": 1718,
+      "game_url": "https://lichess.org/wROWOIPJ/black#68",
+      "source": "lichess-db"
+    }
+  ]
+}

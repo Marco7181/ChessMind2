@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChessMind2</title>
+    <link rel="stylesheet" href="style.css" id="local-style" />
+    <script>
+      window.APP_VERSION = Date.now().toString();
+      window.withAssetVersion = function (path) {
+        return `${path}?v=${window.APP_VERSION}`;
+      };
+
+      document.addEventListener("DOMContentLoaded", async function () {
+        const allowedPages = [
+          "home",
+          "analysis",
+          "openings",
+          "play_ai",
+          "profile",
+          "puzzles",
+          "stats",
+          "tournaments",
+        ];
+
+        const getInitialPage = () => {
+          const queryPage = new URLSearchParams(window.location.search).get(
+            "page",
+          );
+          const hashPage = window.location.hash.replace("#", "").trim();
+          const requested = (queryPage || hashPage || "home").toLowerCase();
+          return allowedPages.includes(requested) ? requested : "home";
+        };
+
+        const loadScript = (path) =>
+          new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = window.withAssetVersion(path);
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
+          });
+
+        const defaultNavbarHtml = `
+          <nav class="navbar">
+            <div class="logo">ChessMind2</div>
+            <button
+              class="nav-toggle"
+              type="button"
+              aria-label="Apri menu"
+              aria-expanded="false"
+              onclick="toggleNavbarMenu()"
+            >
+              ☰
+            </button>
+
+            <div class="nav-links" id="main-nav-links">
+              <a onclick="loadPage('home'); closeNavbarMenu();">Home</a>
+              <a onclick="loadPage('analysis'); closeNavbarMenu();">Analisi AI</a>
+              <a onclick="loadPage('play_ai'); closeNavbarMenu();">Gioca</a>
+              <a onclick="loadPage('puzzles'); closeNavbarMenu();">Puzzle</a>
+              <a onclick="loadPage('profile'); closeNavbarMenu();">Profilo</a>
+            </div>
+          </nav>
+        `;
+
+        try {
+          const localStyle = document.getElementById("local-style");
+          if (localStyle) {
+            localStyle.href = window.withAssetVersion("style.css");
+          }
+
+          await loadScript("components/board.js");
+          await loadScript("components/analysis_board.js");
+          await loadScript("components/puzzle_board.js");
+          await loadScript("components/play_ai_board.js");
+          await loadScript("components/profile.js");
+          await loadScript("app.js");
+
+          document.getElementById("navbar").innerHTML = defaultNavbarHtml;
+
+          if (typeof initNavbar === "function") {
+            initNavbar();
+          }
+          if (typeof loadPage === "function") {
+            loadPage(getInitialPage());
+          }
+        } catch (error) {
+          console.error("Bootstrap error:", error);
+        }
+      });
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css"
+    />
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="app"></div>
+
+    <!-- Caricate librerie globali per scacchi -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.0/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+
+    <!-- Variabili globali -->
+    <script>
+      let board = null;
+      let game = null;
+      let stockfish = null;
+      let aiDepth = 8;
+    </script>
+
+    <!-- CSS personalizzato per Chessboard -->
+    <style>
+      .chessboard {
+        border: 2px solid #333;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .square-55d63 {
+        width: 43.75px;
+        height: 43.75px;
+        float: left;
+      }
+
+      .square-55d63.black {
+        background-color: #769656;
+      }
+      .square-55d63.white {
+        background-color: #eeeed2;
+      }
+
+      .piece-417db {
+        height: 43.75px;
+        width: 43.75px;
+        background-repeat: no-repeat;
+        background-size: 43.75px 43.75px;
+      }
+    </style>
+  </body>
+</html>

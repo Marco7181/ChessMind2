@@ -1,0 +1,103 @@
+<h2>Puzzle del giorno</h2>
+
+<div id="puzzle-container">
+  <div class="board-area">
+    <div id="board" style="width: 350px"></div>
+    <div class="move-nav-controls">
+      <button data-nav="start" class="btn" onclick="moveToStart()">
+        Inizio
+      </button>
+      <button data-nav="back" class="btn" onclick="moveBack()">Indietro</button>
+      <button data-nav="forward" class="btn" onclick="moveForward()">
+        Avanti
+      </button>
+      <button data-nav="end" class="btn" onclick="moveToEnd()">Fine</button>
+    </div>
+    <div class="position-tools">
+      <label for="fen-input">FEN</label>
+      <div class="position-row">
+        <input
+          id="fen-input"
+          type="text"
+          placeholder="es. rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        />
+        <button class="btn" onclick="applyFenFromInput()">Carica FEN</button>
+      </div>
+
+      <label for="pgn-input">PGN</label>
+      <textarea
+        id="pgn-input"
+        rows="4"
+        placeholder="Incolla qui il PGN completo"
+      ></textarea>
+      <button class="btn" onclick="importPgnFromInput()">Importa PGN</button>
+      <div class="position-actions">
+        <button class="btn" onclick="copyCurrentFen()">
+          Copia FEN corrente
+        </button>
+        <button class="btn" onclick="exportCurrentPgn()">Esporta PGN</button>
+      </div>
+      <div id="fen-pgn-status" class="position-status"></div>
+    </div>
+  </div>
+
+  <div id="puzzle-panel">
+    <h3>Istruzioni</h3>
+    <p id="puzzle-desc">Caricamento puzzle...</p>
+
+    <h3>Turno</h3>
+    <div id="turn-indicator" class="turn-indicator">Tocca a: Bianco</div>
+
+    <div class="position-actions">
+      <button
+        class="btn"
+        id="retry-puzzle-btn"
+        onclick="retryPuzzle()"
+        disabled
+      >
+        Riprova
+      </button>
+      <button class="btn" onclick="showPuzzleSolution()">Soluzione</button>
+      <button class="btn" onclick="nextPuzzle()">Nuovo Puzzle</button>
+    </div>
+
+    <h3>Risultato</h3>
+    <div id="result"></div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+<script>
+  if (typeof board === "undefined") {
+    var board = null;
+  }
+  if (typeof game === "undefined") {
+    var game = null;
+  }
+  if (typeof stockfish === "undefined") {
+    var stockfish = null;
+  }
+</script>
+
+<script src="../components/puzzle_board.js"></script>
+<script>
+  if (typeof window.loadPage !== "function" || typeof Chess === "undefined") {
+    window.location.replace("../index.html#puzzles");
+  }
+
+  setTimeout(function () {
+    if (
+      typeof puzzleLoadStockfish === "function" &&
+      typeof puzzleInitBoard === "function" &&
+      typeof Chess !== "undefined"
+    ) {
+      board = null;
+      if (!game) game = new Chess();
+      puzzleLoadStockfish();
+      puzzleInitBoard();
+      nextPuzzle();
+    }
+  }, 1000);
+</script>
