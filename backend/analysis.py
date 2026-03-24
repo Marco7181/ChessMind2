@@ -383,6 +383,7 @@ def analyze_game(request: GameAnalysisRequest):
             # Salva stato prima del push (per classificazione sacrifici)
             board_before = board.copy()
             board.push(move)
+            is_checkmate_move = board.is_checkmate()
 
             # Analizza posizione dopo la mossa
             actual_cp: int | None = None
@@ -408,7 +409,11 @@ def analyze_game(request: GameAnalysisRequest):
                 cp_loss = (best_cp - actual_cp) if is_white else (actual_cp - best_cp)
                 cp_loss = max(0, cp_loss)
 
-            symbol, label = _classify_move(cp_loss, board_before, move)
+            if is_checkmate_move:
+                cp_loss = 0
+                symbol, label = "!!", "Scacco matto"
+            else:
+                symbol, label = _classify_move(cp_loss, board_before, move)
 
             eval_before_d: dict[str, Any] | None = None
             if best_mate is not None:
@@ -421,6 +426,11 @@ def analyze_game(request: GameAnalysisRequest):
                 eval_after_d = {"type": "mate", "value": actual_mate}
             elif actual_cp is not None:
                 eval_after_d = {"type": "cp", "value": actual_cp}
+            elif is_checkmate_move:
+                eval_after_d = {
+                    "type": "mate",
+                    "value": 1 if is_white else -1,
+                }
 
             annotated.append({
                 "move_number": move_number,
