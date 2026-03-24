@@ -176,6 +176,11 @@ function importPgnFromInput() {
   resetMoveNavigation();
   syncBoardToGame();
   setPositionToolStatus("PGN importato correttamente.");
+
+  // Aggiorna subito pannello analisi/apertura quando il PGN viene importato.
+  if (typeof analysisRunDeep === "function") {
+    analysisRunDeep();
+  }
 }
 
 function normalizeImportedPgn(rawPgn) {

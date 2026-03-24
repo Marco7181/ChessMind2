@@ -1,6 +1,12 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 import re
+import json
+import urllib.parse
+import urllib.request
+import chess
+import csv
+from pathlib import Path
 
 router = APIRouter()
 
@@ -24,6 +30,8 @@ OPENINGS_DB = [
     {"key": "modern_defense", "eco": "B06", "name": "Difesa Moderna", "moves": ["e4", "g6", "d4", "Bg7"]},
     {"key": "alekhine_defense", "eco": "B02", "name": "Difesa Alekhine", "moves": ["e4", "Nf6"]},
     {"key": "scandinavian_defense", "eco": "B01", "name": "Difesa Scandinava", "moves": ["e4", "d5"]},
+    {"key": "horwitz_defense", "eco": "A40", "name": "Difesa Horwitz (1...e6 contro d4)", "moves": ["d4", "e6"]},
+    {"key": "horwitz_fianchetto_setup", "eco": "A40", "name": "Partita di Donna: setup Horwitz con ...g6", "moves": ["d4", "e6", "Nf3", "d5", "e3", "Nf6", "Bd3", "g6"]},
     {"key": "queens_gambit", "eco": "D06", "name": "Gambetto di Donna", "moves": ["d4", "d5", "c4"]},
     {"key": "qgd_orthodox", "eco": "D63", "name": "Gambetto di Donna Rifiutato", "moves": ["d4", "d5", "c4", "e6", "Nc3", "Nf6", "Bg5", "Be7"]},
     {"key": "qga", "eco": "D20", "name": "Gambetto di Donna Accettato", "moves": ["d4", "d5", "c4", "dxc4"]},
@@ -42,6 +50,8 @@ OPENINGS_DB = [
     {"key": "catalan_opening", "eco": "E00", "name": "Apertura Catalana", "moves": ["d4", "Nf6", "c4", "e6", "g3"]},
     {"key": "vienna_game", "eco": "C25", "name": "Partita Viennese", "moves": ["e4", "e5", "Nc3"]},
 ]
+
+OPENINGS_DATA_DIR = Path(__file__).resolve().parent / "data" / "openings"
 
 _PUNCT = re.compile(r"[+#?!]+")
 
@@ -78,6 +88,137 @@ def _best_opening_match(moves: list[str]):
     return best, best_len
 
 
+def _pgn_line_to_moves(pgn_line: str) -> list[str]:
+    if not pgn_line:
+        return []
+    cleaned = pgn_line.strip()
+    # Rimuove numeri mossa, risultati e notazioni accessorie.
+    cleaned = re.sub(r"\{[^}]*\}", " ", cleaned)
+    cleaned = re.sub(r"\([^)]*\)", " ", cleaned)
+    cleaned = re.sub(r"\d+\.\.\.|\d+\.", " ", cleaned)
+    tokens = [t for t in cleaned.split() if t and t not in {"1-0", "0-1", "1/2-1/2", "*"}]
+    return [_normalize_san(t) for t in tokens if _normalize_san(t)]
+
+
+def _load_external_openings() -> list[dict]:
+    loaded: list[dict] = []
+    if not OPENINGS_DATA_DIR.exists():
+        return loaded
+
+    for code in ("a", "b", "c", "d", "e"):
+        file_path = OPENINGS_DATA_DIR / f"{code}.tsv"
+        if not file_path.exists():
+            continue
+
+        with file_path.open("r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f, delimiter="\t")
+            for row in reader:
+                eco = (row.get("eco") or "").strip()
+                name = (row.get("name") or "").strip()
+                pgn = (row.get("pgn") or "").strip()
+                if not eco or not name or not pgn:
+                    continue
+
+                moves = _pgn_line_to_moves(pgn)
+                if not moves:
+                    continue
+
+                key = re.sub(r"[^a-z0-9]+", "_", f"{eco}_{name}".lower()).strip("_")
+                loaded.append(
+                    {
+                        "key": key,
+                        "eco": eco,
+                        "name": name,
+                        "moves": moves,
+                    }
+                )
+
+    return loaded
+
+
+def _merge_opening_databases() -> None:
+    external = _load_external_openings()
+    if not external:
+        return
+
+    existing_signatures = {
+        (item.get("eco", ""), item.get("name", ""), tuple(item.get("moves") or []))
+        for item in OPENINGS_DB
+    }
+
+    for item in external:
+        signature = (item.get("eco", ""), item.get("name", ""), tuple(item.get("moves") or []))
+        if signature in existing_signatures:
+            continue
+        OPENINGS_DB.append(item)
+        existing_signatures.add(signature)
+
+
+_merge_opening_databases()
+
+
+def _san_moves_to_uci(moves: list[str]) -> list[str] | None:
+    board = chess.Board()
+    uci_moves: list[str] = []
+    try:
+        for san in moves:
+            move = board.parse_san(san)
+            uci_moves.append(move.uci())
+            board.push(move)
+    except Exception:
+        return None
+    return uci_moves
+
+
+def _lookup_opening_online(moves: list[str]) -> dict | None:
+    """Tenta rilevamento apertura via Lichess Opening Explorer.
+
+    Restituisce None se non disponibile/offline/non trovata.
+    """
+    if not moves:
+        return None
+
+    uci_moves = _san_moves_to_uci(moves)
+    if not uci_moves:
+        return None
+
+    params = urllib.parse.urlencode(
+        {
+            "play": ",".join(uci_moves),
+            "variant": "standard",
+            "topGames": 0,
+            "recentGames": 0,
+        }
+    )
+    url = f"https://explorer.lichess.ovh/lichess?{params}"
+
+    try:
+        with urllib.request.urlopen(url, timeout=2.5) as response:
+            data = json.loads(response.read().decode("utf-8"))
+    except Exception:
+        return None
+
+    opening = data.get("opening") if isinstance(data, dict) else None
+    if not opening:
+        return None
+
+    eco = opening.get("eco") or "-"
+    name = opening.get("name") or "Apertura riconosciuta"
+    key = f"online_{eco}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}"
+
+    return {
+        "found": True,
+        "key": key,
+        "name": name,
+        "eco": eco,
+        "line": moves,
+        "matched_moves": len(moves),
+        "input_moves": len(moves),
+        "completion_pct": 100,
+        "source": "online",
+    }
+
+
 @router.get("/")
 def list_openings():
     return {"count": len(OPENINGS_DB), "openings": OPENINGS_DB}
@@ -89,6 +230,9 @@ def detect_opening(payload: OpeningDetectRequest):
     opening, matched_len = _best_opening_match(moves)
 
     if not opening:
+        online = _lookup_opening_online(moves)
+        if online:
+            return online
         return {
             "found": False,
             "name": "Fuori libro",
@@ -96,6 +240,7 @@ def detect_opening(payload: OpeningDetectRequest):
             "matched_moves": 0,
             "input_moves": len(moves),
             "completion_pct": 0,
+            "source": "local",
         }
 
     completion = 0
@@ -111,6 +256,7 @@ def detect_opening(payload: OpeningDetectRequest):
         "matched_moves": matched_len,
         "input_moves": len(moves),
         "completion_pct": completion,
+        "source": "local",
     }
 
 
