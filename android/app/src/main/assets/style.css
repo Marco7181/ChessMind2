@@ -680,3 +680,99 @@ body {
 .stats-list li {
   margin: 8px 0;
 }
+
+/* ── Analisi Partita ────────────────────────────────────── */
+#game-analysis-panel {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #2e2e2e;
+}
+
+.ga-stats {
+  margin-bottom: 14px;
+}
+
+.ga-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  font-size: 13px;
+  background: #1a1a1a;
+  border: 1px solid #2e2e2e;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.ga-pct {
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: 4px;
+}
+
+.ga-sym {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.ga-good {
+  color: #4caf50;
+}
+
+.ga-bad {
+  color: #ff6b6b;
+}
+
+.ga-moves {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 380px;
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.ga-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.ga-row:nth-child(even) {
+  background: #1b1b1b;
+}
+
+.ga-num {
+  color: #777;
+  min-width: 26px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.ga-move {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  flex: 1;
+}
+
+.ga-cploss {
+  font-size: 11px;
+  color: #ff9966;
+  margin-left: 2px;
+}
+
+.ga-best {
+  font-size: 11px;
+  color: #888;
+  margin-left: 4px;
+  font-style: italic;
+}
+
+.ga-empty {
+  color: #555;
+}

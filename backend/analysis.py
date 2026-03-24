@@ -1,7 +1,10 @@
 from fastapi import APIRouter
 import chess
+import chess.pgn
+import io as _io
 import logging
 from typing import Any
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -133,7 +136,8 @@ def _build_plans(
 
     score_text = "equilibrio"
     if evaluation and evaluation.get("type") == "cp":
-        cp = int(evaluation.get("value") or 0)
+        cp_white = int(evaluation.get("value") or 0)
+        cp = cp_white if board.turn == chess.WHITE else -cp_white
         pawns = cp / 100.0
         if pawns > 0.8:
             score_text = "vantaggio chiaro"
@@ -144,7 +148,8 @@ def _build_plans(
         elif pawns < -0.25:
             score_text = "leggero svantaggio"
     elif evaluation and evaluation.get("type") == "mate":
-        mate = int(evaluation.get("value") or 0)
+        mate_white = int(evaluation.get("value") or 0)
+        mate = mate_white if board.turn == chess.WHITE else -mate_white
         score_text = "attacco decisivo" if mate > 0 else "difesa critica"
 
     strategic_plan = [
@@ -205,6 +210,13 @@ def _uci_to_san(board: chess.Board, uci_move: str | None) -> str | None:
         return None
 
 
+def _to_white_pov(board: chess.Board, value: int | None) -> int | None:
+    if value is None:
+        return None
+    raw = int(value)
+    return raw if board.turn == chess.WHITE else -raw
+
+
 def _normalize_top_moves(
     board: chess.Board,
     top_moves: list[dict[str, Any]] | None,
@@ -218,8 +230,8 @@ def _normalize_top_moves(
         if not uci:
             continue
 
-        cp = item.get("Centipawn")
-        mate = item.get("Mate")
+        cp = _to_white_pov(board, item.get("Centipawn"))
+        mate = _to_white_pov(board, item.get("Mate"))
         lines.append(
             {
                 "move_uci": uci,
@@ -236,14 +248,208 @@ def _normalize_top_moves(
             {
                 "move_uci": fallback_best_move,
                 "move_san": _uci_to_san(board, fallback_best_move),
-                "score_cp": fallback_eval.get("value") if (fallback_eval or {}).get("type") == "cp" else None,
-                "mate": fallback_eval.get("value") if (fallback_eval or {}).get("type") == "mate" else None,
+                "score_cp": _to_white_pov(
+                    board,
+                    fallback_eval.get("value") if (fallback_eval or {}).get("type") == "cp" else None,
+                ),
+                "mate": _to_white_pov(
+                    board,
+                    fallback_eval.get("value") if (fallback_eval or {}).get("type") == "mate" else None,
+                ),
                 "pv_uci": [fallback_best_move],
                 "pv_san": [_uci_to_san(board, fallback_best_move)] if _uci_to_san(board, fallback_best_move) else [],
             }
         )
 
+    # Manteniamo l'ordine originale fornito da Stockfish senza alterazioni.
     return lines
+
+class GameAnalysisRequest(BaseModel):
+    pgn: str
+    depth: int = 10
+
+
+def _is_sacrifice(board: chess.Board, move: chess.Move) -> bool:
+    """True se la mossa porta il pezzo su una casa attaccata (possibile sacrificio)."""
+    moving_piece = board.piece_at(move.from_square)
+    if not moving_piece:
+        return False
+    if PIECE_VALUES.get(moving_piece.piece_type, 0) < 3:
+        return False  # i pedoni non sono sacrifici significativi
+    captured = board.piece_at(move.to_square)
+    board_after = board.copy()
+    board_after.push(move)
+    if not board_after.is_attacked_by(not board.turn, move.to_square):
+        return False  # il pezzo non rimane sotto attacco
+    if captured is None:
+        return True  # mossa su casa attaccata senza cattura = sacrificio
+    return PIECE_VALUES.get(moving_piece.piece_type, 0) > PIECE_VALUES.get(captured.piece_type, 0)
+
+
+def _classify_move(cp_loss: int, board_before: chess.Board, move: chess.Move) -> tuple[str, str]:
+    """Classifica una mossa con i simboli scacchistici FIDE standard."""
+    if cp_loss <= 5 and _is_sacrifice(board_before, move):
+        return "!!", "Geniale"
+    if cp_loss <= 10:
+        return "!", "Ottima"
+    if cp_loss <= 30:
+        return "!?", "Interessante"
+    if cp_loss <= 100:
+        return "?!", "Imprecisione"
+    if cp_loss <= 250:
+        return "?", "Errore"
+    return "??", "Gaffe"
+
+
+def _calc_game_stats(moves: list[dict]) -> dict:
+    """Calcola statistiche qualità mosse per bianco e nero."""
+    def stats_for(color_moves: list[dict]) -> dict:
+        if not color_moves:
+            return {"brilliant": 0, "good": 0, "interesting": 0,
+                    "inaccuracy": 0, "mistake": 0, "blunder": 0,
+                    "total": 0, "good_pct": 0.0}
+        counts: dict[str, int] = {"!!": 0, "!": 0, "!?": 0, "?!": 0, "?": 0, "??": 0}
+        for m in color_moves:
+            sym = m.get("symbol", "!?")
+            counts[sym] = counts.get(sym, 0) + 1
+        total = len(color_moves)
+        good_count = counts["!!"] + counts["!"] + counts["!?"]
+        return {
+            "brilliant": counts["!!"],
+            "good": counts["!"],
+            "interesting": counts["!?"],
+            "inaccuracy": counts["?!"],
+            "mistake": counts["?"],
+            "blunder": counts["??"],
+            "total": total,
+            "good_pct": round(good_count / total * 100, 1),
+        }
+
+    white_moves = [m for m in moves if m["color"] == "white"]
+    black_moves = [m for m in moves if m["color"] == "black"]
+    return {"white": stats_for(white_moves), "black": stats_for(black_moves)}
+
+
+@router.post("/game")
+def analyze_game(request: GameAnalysisRequest):
+    pgn_text = (request.pgn or "").strip()
+    depth = max(6, min(16, int(request.depth or 10)))
+
+    if not pgn_text:
+        return {"error": "PGN vuoto", "moves": [], "stats": {}}
+
+    try:
+        game_pgn = chess.pgn.read_game(_io.StringIO(pgn_text))
+    except Exception as exc:
+        return {"error": f"Errore parsing PGN: {exc}", "moves": [], "stats": {}}
+
+    if not game_pgn:
+        return {"error": "PGN non valido o mancante di mosse", "moves": [], "stats": {}}
+
+    board = game_pgn.board()
+    annotated: list[dict[str, Any]] = []
+
+    sf = get_stockfish(force_new=True)
+    if not sf:
+        return {"error": "Stockfish non disponibile", "moves": [], "stats": {}}
+
+    try:
+        sf.set_depth(depth)
+
+        for move in game_pgn.mainline_moves():
+            if board.is_game_over():
+                break
+
+            is_white = board.turn == chess.WHITE
+            move_number = board.fullmove_number
+
+            # Analizza posizione prima della mossa
+            fen_before = board.fen()
+            sf.set_fen_position(fen_before)
+            top_before = sf.get_top_moves(1)
+
+            best_cp: int | None = None
+            best_mate: int | None = None
+            best_move_uci: str | None = None
+            if top_before:
+                best_move_uci = top_before[0].get("Move")
+                best_cp = _to_white_pov(board, top_before[0].get("Centipawn"))
+                best_mate = _to_white_pov(board, top_before[0].get("Mate"))
+
+            move_san = board.san(move)
+            move_uci = move.uci()
+            best_move_san_val = _uci_to_san(board, best_move_uci)
+
+            # Salva stato prima del push (per classificazione sacrifici)
+            board_before = board.copy()
+            board.push(move)
+
+            # Analizza posizione dopo la mossa
+            actual_cp: int | None = None
+            actual_mate: int | None = None
+            if not board.is_game_over():
+                sf.set_fen_position(board.fen())
+                top_after = sf.get_top_moves(1)
+                if top_after:
+                    actual_cp = _to_white_pov(board, top_after[0].get("Centipawn"))
+                    actual_mate = _to_white_pov(board, top_after[0].get("Mate"))
+
+            # Calcola perdita centipawn (sempre >= 0)
+            cp_loss = 0
+            if best_mate is not None:
+                best_mate_favor = (best_mate > 0) if is_white else (best_mate < 0)
+                if best_mate_favor:
+                    if actual_mate is None:
+                        cp_loss = 500  # matto mancato
+                    else:
+                        actual_mate_favor = (actual_mate > 0) if is_white else (actual_mate < 0)
+                        cp_loss = 0 if actual_mate_favor else 500
+            elif best_cp is not None and actual_cp is not None:
+                cp_loss = (best_cp - actual_cp) if is_white else (actual_cp - best_cp)
+                cp_loss = max(0, cp_loss)
+
+            symbol, label = _classify_move(cp_loss, board_before, move)
+
+            eval_before_d: dict[str, Any] | None = None
+            if best_mate is not None:
+                eval_before_d = {"type": "mate", "value": best_mate}
+            elif best_cp is not None:
+                eval_before_d = {"type": "cp", "value": best_cp}
+
+            eval_after_d: dict[str, Any] | None = None
+            if actual_mate is not None:
+                eval_after_d = {"type": "mate", "value": actual_mate}
+            elif actual_cp is not None:
+                eval_after_d = {"type": "cp", "value": actual_cp}
+
+            annotated.append({
+                "move_number": move_number,
+                "color": "white" if is_white else "black",
+                "move_san": move_san,
+                "move_uci": move_uci,
+                "best_move_san": best_move_san_val,
+                "symbol": symbol,
+                "label": label,
+                "cp_loss": cp_loss,
+                "eval_before": eval_before_d,
+                "eval_after": eval_after_d,
+            })
+
+    except Exception as exc:
+        logger.error(f"❌ Errore analisi partita: {exc}")
+        if annotated:
+            return {
+                "moves": annotated,
+                "stats": _calc_game_stats(annotated),
+                "engine_error": str(exc),
+            }
+        return {"error": str(exc), "moves": [], "stats": {}}
+
+    return {
+        "moves": annotated,
+        "stats": _calc_game_stats(annotated),
+    }
+
 
 @router.get("/")
 def analyze(fen: str):
@@ -251,7 +457,7 @@ def analyze(fen: str):
     
     try:
         board = chess.Board(fen)
-        sf = get_stockfish()
+        sf = get_stockfish(force_new=True)
         
         if not sf:
             logger.warning("Stockfish non disponibile")
@@ -265,13 +471,18 @@ def analyze(fen: str):
         sf.set_fen_position(fen)
         best_move = sf.get_best_move()
         evaluation = sf.get_evaluation()
-        
+        if evaluation and evaluation.get("value") is not None:
+            evaluation = {
+                "type": evaluation.get("type"),
+                "value": _to_white_pov(board, evaluation.get("value")),
+            }
+
         logger.info(f"✅ Mossa trovata: {best_move}")
 
         return {
             "fen": fen,
             "best_move": best_move,
-            "evaluation": evaluation
+            "evaluation": evaluation,
         }
     except Exception as e:
         logger.error(f"❌ Errore analisi: {e}")
@@ -303,7 +514,7 @@ def analyze_deep(fen: str, depth: int = 16, multi_pv: int = 3):
     depth = max(8, min(24, int(depth)))
     multi_pv = max(1, min(5, int(multi_pv)))
 
-    sf = get_stockfish()
+    sf = get_stockfish(force_new=True)
     best_move = None
     evaluation = None
     top_lines: list[dict[str, Any]] = []
@@ -318,8 +529,8 @@ def analyze_deep(fen: str, depth: int = 16, multi_pv: int = 3):
             top_moves_raw = sf.get_top_moves(multi_pv)
             if top_moves_raw:
                 best_move = top_moves_raw[0].get("Move")
-                cp_val   = top_moves_raw[0].get("Centipawn")
-                mate_val = top_moves_raw[0].get("Mate")
+                cp_val = _to_white_pov(board, top_moves_raw[0].get("Centipawn"))
+                mate_val = _to_white_pov(board, top_moves_raw[0].get("Mate"))
                 if mate_val is not None:
                     evaluation = {"type": "mate", "value": mate_val}
                 elif cp_val is not None:
@@ -336,6 +547,11 @@ def analyze_deep(fen: str, depth: int = 16, multi_pv: int = 3):
                     sf2.set_fen_position(fen)
                     best_move = sf2.get_best_move()
                     evaluation = sf2.get_evaluation()
+                    if evaluation and evaluation.get("value") is not None:
+                        evaluation = {
+                            "type": evaluation.get("type"),
+                            "value": _to_white_pov(board, evaluation.get("value")),
+                        }
                     top_lines = _normalize_top_moves(board, None, best_move, evaluation)
                     engine_error = "Analisi parziale (multi-pv non disponibile)"
                 except Exception as e2:

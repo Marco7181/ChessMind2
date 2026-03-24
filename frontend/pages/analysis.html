@@ -53,8 +53,12 @@
       <label for="analysis-multipv">Linee Candidate</label>
       <input id="analysis-multipv" type="number" min="1" max="5" value="3" />
 
-      <button class="btn" onclick="analysisRunDeep()">Analisi Completa</button>
+      <button class="btn" onclick="analysisRunDeep()">Analisi Posizione</button>
+      <button class="btn" onclick="analysisRunGameAnalysis()">
+        Analisi partita
+      </button>
       <div id="analysis-status" class="position-status"></div>
+      <div id="game-analysis-status" class="position-status"></div>
     </div>
 
     <h3>Linee Migliori</h3>
@@ -71,6 +75,12 @@
 
     <h3>Sintesi</h3>
     <div id="analysis-summary">In attesa analisi...</div>
+
+    <div id="game-analysis-panel" style="display: none; margin-top: 16px">
+      <h3>Analisi Partita</h3>
+      <div id="game-analysis-stats"></div>
+      <div id="game-analysis-moves"></div>
+    </div>
   </div>
 </div>
 
