@@ -1,3 +1,7 @@
 
 # Local engine binary
 stockfish.exe
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
