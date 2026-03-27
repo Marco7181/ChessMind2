@@ -142,6 +142,20 @@ let analysisRequestToken = 0;
 let analysisUseLocalWorkerScores = false;
 let analysisLiveEvalTimer = null;
 let analysisLiveEvalTurn = "w";
+let analysisLiveEngineFen = "";
+let analysisLiveEngineWatchdog = null;
+let analysisLastLiveInfoAt = 0;
+let analysisLiveTargetDepth = 25;
+let analysisLiveDepthReached = 0;
+let analysisLiveComplete = false;
+let analysisLiveHadScore = false;
+let analysisEngineUciReady = false;
+let analysisEngineReady = false;
+let analysisPendingFen = "";
+let analysisPendingForceRestart = false;
+let analysisUseBackendLiveEval = false;
+let analysisLiveBackendLoop = null;
+let analysisLiveBackendBusy = false;
 
 function analysisCpToWhitePct(cp, mate) {
   if (Number.isFinite(mate)) {
@@ -174,7 +188,14 @@ function analysisUpdateEvalBar(cp, mate) {
 }
 
 function analysisQueueLiveEval() {
-  if (!game || !stockfish) return;
+  if (!game) return;
+
+  if (analysisUseBackendLiveEval) {
+    analysisUpdateLiveEvalFromBackend(true);
+    return;
+  }
+
+  if (!stockfish) return;
 
   if (analysisLiveEvalTimer) {
     clearTimeout(analysisLiveEvalTimer);
@@ -182,15 +203,115 @@ function analysisQueueLiveEval() {
 
   analysisLiveEvalTurn = game.turn();
   analysisLiveEvalTimer = setTimeout(() => {
-    if (!game || !stockfish) return;
-    try {
-      stockfish.postMessage("stop");
-      stockfish.postMessage("position fen " + game.fen());
-      stockfish.postMessage("go depth 12");
-    } catch (_err) {
-      // Ignora errori del worker: l'analisi backend resta disponibile.
+    analysisStartContinuousLiveEval(false);
+  }, 10);
+}
+
+async function analysisUpdateLiveEvalFromBackend(force = false) {
+  if (!game) return;
+  if (!force && analysisLiveBackendBusy) return;
+
+  analysisLiveBackendBusy = true;
+  try {
+    const query = `fen=${encodeURIComponent(game.fen())}&depth=10&multi_pv=1&detail_level=breve&_=${Date.now()}`;
+    const url = `${analysisBackendUrl()}?${query}`;
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) return;
+
+    const data = await response.json();
+    const evaluation = data?.evaluation;
+    if (!evaluation) return;
+
+    const evalEl = document.getElementById("eval");
+    if (evaluation.type === "cp") {
+      const cp = Number(evaluation.value || 0);
+      if (evalEl) evalEl.innerText = analysisFormatCpScore(cp);
+      analysisUpdateEvalBar(cp, null);
+    } else if (evaluation.type === "mate") {
+      const mate = Number(evaluation.value || 0);
+      if (evalEl) evalEl.innerText = analysisFormatMateScore(mate);
+      analysisUpdateEvalBar(null, mate);
     }
-  }, 120);
+  } catch (_err) {
+    // Mantieni silenzioso il fallback live.
+  } finally {
+    analysisLiveBackendBusy = false;
+  }
+}
+
+function analysisStartBackendLiveLoop() {
+  if (analysisLiveBackendLoop) return;
+  analysisUseBackendLiveEval = true;
+  analysisSetStatus("", false);
+  analysisUpdateLiveEvalFromBackend(true);
+  analysisLiveBackendLoop = setInterval(() => {
+    analysisUpdateLiveEvalFromBackend(false);
+  }, 1200);
+}
+
+function analysisStopBackendLiveLoop() {
+  if (analysisLiveBackendLoop) {
+    clearInterval(analysisLiveBackendLoop);
+    analysisLiveBackendLoop = null;
+  }
+  analysisUseBackendLiveEval = false;
+}
+
+function analysisStartContinuousLiveEval(forceRestart = false) {
+  if (analysisUseBackendLiveEval) {
+    if (forceRestart) {
+      analysisUpdateLiveEvalFromBackend(true);
+    }
+    return;
+  }
+
+  if (!game || !stockfish) return;
+
+  const fen = game.fen();
+  if (!analysisEngineReady) {
+    analysisPendingFen = fen;
+    analysisPendingForceRestart = forceRestart;
+    return;
+  }
+
+  // Evita restart multipli sulla stessa posizione: lascia proseguire la ricerca in corso.
+  if (!forceRestart && fen === analysisLiveEngineFen) {
+    return;
+  }
+
+  analysisLiveEngineFen = fen;
+  analysisLiveEvalTurn = game.turn();
+  analysisLiveDepthReached = 0;
+  analysisLiveComplete = false;
+  analysisLiveHadScore = false;
+  try {
+    stockfish.postMessage("stop");
+    stockfish.postMessage("position fen " + fen);
+    stockfish.postMessage(`go depth ${analysisLiveTargetDepth}`);
+    analysisLastLiveInfoAt = Date.now();
+  } catch (_err) {
+    // Ignora errori del worker: l'analisi backend resta disponibile.
+  }
+}
+
+function analysisEnsureLiveEvalWatchdog() {
+  if (analysisLiveEngineWatchdog) {
+    clearInterval(analysisLiveEngineWatchdog);
+  }
+
+  analysisLiveEngineWatchdog = setInterval(() => {
+    if (!game) return;
+    if (analysisUseBackendLiveEval) {
+      analysisUpdateLiveEvalFromBackend(false);
+      return;
+    }
+    if (!stockfish) return;
+    if (!analysisEngineReady) return;
+    const staleMs = Date.now() - analysisLastLiveInfoAt;
+    if (staleMs > 4500) {
+      analysisStartContinuousLiveEval(true);
+    }
+  }, 2500);
 }
 
 function analysisSetRunButtonState(isRunning) {
@@ -347,19 +468,91 @@ function analysisLoadStockfish() {
     }
   }
 
-  if (!stockfish) return;
+  if (!stockfish) {
+    analysisStartBackendLiveLoop();
+    return;
+  }
+
+  analysisEngineUciReady = false;
+  analysisEngineReady = false;
+  analysisPendingFen = "";
+  analysisPendingForceRestart = false;
 
   stockfish.postMessage("uci");
-  stockfish.postMessage("isready");
+
+  stockfish.onerror = function (err) {
+    console.error("Stockfish worker error:", err);
+    analysisStartBackendLiveLoop();
+  };
 
   stockfish.onmessage = function (event) {
-    const line = event.data;
-    if (typeof line !== "string") return;
+    const raw = event?.data;
+    const line =
+      typeof raw === "string"
+        ? raw
+        : raw === undefined || raw === null
+          ? ""
+          : String(raw);
+    if (!line) return;
+
+    if (line.includes("uciok")) {
+      analysisEngineUciReady = true;
+      stockfish.postMessage("isready");
+      return;
+    }
+
+    if (line.includes("readyok")) {
+      analysisStopBackendLiveLoop();
+      analysisSetStatus("", false);
+      analysisEngineReady = true;
+      analysisLastLiveInfoAt = Date.now();
+      if (game) {
+        const fenToStart = analysisPendingFen || game.fen();
+        analysisPendingFen = "";
+        const force = analysisPendingForceRestart || true;
+        analysisPendingForceRestart = false;
+        analysisLiveEngineFen = "";
+        try {
+          stockfish.postMessage("position fen " + fenToStart);
+          stockfish.postMessage(`go depth ${analysisLiveTargetDepth}`);
+        } catch (_err) {
+          analysisStartContinuousLiveEval(force);
+        }
+      }
+      return;
+    }
+
+    const depthMatch = line.match(/\bdepth\s+(\d+)\b/);
+    if (depthMatch) {
+      const d = Number(depthMatch[1]);
+      if (Number.isFinite(d) && d > analysisLiveDepthReached) {
+        analysisLiveDepthReached = d;
+        if (
+          analysisLiveDepthReached >= analysisLiveTargetDepth &&
+          !analysisLiveComplete
+        ) {
+          analysisLiveComplete = true;
+          try {
+            stockfish.postMessage("stop");
+          } catch (_err) {}
+        }
+      }
+    }
+    if (line.includes("bestmove")) {
+      analysisLiveComplete = true;
+      if (!analysisLiveHadScore) {
+        setTimeout(() => {
+          analysisStartContinuousLiveEval(true);
+        }, 0);
+      }
+    }
 
     // Eval live sempre attiva per la barra valutazione.
-    if (line.includes(" score cp ")) {
-      const cpRaw = Number(line.split("score cp ")[1]?.split(" ")[0]);
+    if (line.includes("score cp")) {
+      const cpRaw = Number((line.match(/score\s+cp\s+(-?\d+)/) || [])[1]);
       if (Number.isFinite(cpRaw)) {
+        analysisLiveHadScore = true;
+        analysisLastLiveInfoAt = Date.now();
         const whiteCp = analysisLiveEvalTurn === "w" ? cpRaw : -cpRaw;
         const evalEl = document.getElementById("eval");
         if (evalEl) {
@@ -367,9 +560,11 @@ function analysisLoadStockfish() {
         }
         analysisUpdateEvalBar(whiteCp, null);
       }
-    } else if (line.includes(" score mate ")) {
-      const mateRaw = Number(line.split("score mate ")[1]?.split(" ")[0]);
+    } else if (line.includes("score mate")) {
+      const mateRaw = Number((line.match(/score\s+mate\s+(-?\d+)/) || [])[1]);
       if (Number.isFinite(mateRaw)) {
+        analysisLiveHadScore = true;
+        analysisLastLiveInfoAt = Date.now();
         const whiteMate = analysisLiveEvalTurn === "w" ? mateRaw : -mateRaw;
         const evalEl = document.getElementById("eval");
         if (evalEl) {
@@ -543,7 +738,12 @@ function analysisInitBoard() {
   });
 
   analysisUpdateEvalBar(0, null);
-  analysisQueueLiveEval();
+  const evalEl = document.getElementById("eval");
+  if (evalEl) {
+    evalEl.innerText = "0.00";
+  }
+  analysisEnsureLiveEvalWatchdog();
+  analysisStartContinuousLiveEval(true);
 }
 
 function analysisOnSnapEnd() {
