@@ -2,7 +2,17 @@
 
 <div id="analysis-container">
   <div class="board-area">
-    <div id="board" style="width: 350px"></div>
+    <div class="board-with-eval">
+      <div id="board" style="width: 350px"></div>
+      <div class="eval-bar-wrap" aria-label="Barra valutazione Stockfish">
+        <div id="eval-bar" class="eval-bar">
+          <div id="eval-bar-black" class="eval-bar-black"></div>
+          <div id="eval-bar-white" class="eval-bar-white"></div>
+          <div id="eval-bar-marker" class="eval-bar-marker"></div>
+        </div>
+        <div id="eval-bar-score" class="eval-bar-score">0.00</div>
+      </div>
+    </div>
     <div class="move-nav-controls">
       <button data-nav="start" class="btn" onclick="moveToStart()">
         Inizio

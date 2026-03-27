@@ -140,6 +140,58 @@ async function analysisDetectOpening() {
 let analysisAbortController = null;
 let analysisRequestToken = 0;
 let analysisUseLocalWorkerScores = false;
+let analysisLiveEvalTimer = null;
+let analysisLiveEvalTurn = "w";
+
+function analysisCpToWhitePct(cp, mate) {
+  if (Number.isFinite(mate)) {
+    return mate > 0 ? 98 : 2;
+  }
+  const bounded = Math.max(-600, Math.min(600, Number(cp) || 0));
+  return Math.max(2, Math.min(98, 50 + bounded / 12));
+}
+
+function analysisUpdateEvalBar(cp, mate) {
+  const blackEl = document.getElementById("eval-bar-black");
+  const whiteEl = document.getElementById("eval-bar-white");
+  const markerEl = document.getElementById("eval-bar-marker");
+  const scoreEl = document.getElementById("eval-bar-score");
+  if (!blackEl || !whiteEl || !markerEl) return;
+
+  const whitePct = analysisCpToWhitePct(cp, mate);
+  const blackPct = 100 - whitePct;
+  blackEl.style.height = `${blackPct}%`;
+  whiteEl.style.height = `${whitePct}%`;
+  markerEl.style.top = `${blackPct}%`;
+
+  if (scoreEl) {
+    if (Number.isFinite(mate)) {
+      scoreEl.innerText = `M${mate}`;
+    } else {
+      scoreEl.innerText = analysisFormatCpScore(cp);
+    }
+  }
+}
+
+function analysisQueueLiveEval() {
+  if (!game || !stockfish) return;
+
+  if (analysisLiveEvalTimer) {
+    clearTimeout(analysisLiveEvalTimer);
+  }
+
+  analysisLiveEvalTurn = game.turn();
+  analysisLiveEvalTimer = setTimeout(() => {
+    if (!game || !stockfish) return;
+    try {
+      stockfish.postMessage("stop");
+      stockfish.postMessage("position fen " + game.fen());
+      stockfish.postMessage("go depth 12");
+    } catch (_err) {
+      // Ignora errori del worker: l'analisi backend resta disponibile.
+    }
+  }, 120);
+}
 
 function analysisSetRunButtonState(isRunning) {
   const runButton = document.querySelector(
@@ -248,12 +300,16 @@ function analysisRenderDeepAnalysis(data) {
   if (evalEl) {
     if (!evalData) {
       evalEl.innerText = "n/d";
+      analysisUpdateEvalBar(0, null);
     } else if (evalData.type === "cp") {
       evalEl.innerText = analysisFormatCpScore(evalData.value);
+      analysisUpdateEvalBar(Number(evalData.value || 0), null);
     } else if (evalData.type === "mate") {
       evalEl.innerText = analysisFormatMateScore(evalData.value);
+      analysisUpdateEvalBar(null, Number(evalData.value || 0));
     } else {
       evalEl.innerText = "n/d";
+      analysisUpdateEvalBar(0, null);
     }
   }
 
@@ -293,11 +349,37 @@ function analysisLoadStockfish() {
 
   if (!stockfish) return;
 
-  stockfish.onmessage = function (event) {
-    if (!analysisUseLocalWorkerScores) return;
+  stockfish.postMessage("uci");
+  stockfish.postMessage("isready");
 
+  stockfish.onmessage = function (event) {
     const line = event.data;
     if (typeof line !== "string") return;
+
+    // Eval live sempre attiva per la barra valutazione.
+    if (line.includes(" score cp ")) {
+      const cpRaw = Number(line.split("score cp ")[1]?.split(" ")[0]);
+      if (Number.isFinite(cpRaw)) {
+        const whiteCp = analysisLiveEvalTurn === "w" ? cpRaw : -cpRaw;
+        const evalEl = document.getElementById("eval");
+        if (evalEl) {
+          evalEl.innerText = analysisFormatCpScore(whiteCp);
+        }
+        analysisUpdateEvalBar(whiteCp, null);
+      }
+    } else if (line.includes(" score mate ")) {
+      const mateRaw = Number(line.split("score mate ")[1]?.split(" ")[0]);
+      if (Number.isFinite(mateRaw)) {
+        const whiteMate = analysisLiveEvalTurn === "w" ? mateRaw : -mateRaw;
+        const evalEl = document.getElementById("eval");
+        if (evalEl) {
+          evalEl.innerText = analysisFormatMateScore(whiteMate);
+        }
+        analysisUpdateEvalBar(null, whiteMate);
+      }
+    }
+
+    if (!analysisUseLocalWorkerScores) return;
 
     if (line.includes("score cp")) {
       const cp = line.split("score cp ")[1]?.split(" ")[0];
@@ -459,12 +541,16 @@ function analysisInitBoard() {
     pieceTheme:
       "https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png",
   });
+
+  analysisUpdateEvalBar(0, null);
+  analysisQueueLiveEval();
 }
 
 function analysisOnSnapEnd() {
   if (board && game) {
     board.position(game.fen());
   }
+  analysisQueueLiveEval();
 }
 
 // Quando l’utente muove un pezzo
@@ -518,6 +604,7 @@ function analysisOnDrop(source, target) {
 
   if (typeof registerNewMove === "function") registerNewMove();
   // Non lanciare analisi deep in automatico alla mossa.
+  analysisQueueLiveEval();
 }
 
 // Avvio

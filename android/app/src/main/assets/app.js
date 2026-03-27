@@ -45,6 +45,9 @@ function syncBoardToGame() {
   if (board && game) {
     board.position(game.fen());
   }
+  if (typeof analysisQueueLiveEval === "function") {
+    analysisQueueLiveEval();
+  }
   updateMoveNavButtons();
   updateTurnIndicator();
 }
@@ -57,6 +60,9 @@ function resetMoveNavigation() {
 
 function registerNewMove() {
   redoMoves = [];
+  if (typeof analysisQueueLiveEval === "function") {
+    analysisQueueLiveEval();
+  }
   updateMoveNavButtons();
   updateTurnIndicator();
 }
