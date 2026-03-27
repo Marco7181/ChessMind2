@@ -6,8 +6,12 @@ function analysisBackendUrl() {
   const globalValue = window.CHESSMIND_BACKEND_URL;
   const rawBaseUrl = queryValue || storedValue || globalValue;
 
-  if (rawBaseUrl) {
-    return `${rawBaseUrl.replace(/\/$/, "")}/analysis/deep`;
+  if (rawBaseUrl && !/^(undefined|null)$/i.test(String(rawBaseUrl).trim())) {
+    const normalizedBase = String(rawBaseUrl)
+      .trim()
+      .replace(/\/$/, "")
+      .replace(/\/(analysis\/deep|analysis\/game|openings\/detect)$/i, "");
+    return `${normalizedBase}/analysis/deep`;
   }
 
   const protocol = window.location.protocol;
@@ -28,6 +32,68 @@ function analysisBackendUrl() {
 
 function analysisOpeningsUrl() {
   return analysisBackendUrl().replace("/analysis/deep", "/openings/detect");
+}
+
+function analysisDeepEndpointCandidates() {
+  const candidates = [analysisBackendUrl()];
+  const isAndroidClient = /Android/i.test(navigator.userAgent || "");
+
+  candidates.push("http://127.0.0.1:8000/analysis/deep");
+  if (isAndroidClient) {
+    candidates.push("http://10.0.2.2:8000/analysis/deep");
+  }
+
+  return Array.from(new Set(candidates));
+}
+
+async function analysisFetchDeepWithRetry(queryString, fetchOptions) {
+  const endpoints = analysisDeepEndpointCandidates();
+  let lastError = null;
+  let hadTimeout = false;
+  const attempts = [];
+
+  for (const endpoint of endpoints) {
+    const url = `${endpoint}?${queryString}`;
+    try {
+      const response = await Promise.race([
+        fetch(url, fetchOptions),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("AnalysisTimeout")), 45000),
+        ),
+      ]);
+
+      let data;
+      try {
+        data = await response.json();
+      } catch (_jsonErr) {
+        throw new Error(`Risposta non valida dal backend: ${endpoint}`);
+      }
+
+      if (!response.ok || data?.error) {
+        throw new Error(
+          data?.error || `Errore backend (${response.status}) su ${endpoint}`,
+        );
+      }
+
+      return { data, endpoint };
+    } catch (err) {
+      if (err?.name === "AbortError") {
+        throw err;
+      }
+      if (err?.message === "AnalysisTimeout") {
+        hadTimeout = true;
+      }
+      attempts.push(`${endpoint} -> ${err?.message || "errore sconosciuto"}`);
+      lastError = err;
+    }
+  }
+
+  if (hadTimeout) {
+    const detail = attempts.slice(0, 3).join(" | ");
+    throw new Error(`AnalysisTimeout (${detail})`);
+  }
+  const detail = attempts.slice(0, 3).join(" | ");
+  throw lastError || new Error(`Backend non raggiungibile (${detail})`);
 }
 
 function analysisRenderOpening(data) {
@@ -105,6 +171,15 @@ function analysisFormatMateScore(mateValue) {
   return `M${value}`;
 }
 
+function analysisEscapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function analysisRenderBestMoves(items) {
   const list = document.getElementById("best-moves");
   if (!list) return;
@@ -128,7 +203,11 @@ function analysisRenderBestMoves(items) {
       const pv = (line.pv_san || []).length
         ? line.pv_san.join(" ")
         : (line.pv_uci || []).join(" ");
-      return `<li><strong>#${idx + 1}</strong> ${move} (${score})<br/><span>${pv}</span></li>`;
+      const commentary = line.commentary || "";
+      const commentaryHtml = commentary
+        ? `<div class="analysis-line-commentary">${analysisEscapeHtml(commentary)}</div>`
+        : "";
+      return `<li><strong>#${idx + 1}</strong> ${analysisEscapeHtml(move)} (${analysisEscapeHtml(score)})<br/><span>${analysisEscapeHtml(pv)}</span>${commentaryHtml}</li>`;
     })
     .join("");
 
@@ -145,6 +224,20 @@ function analysisRenderTextList(containerId, items, emptyMessage) {
   }
 
   container.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
+}
+
+function analysisRenderNarrative(items) {
+  const container = document.getElementById("analysis-narrative");
+  if (!container) return;
+
+  if (!items || !items.length) {
+    container.innerHTML = "<p>Nessun commento discorsivo disponibile.</p>";
+    return;
+  }
+
+  container.innerHTML = items
+    .map((item) => `<p>${analysisEscapeHtml(item)}</p>`)
+    .join("");
 }
 
 function analysisRenderDeepAnalysis(data) {
@@ -180,6 +273,7 @@ function analysisRenderDeepAnalysis(data) {
     data?.tactical_alerts || [],
     "Nessun alert tattico rilevante.",
   );
+  analysisRenderNarrative(data?.narrative_sections || []);
 
   if (summaryEl) {
     summaryEl.innerText = data?.summary || "Analisi completata.";
@@ -218,14 +312,14 @@ function analysisLoadStockfish() {
       const list = document.getElementById("best-moves");
       if (!list) return;
       list.innerHTML = moves
-        .slice(0, 5)
+        .slice(0, 8)
         .map((m, idx) => `<li><strong>#${idx + 1}</strong> ${m}</li>`)
         .join("");
     }
   };
 }
 
-function analysisLocalFallback() {
+function analysisLocalFallback(reasonMessage) {
   if (!game) {
     analysisSetStatus("Partita non inizializzata.", true);
     return;
@@ -233,7 +327,8 @@ function analysisLocalFallback() {
 
   if (!stockfish) {
     analysisSetStatus(
-      "Backend non raggiungibile e Stockfish locale non disponibile.",
+      reasonMessage ||
+        "Backend non raggiungibile e Stockfish locale non disponibile.",
       true,
     );
     return;
@@ -242,7 +337,10 @@ function analysisLocalFallback() {
   analysisUseLocalWorkerScores = true;
   stockfish.postMessage("position fen " + game.fen());
   stockfish.postMessage("go depth 18");
-  analysisSetStatus("Backend non disponibile: uso analisi locale WASM.", true);
+  analysisSetStatus(
+    reasonMessage || "Backend non disponibile: uso analisi locale WASM.",
+    true,
+  );
 }
 
 async function analysisRunDeep() {
@@ -264,35 +362,35 @@ async function analysisRunDeep() {
 
   const depthInput = document.getElementById("analysis-depth");
   const multiPvInput = document.getElementById("analysis-multipv");
+  const detailLevelInput = document.getElementById("analysis-detail-level");
   const depth = Math.max(8, Math.min(24, Number(depthInput?.value || 16)));
   const multiPv = Math.max(1, Math.min(5, Number(multiPvInput?.value || 3)));
+  const allowedLevels = ["breve", "coach", "approfondita"];
+  const selectedLevel = String(
+    detailLevelInput?.value || "coach",
+  ).toLowerCase();
+  const detailLevel = allowedLevels.includes(selectedLevel)
+    ? selectedLevel
+    : "coach";
 
   analysisSetStatus("Analisi approfondita in corso...");
 
   try {
-    const url = `${analysisBackendUrl()}?fen=${encodeURIComponent(game.fen())}&depth=${depth}&multi_pv=${multiPv}&_=${Date.now()}`;
+    const queryString = `fen=${encodeURIComponent(game.fen())}&depth=${depth}&multi_pv=${multiPv}&detail_level=${encodeURIComponent(detailLevel)}&_=${Date.now()}`;
     const fetchOptions = {
-      mode: "cors",
       cache: "no-store",
     };
     if (analysisAbortController) {
       fetchOptions.signal = analysisAbortController.signal;
     }
 
-    const response = await Promise.race([
-      fetch(url, fetchOptions),
-      new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("AnalysisTimeout")), 20000),
-      ),
-    ]);
-    const data = await response.json();
+    const { data } = await analysisFetchDeepWithRetry(
+      queryString,
+      fetchOptions,
+    );
 
     if (requestToken !== analysisRequestToken) {
       return;
-    }
-
-    if (!response.ok || data.error) {
-      throw new Error(data.error || "Errore durante l'analisi approfondita");
     }
 
     analysisUseLocalWorkerScores = false;
@@ -303,16 +401,46 @@ async function analysisRunDeep() {
       analysisSetStatus("Analisi completa disponibile.");
     }
   } catch (error) {
-    if (error?.message === "AnalysisTimeout") {
-      analysisSetStatus("Timeout analisi: uso fallback locale.", true);
-      analysisLocalFallback();
-      return;
+    if (String(error?.message || "").startsWith("AnalysisTimeout")) {
+      // Retry automatico con parametri piu leggeri prima del fallback WASM.
+      try {
+        const reducedDepth = Math.max(10, Math.min(depth, 12));
+        const reducedMultiPv = Math.max(1, Math.min(multiPv, 2));
+        const queryLight = `fen=${encodeURIComponent(game.fen())}&depth=${reducedDepth}&multi_pv=${reducedMultiPv}&detail_level=${encodeURIComponent(detailLevel)}&_=${Date.now()}`;
+        const fetchOptionsLight = {
+          cache: "no-store",
+        };
+        if (analysisAbortController) {
+          fetchOptionsLight.signal = analysisAbortController.signal;
+        }
+        const { data } = await analysisFetchDeepWithRetry(
+          queryLight,
+          fetchOptionsLight,
+        );
+        if (requestToken !== analysisRequestToken) {
+          return;
+        }
+        analysisUseLocalWorkerScores = false;
+        analysisRenderDeepAnalysis(data);
+        analysisSetStatus(
+          `Analisi completata in modalita rapida (depth=${reducedDepth}, multiPV=${reducedMultiPv}).`,
+          true,
+        );
+        return;
+      } catch (retryError) {
+        analysisLocalFallback(
+          `Timeout backend. Uso analisi locale WASM. Dettagli: ${retryError?.message || error.message}`,
+        );
+        return;
+      }
     }
     if (error?.name === "AbortError") {
       return;
     }
     console.error("Deep analysis error:", error);
-    analysisLocalFallback();
+    analysisLocalFallback(
+      `Errore backend: ${error?.message || "sconosciuto"}. Uso analisi locale WASM.`,
+    );
   } finally {
     if (requestToken === analysisRequestToken) {
       analysisAbortController = null;
@@ -389,7 +517,7 @@ function analysisOnDrop(source, target) {
   analysisDetectOpening();
 
   if (typeof registerNewMove === "function") registerNewMove();
-  analysisRunDeep();
+  // Non lanciare analisi deep in automatico alla mossa.
 }
 
 // Avvio

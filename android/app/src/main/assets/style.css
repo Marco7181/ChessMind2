@@ -79,12 +79,65 @@ body {
   padding: 8px;
 }
 
+.analysis-controls select {
+  width: 100%;
+  background: #111;
+  color: var(--text);
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px;
+}
+
 #analysis-summary {
   background: #1a1a1a;
   border: 1px solid #2e2e2e;
   border-radius: 8px;
   padding: 10px;
   line-height: 1.4;
+}
+
+.analysis-narrative {
+  background: #161616;
+  border: 1px solid #2b2b2b;
+  border-radius: 8px;
+  padding: 10px;
+  line-height: 1.45;
+}
+
+.analysis-narrative p {
+  margin: 0 0 8px;
+}
+
+.analysis-narrative p:last-child {
+  margin-bottom: 0;
+}
+
+.analysis-extra-plans {
+  margin-top: 10px;
+  border: 1px solid #2b2b2b;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #161616;
+}
+
+.analysis-extra-plans summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: #aaa;
+  user-select: none;
+}
+
+.analysis-extra-plans h4 {
+  margin: 8px 0 4px;
+  font-size: 13px;
+  color: #ccc;
+}
+
+.analysis-line-commentary {
+  margin-top: 5px;
+  color: #d7d7d7;
+  font-size: 13px;
+  line-height: 1.35;
 }
 
 .opening-box {

@@ -177,10 +177,7 @@ function importPgnFromInput() {
   syncBoardToGame();
   setPositionToolStatus("PGN importato correttamente.");
 
-  // Aggiorna subito pannello analisi/apertura quando il PGN viene importato.
-  if (typeof analysisRunDeep === "function") {
-    analysisRunDeep();
-  }
+  // Non avviare analisi automaticamente: l'utente decide quando premere il pulsante.
 }
 
 function normalizeImportedPgn(rawPgn) {

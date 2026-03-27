@@ -60,6 +60,13 @@
       <label for="analysis-multipv">Linee Candidate</label>
       <input id="analysis-multipv" type="number" min="1" max="5" value="3" />
 
+      <label for="analysis-detail-level">Livello Commento</label>
+      <select id="analysis-detail-level">
+        <option value="breve">Breve</option>
+        <option value="coach" selected>Coach</option>
+        <option value="approfondita">Approfondita</option>
+      </select>
+
       <button class="btn" onclick="analysisRunDeep()">Analisi Posizione</button>
       <button class="btn" onclick="analysisRunGameAnalysis()">
         Analisi partita
@@ -71,17 +78,24 @@
     <h3>Linee Migliori</h3>
     <ul id="best-moves"></ul>
 
-    <h3>Piano di Gioco</h3>
-    <ul id="strategic-plan"></ul>
-
-    <h3>Piano Avversario</h3>
-    <ul id="opponent-plan"></ul>
-
     <h3>Alert Tattici</h3>
     <ul id="tactical-alerts"></ul>
 
+    <h3>Approfondimento Strutturale e Tattico</h3>
+    <div id="analysis-narrative" class="analysis-narrative">
+      <p>In attesa analisi...</p>
+    </div>
+
     <h3>Sintesi</h3>
     <div id="analysis-summary">In attesa analisi...</div>
+
+    <details class="analysis-extra-plans">
+      <summary>Piano di Gioco e Piano Avversario</summary>
+      <h4>Piano di Gioco</h4>
+      <ul id="strategic-plan"></ul>
+      <h4>Piano Avversario</h4>
+      <ul id="opponent-plan"></ul>
+    </details>
 
     <div id="game-analysis-panel" style="display: none; margin-top: 16px">
       <h3>Analisi Partita</h3>
