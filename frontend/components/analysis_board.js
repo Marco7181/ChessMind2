@@ -16,11 +16,15 @@ function analysisBackendUrl() {
 
   const protocol = window.location.protocol;
   const hostname = window.location.hostname;
+  const origin = window.location.origin;
   const isAndroidClient = /Android/i.test(navigator.userAgent || "");
 
   if (protocol === "http:" || protocol === "https:") {
+    if (origin && origin !== "null") {
+      return `${origin}/analysis/deep`;
+    }
     const resolvedHost = hostname || "127.0.0.1";
-    return `${protocol}//${resolvedHost}:8000/analysis/deep`;
+    return `${protocol}//${resolvedHost}/analysis/deep`;
   }
 
   if (isAndroidClient) {
@@ -36,8 +40,19 @@ function analysisOpeningsUrl() {
 
 function analysisDeepEndpointCandidates() {
   const candidates = [analysisBackendUrl()];
+  const protocol = window.location.protocol;
+  const hostname = window.location.hostname || "127.0.0.1";
+  const origin = window.location.origin;
   const isAndroidClient = /Android/i.test(navigator.userAgent || "");
 
+  if (
+    (protocol === "http:" || protocol === "https:") &&
+    origin &&
+    origin !== "null"
+  ) {
+    candidates.push(`${origin}/analysis/deep`);
+    candidates.push(`${protocol}//${hostname}:8000/analysis/deep`);
+  }
   candidates.push("http://127.0.0.1:8000/analysis/deep");
   if (isAndroidClient) {
     candidates.push("http://10.0.2.2:8000/analysis/deep");
